@@ -37,6 +37,21 @@ final middleCombosProvider =
 );
 
 typedef _$MiddleCombos = AutoDisposeNotifier<List<Combination>>;
+String _$insideCombosHash() => r'e90ee673f679b43b23590aebaa8f0d9263d6d01c';
+
+/// See also [InsideCombos].
+@ProviderFor(InsideCombos)
+final insideCombosProvider =
+    AutoDisposeNotifierProvider<InsideCombos, List<Combination>>.internal(
+  InsideCombos.new,
+  name: r'insideCombosProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$insideCombosHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$InsideCombos = AutoDisposeNotifier<List<Combination>>;
 String _$numberListHash() => r'26367976ef5a26a0f17b4aa13e82455a61699165';
 
 /// See also [NumberList].

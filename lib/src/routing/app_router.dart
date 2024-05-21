@@ -1,0 +1,108 @@
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:summit_rock/src/common_widgets/oops_page.dart';
+import 'package:summit_rock/src/features/authentication/data/auth_repository.dart';
+import 'package:summit_rock/src/features/settings/presentation/settings_page.dart';
+import 'package:summit_rock/src/features/word_decoder/presentation/word_decoder_page.dart';
+import 'package:summit_rock/src/routing/go_router_refresh_stream.dart';
+
+/// All of the route names in the app.
+/// Route by name like this:
+/// ```dart
+/// context.goNamed(AppRoute.home)
+/// ```
+///
+/// Note that these are just the route names NOT the paths.
+/// Aka, `AppRoute.home` will return `home` NOT `/home`
+class AppRoute {
+  static const home = 'home';
+  static const settings = 'settings';
+}
+
+/// Provides the full GoRouter instance for the app with all supported
+/// routes defined.
+final goRouterProvider = Provider((ref) {
+  final authRepository = ref.watch(authRepositoryProvider);
+  return GoRouter(
+    initialLocation: '/',
+    debugLogDiagnostics: true,
+    redirect: (context, state) async {
+      final user = authRepository.currentUser;
+      final isLoggedIn = user != null;
+      final path = state.uri.path;
+      if (isLoggedIn) {
+        if (path == '/signIn') return '/';
+        final isAdmin = await user.isAdmin();
+        if (!isAdmin && path.startsWith('/admin')) {
+          // Don't allow non-admin users to access admin pages
+          return '/';
+        }
+      } else {
+        if (path == '/account' || path == '/orders') {
+          return '/';
+        }
+        if (path.startsWith('/admin')) {
+          // Don't allow non-admin users to access admin pages
+          return '/';
+        }
+      }
+      return null;
+    },
+    refreshListenable: GoRouterRefreshStream(authRepository.authStateChanges()),
+    routes: [
+      GoRoute(
+        path: '/',
+        name: AppRoute.home,
+        builder: (context, state) => const WordDecoderPage(),
+        routes: [
+          GoRoute(
+            path: 'settings',
+            name: AppRoute.settings,
+            builder: (context, state) {
+              return const SettingsPage();
+            },
+            routes: [],
+          ),
+          //       GoRoute(
+          //         path: 'rules',
+          //         pageBuilder: (context, state) {
+          //           return CustomTransitionPage(
+          //             fullscreenDialog: true,
+          //             child: RulesPage(),
+          //             transitionsBuilder: _slideUpTransition,
+          //           );
+          //         },
+          //       ),
+        ],
+      ),
+    ],
+    errorBuilder: (context, state) {
+      String currentPath = state.uri.path;
+      print("Error navigating to path: $currentPath");
+      return OopsPage(
+        message:
+            "We can't find the page you're looking for...\nThere is no page at $currentPath",
+      );
+    },
+  );
+});
+
+SlideTransition _slideUpTransition(
+    context, animation, secondaryAnimation, child) {
+  const begin = Offset(0.0, 1.0);
+  const end = Offset.zero;
+  const curve = Curves.ease;
+  final tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+  return SlideTransition(
+    position: animation.drive(tween),
+    child: child,
+  );
+}
+
+FadeTransition _fadeTransition(context, animation, secondaryAnimation, child) {
+  return FadeTransition(
+    opacity: animation,
+    child: child,
+  );
+}

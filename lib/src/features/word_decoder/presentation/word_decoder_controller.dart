@@ -325,6 +325,127 @@ class MiddleCombos extends _$MiddleCombos {
 }
 
 @riverpod
+class InsideCombos extends _$InsideCombos {
+  @override
+  List<Combination> build() {
+    // Nothing to do, no state
+    return [];
+  }
+
+  void addCombo(Combination combo) {
+    state = [...state, combo];
+  }
+
+  void clearCombos() {
+    state = [];
+  }
+
+  void toggleFavorite(Combination combo) {
+    // combo.favorite = !combo.favorite;
+
+    state = [
+      for (final c in state)
+        if (c.word == combo.word)
+          // Mark only the matching combo as favorite
+          // Make a copy since the state is immutable.
+          c.copyWith(favorite: !c.favorite)
+        else
+          // Other combos are not modified
+          c,
+    ];
+  }
+
+  final _insideRing = [
+    "Y",
+    "O",
+    "U",
+    "R",
+    "H",
+    "E",
+    "A",
+    "L",
+    "T",
+    "H",
+    "J",
+    "O",
+    "U",
+    "R",
+    "N",
+    "E",
+    "Y",
+    "E",
+    "X",
+    "E",
+    "R",
+    "C",
+    "I",
+    "S",
+    "E",
+    "I",
+    "N",
+    "D",
+    "I",
+    "S",
+    "G",
+    "U",
+    "I",
+    "S",
+    "E",
+    "T",
+    "H",
+    "E",
+    "H",
+    "U",
+    "N",
+    "T",
+    "H",
+    "A",
+    "S",
+    "B",
+    "E",
+    "G",
+    "U",
+    "N",
+    "S",
+    "U",
+    "M",
+    "M",
+    "I",
+    "T",
+    "H",
+    "A",
+    "S",
+    "E",
+    "V",
+    "E",
+    "R",
+    "Y",
+    "T",
+    "H",
+    "I",
+    "N",
+    "G",
+  ];
+
+  void checkNumbers() {
+    final numbers = ref.read(numberListProvider);
+    print("Words from the Inside Ring:");
+    for (int i = 0; i < _insideRing.length; i++) {
+      String word = '';
+      for (int num in numbers) {
+        int index = (i + num) % _insideRing.length;
+        word += _insideRing[index];
+      }
+      print(word);
+      final combo = Combination(word: word, favorite: false);
+      // TODO check if word is in dictionary and mark as favorite
+      addCombo(combo);
+    }
+    print("Inside Ring State: $state");
+  }
+}
+
+@riverpod
 class NumberList extends _$NumberList {
   @override
   List<int> build() {

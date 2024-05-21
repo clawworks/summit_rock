@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "962576412561",
+    "project_id": "summit-rock",
+    "storage_bucket": "summit-rock.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:962576412561:android:13fcf59985a0a44134b430",
+        "android_client_info": {
+          "package_name": "dev.clawworks.summit_rock"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDl4HEYMMRGR1J2ND3L7q12zAbIWD8Vxmk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

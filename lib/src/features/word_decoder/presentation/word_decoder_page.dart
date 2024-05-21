@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:summit_rock/src/features/word_decoder/domain/combination.dart';
 import 'package:summit_rock/src/features/word_decoder/presentation/word_decoder_controller.dart';
+import 'package:summit_rock/src/routing/app_router.dart';
 
 class WordDecoderPage extends HookConsumerWidget {
   const WordDecoderPage({super.key});
@@ -18,6 +20,14 @@ class WordDecoderPage extends HookConsumerWidget {
         // foregroundColor: Theme.of(context).colorScheme.primary,
         foregroundColor: Theme.of(context).colorScheme.onPrimary,
         backgroundColor: Theme.of(context).colorScheme.primary,
+        actions: [
+          IconButton(
+            onPressed: () async {
+              context.goNamed(AppRoute.settings);
+            },
+            icon: const Icon(Icons.settings),
+          ),
+        ],
       ),
       body: ListView(
         children: [

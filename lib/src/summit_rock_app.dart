@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:summit_rock/src/features/word_decoder/presentation/word_decoder_page.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:summit_rock/src/routing/app_router.dart';
 
-class SummitRockApp extends StatelessWidget {
+class SummitRockApp extends ConsumerWidget {
   const SummitRockApp({super.key});
 
   // This widget is the root of your application.
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
+  Widget build(BuildContext context, WidgetRef ref) {
+    return MaterialApp.router(
       title: 'Summit Rock',
+      routerConfig: ref.watch(goRouterProvider),
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -28,7 +30,6 @@ class SummitRockApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
         useMaterial3: true,
       ),
-      home: const WordDecoderPage(),
     );
   }
 }
