@@ -6,7 +6,24 @@ part of 'word_decoder_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$outsideCombosHash() => r'e303ec7b082987eee148b338143927478b7a6577';
+String _$wordDecoderControllerHash() =>
+    r'd633946a2fbaca455ab081588ef4afbcbe310d1b';
+
+/// See also [WordDecoderController].
+@ProviderFor(WordDecoderController)
+final wordDecoderControllerProvider =
+    AutoDisposeAsyncNotifierProvider<WordDecoderController, void>.internal(
+  WordDecoderController.new,
+  name: r'wordDecoderControllerProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$wordDecoderControllerHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$WordDecoderController = AutoDisposeAsyncNotifier<void>;
+String _$outsideCombosHash() => r'6e8c29e56a434f43b37ab1700cff5001a96a9fac';
 
 /// See also [OutsideCombos].
 @ProviderFor(OutsideCombos)
@@ -22,7 +39,7 @@ final outsideCombosProvider =
 );
 
 typedef _$OutsideCombos = AutoDisposeNotifier<List<Combination>>;
-String _$middleCombosHash() => r'776ef2b1b30fece8751fbb3f3e511b82b7375255';
+String _$middleCombosHash() => r'4101334e7fd5152545530d7e0aee2e2e2dcc2d4f';
 
 /// See also [MiddleCombos].
 @ProviderFor(MiddleCombos)
@@ -37,7 +54,7 @@ final middleCombosProvider =
 );
 
 typedef _$MiddleCombos = AutoDisposeNotifier<List<Combination>>;
-String _$insideCombosHash() => r'e90ee673f679b43b23590aebaa8f0d9263d6d01c';
+String _$insideCombosHash() => r'4171e1bec6621d8c078e2967411a73fec44d96d2';
 
 /// See also [InsideCombos].
 @ProviderFor(InsideCombos)

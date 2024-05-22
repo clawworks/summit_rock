@@ -11,6 +11,14 @@ class WordDecoderPage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    ref.listen<AsyncValue>(wordDecoderControllerProvider, (_, state) {
+      // state.showAlertDialogOnError(context);
+      if (state.hasError) {
+        print("Error in WordDecoderController!\nError: ${state.error}");
+        context.goNamed(AppRoute.oops);
+      }
+    });
+
     final numController = useTextEditingController(text: '');
     final numbers = ref.watch(numberListProvider);
     return Scaffold(
@@ -60,7 +68,10 @@ class WordDecoderPage extends HookConsumerWidget {
                     // onTapOutside: (_) =>
                     //     FocusManager.instance.primaryFocus?.unfocus(),
                     controller: numController,
-                    textInputAction: TextInputAction.done,
+                    textInputAction: TextInputAction.go,
+                    onSubmitted: (value) {
+                      print("Go button tapped!");
+                    },
                     keyboardType: TextInputType.number,
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.titleLarge,
@@ -115,9 +126,9 @@ class WordDecoderPage extends HookConsumerWidget {
                   }
                 }
                 FocusManager.instance.primaryFocus?.unfocus();
-                ref.read(outsideCombosProvider.notifier).checkNumbers();
-                ref.read(middleCombosProvider.notifier).checkNumbers();
-                ref.read(numberListProvider.notifier).clearNumbers();
+                await ref
+                    .read(wordDecoderControllerProvider.notifier)
+                    .getResults();
               },
               child: const Text('Check Numbers!'),
             ),

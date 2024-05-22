@@ -1,5 +1,7 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:summit_rock/src/features/word_decoder/application/result_service.dart';
 import 'package:summit_rock/src/features/word_decoder/domain/combination.dart';
+import 'package:summit_rock/src/features/word_decoder/domain/result.dart';
 
 part 'word_decoder_controller.g.dart';
 //
@@ -12,6 +14,37 @@ part 'word_decoder_controller.g.dart';
 // List<Combination> middleWords(MiddleWordsRef ref) {
 //   return [];
 // }
+
+@riverpod
+class WordDecoderController extends _$WordDecoderController {
+  @override
+  FutureOr<void> build() {
+    // Nothing to do
+  }
+
+  Future<void> getResults() async {
+    List<int> numbers = ref.read(numberListProvider);
+    List<Combination> outsideCombos =
+        ref.read(outsideCombosProvider.notifier).checkNumbers();
+    List<Combination> middleCombos =
+        ref.read(middleCombosProvider.notifier).checkNumbers();
+    List<Combination> insideCombos =
+        ref.read(insideCombosProvider.notifier).checkNumbers();
+    // TODO call service to create Result and store it in firebase
+    final result = Result(
+      id: 'FixID',
+      numbers: numbers,
+      outsideCombinations: outsideCombos,
+      middleCombinations: middleCombos,
+      insideCombinations: insideCombos,
+    );
+    state = const AsyncValue.loading();
+    state = await AsyncValue.guard(() async {
+      await ref.read(resultServiceProvider).setResult(result);
+    });
+    ref.read(numberListProvider.notifier).clearNumbers();
+  }
+}
 
 @riverpod
 class OutsideCombos extends _$OutsideCombos {
@@ -31,7 +64,6 @@ class OutsideCombos extends _$OutsideCombos {
 
   void toggleFavorite(Combination combo) {
     // combo.favorite = !combo.favorite;
-
     state = [
       for (final c in state)
         if (c.word == combo.word)
@@ -152,7 +184,7 @@ class OutsideCombos extends _$OutsideCombos {
     "R"
   ];
 
-  void checkNumbers() {
+  List<Combination> checkNumbers() {
     final numbers = ref.read(numberListProvider);
     print("Words from the Outside Ring:");
     for (int i = 0; i < _outsideRing.length; i++) {
@@ -167,6 +199,7 @@ class OutsideCombos extends _$OutsideCombos {
       addCombo(combo);
     }
     print("Outside Ring State: $state");
+    return state;
   }
 }
 
@@ -306,7 +339,7 @@ class MiddleCombos extends _$MiddleCombos {
     "K"
   ];
 
-  void checkNumbers() {
+  List<Combination> checkNumbers() {
     final numbers = ref.read(numberListProvider);
     print("Words from the Middle Ring:");
     for (int i = 0; i < _middleRing.length; i++) {
@@ -321,6 +354,7 @@ class MiddleCombos extends _$MiddleCombos {
       addCombo(combo);
     }
     print("Middle Ring State: $state");
+    return state;
   }
 }
 
@@ -427,7 +461,7 @@ class InsideCombos extends _$InsideCombos {
     "G",
   ];
 
-  void checkNumbers() {
+  List<Combination> checkNumbers() {
     final numbers = ref.read(numberListProvider);
     print("Words from the Inside Ring:");
     for (int i = 0; i < _insideRing.length; i++) {
@@ -442,6 +476,7 @@ class InsideCombos extends _$InsideCombos {
       addCombo(combo);
     }
     print("Inside Ring State: $state");
+    return state;
   }
 }
 

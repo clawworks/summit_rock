@@ -20,6 +20,7 @@ class AppRoute {
   static const home = 'home';
   static const settings = 'settings';
   static const signIn = 'signIn';
+  static const oops = 'oops';
 }
 
 /// Global root Navigator key
@@ -83,6 +84,14 @@ final goRouterProvider = Provider((ref) {
             name: AppRoute.settings,
             builder: (context, state) {
               return const SettingsPage();
+            },
+            routes: [],
+          ),
+          GoRoute(
+            path: 'oops',
+            name: AppRoute.oops,
+            builder: (context, state) {
+              return const OopsPage();
             },
             routes: [],
           ),
