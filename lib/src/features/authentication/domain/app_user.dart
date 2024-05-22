@@ -4,10 +4,12 @@ typedef UserId = String;
 class AppUser {
   const AppUser({
     required this.uid,
+    this.name,
     this.email,
     this.emailVerified = false,
   });
   final UserId uid;
+  final String? name;
   final String? email;
   final bool emailVerified;
 

@@ -22,7 +22,8 @@ class OopsPage extends StatelessWidget {
               const SizedBox(height: 20.0),
               Text(
                 message ?? 'We had a problem. Please go back and try again.',
-                style: Theme.of(context).textTheme.headlineMedium,
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.titleLarge,
               ),
               const SizedBox(height: 20.0),
               ElevatedButton(

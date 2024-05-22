@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:summit_rock/src/common_widgets/oops_page.dart';
 import 'package:summit_rock/src/features/authentication/data/auth_repository.dart';
+import 'package:summit_rock/src/features/authentication/presentation/sign_in_page.dart';
 import 'package:summit_rock/src/features/settings/presentation/settings_page.dart';
 import 'package:summit_rock/src/features/word_decoder/presentation/word_decoder_page.dart';
 import 'package:summit_rock/src/routing/go_router_refresh_stream.dart';
@@ -18,7 +19,11 @@ import 'package:summit_rock/src/routing/go_router_refresh_stream.dart';
 class AppRoute {
   static const home = 'home';
   static const settings = 'settings';
+  static const signIn = 'signIn';
 }
+
+/// Global root Navigator key
+final rootNavigatorKey = GlobalKey<NavigatorState>();
 
 /// Provides the full GoRouter instance for the app with all supported
 /// routes defined.
@@ -27,35 +32,52 @@ final goRouterProvider = Provider((ref) {
   return GoRouter(
     initialLocation: '/',
     debugLogDiagnostics: true,
+    navigatorKey: rootNavigatorKey,
+    refreshListenable: GoRouterRefreshStream(authRepository.authStateChanges()),
     redirect: (context, state) async {
       final user = authRepository.currentUser;
       final isLoggedIn = user != null;
       final path = state.uri.path;
+      print("In Redirect, user is ${!isLoggedIn ? "not" : ""} logged in");
       if (isLoggedIn) {
-        if (path == '/signIn') return '/';
+        if (path == '/signIn') {
+          print("Redirecting to Home");
+          return '/';
+        }
         final isAdmin = await user.isAdmin();
         if (!isAdmin && path.startsWith('/admin')) {
           // Don't allow non-admin users to access admin pages
+          print("Redirecting to Home");
           return '/';
         }
       } else {
-        if (path == '/account' || path == '/orders') {
-          return '/';
-        }
-        if (path.startsWith('/admin')) {
-          // Don't allow non-admin users to access admin pages
-          return '/';
-        }
+        // User is NOT logged in, redirect to sign in page
+        print("Redirecting to SignInPage");
+        return '/${AppRoute.signIn}';
+        // if (path == '/account' || path == '/orders') {
+        //   return '/';
+        // }
+        // if (path.startsWith('/admin')) {
+        //   // Don't allow non-admin users to access admin pages
+        //   return '/';
+        // }
       }
       return null;
     },
-    refreshListenable: GoRouterRefreshStream(authRepository.authStateChanges()),
     routes: [
       GoRoute(
         path: '/',
         name: AppRoute.home,
         builder: (context, state) => const WordDecoderPage(),
         routes: [
+          GoRoute(
+            path: 'signIn',
+            name: AppRoute.signIn,
+            builder: (context, state) {
+              return const SignInPage();
+            },
+            routes: [],
+          ),
           GoRoute(
             path: 'settings',
             name: AppRoute.settings,

@@ -10,6 +10,9 @@ class FirebaseAppUser implements AppUser {
   UserId get uid => _user.uid;
 
   @override
+  String? get name => _user.displayName;
+
+  @override
   String? get email => _user.email;
 
   @override
