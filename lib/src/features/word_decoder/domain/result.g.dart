@@ -26,7 +26,10 @@ Map<String, dynamic> _$$ResultImplToJson(_$ResultImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'numbers': instance.numbers,
-      'outsideCombinations': instance.outsideCombinations,
-      'middleCombinations': instance.middleCombinations,
-      'insideCombinations': instance.insideCombinations,
+      'outsideCombinations':
+          instance.outsideCombinations.map((e) => e.toJson()).toList(),
+      'middleCombinations':
+          instance.middleCombinations.map((e) => e.toJson()).toList(),
+      'insideCombinations':
+          instance.insideCombinations.map((e) => e.toJson()).toList(),
     };

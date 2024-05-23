@@ -7,12 +7,12 @@ part of 'word_decoder_controller.dart';
 // **************************************************************************
 
 String _$wordDecoderControllerHash() =>
-    r'd633946a2fbaca455ab081588ef4afbcbe310d1b';
+    r'5d584af7c3a534d3625e8ccb4f0049db02f393fc';
 
 /// See also [WordDecoderController].
 @ProviderFor(WordDecoderController)
 final wordDecoderControllerProvider =
-    AutoDisposeAsyncNotifierProvider<WordDecoderController, void>.internal(
+    AsyncNotifierProvider<WordDecoderController, void>.internal(
   WordDecoderController.new,
   name: r'wordDecoderControllerProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -22,7 +22,7 @@ final wordDecoderControllerProvider =
   allTransitiveDependencies: null,
 );
 
-typedef _$WordDecoderController = AutoDisposeAsyncNotifier<void>;
+typedef _$WordDecoderController = AsyncNotifier<void>;
 String _$outsideCombosHash() => r'6e8c29e56a434f43b37ab1700cff5001a96a9fac';
 
 /// See also [OutsideCombos].

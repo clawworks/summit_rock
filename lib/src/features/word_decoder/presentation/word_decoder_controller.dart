@@ -15,7 +15,7 @@ part 'word_decoder_controller.g.dart';
 //   return [];
 // }
 
-@riverpod
+@Riverpod(keepAlive: true)
 class WordDecoderController extends _$WordDecoderController {
   @override
   FutureOr<void> build() {
