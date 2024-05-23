@@ -32,6 +32,14 @@ class ResultsRepository {
         );
   }
 
+  Query<Result> _resultsRef(UserId uid) => _firestore
+      .collection(userResultsPath(uid))
+      .withConverter(
+        fromFirestore: (doc, _) => Result.fromJson(doc.data()!),
+        toFirestore: (Result result, options) => result.toJson(),
+      )
+      .orderBy('updatedAt', descending: true);
+
   // CollectionReference<List<Result>> _resultsRef(UserId uid) {
   //   return _firestore.collection(userResultsPath(uid)).withConverter(
   //     fromFirestore: (doc, _) => Result.fromJson(doc.data()!),
@@ -45,10 +53,16 @@ class ResultsRepository {
   //   return snapshot.data() ?? const Result();
   // }
 
-  // Stream<Result> watchResult(UserId uid) {
-  //   final ref = _resultRef(uid);
-  //   return ref.snapshots().map((snapshot) => snapshot.data() ?? const Result());
-  // }
+  Stream<Result?> watchResult(UserId uid, ResultId resultId) {
+    final ref = _resultRef(uid, resultId);
+    return ref.snapshots().map((snapshot) => snapshot.data());
+  }
+
+  Stream<List<Result>> watchResultsList(UserId uid) {
+    final ref = _resultsRef(uid);
+    return ref.snapshots().map((snapshot) =>
+        snapshot.docs.map((docSnapshot) => docSnapshot.data()).toList());
+  }
 
   // Stream<List<Result>> watchResults(UserId uid) {
   //   try {

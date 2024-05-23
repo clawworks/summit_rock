@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:summit_rock/src/features/word_decoder/domain/combination.dart';
+import 'package:summit_rock/src/features/word_decoder/application/result_service.dart';
 import 'package:summit_rock/src/features/word_decoder/presentation/word_decoder_controller.dart';
 import 'package:summit_rock/src/routing/app_router.dart';
+
+import '../domain/result.dart';
 
 class WordDecoderPage extends HookConsumerWidget {
   const WordDecoderPage({super.key});
@@ -26,8 +28,8 @@ class WordDecoderPage extends HookConsumerWidget {
       appBar: AppBar(
         title: const Text('Summit Rock 2024'),
         // foregroundColor: Theme.of(context).colorScheme.primary,
-        foregroundColor: Theme.of(context).colorScheme.onPrimary,
-        backgroundColor: Theme.of(context).colorScheme.primary,
+        // foregroundColor: Theme.of(context).colorScheme.onPrimary,
+        // backgroundColor: Theme.of(context).colorScheme.primary,
         actions: [
           IconButton(
             onPressed: () async {
@@ -133,6 +135,15 @@ class WordDecoderPage extends HookConsumerWidget {
               child: const Text('Check Numbers!'),
             ),
           ),
+          Center(
+            child: Padding(
+              padding: const EdgeInsets.only(top: 32.0, bottom: 8.0),
+              child: Text(
+                'History',
+                style: Theme.of(context).textTheme.headlineSmall,
+              ),
+            ),
+          ),
           const ResultsList(),
         ],
       ),
@@ -145,73 +156,95 @@ class ResultsList extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final outsideCombos = ref.watch(outsideCombosProvider);
-    final middleCombos = ref.watch(middleCombosProvider);
-    // final insideCombos = ref.watch(middleCombosProvider);
-    return GridView.count(
-      crossAxisCount: 4,
-      primary: false,
-      crossAxisSpacing: 8,
-      mainAxisSpacing: 8,
-      childAspectRatio: 2.0,
-      physics: const NeverScrollableScrollPhysics(),
-      shrinkWrap: true,
-      children: [
-        for (Combination combo in outsideCombos)
-          GestureDetector(
-            onTap: () async {
-              ref.read(outsideCombosProvider.notifier).toggleFavorite(combo);
-              // combo.favorite = !combo.favorite;
-            },
-            child: Container(
-              // color: Colors.green,
-              child: Center(
-                child: Text(
-                  '${combo.word}, ',
-                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                        color: combo.favorite
-                            ? Theme.of(context).colorScheme.primary
-                            : null,
-                        fontWeight: combo.favorite ? FontWeight.bold : null,
-                      ),
-                ),
-              ),
-            ),
-          ),
-      ],
+    final asyncValue = ref.watch(resultsListStreamProvider);
+    return asyncValue.when(
+      data: (results) {
+        return Column(
+          children: [
+            for (Result result in results) ResultCard(result: result),
+          ],
+        );
+      },
+      error: (err, stack) {
+        print("ERROR loading results: $err\n$stack");
+        return const Text('Error loading Results...');
+      },
+      loading: () {
+        return const CircularProgressIndicator.adaptive();
+      },
     );
-    // return Wrap(
-    //   children: [
-    //     const Text('Outside Words:'),
-    //     for (Combination combo in outsideCombos)
-    //       GestureDetector(
-    //         onTap: () async {
-    //           combo.favorite = !combo.favorite;
-    //         },
-    //         child: Text(
-    //           '${combo.word}, ',
-    //           style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-    //                 color: combo.favorite
-    //                     ? Theme.of(context).colorScheme.primary
-    //                     : null,
-    //                 fontWeight: combo.favorite ? FontWeight.bold : null,
-    //               ),
-    //         ),
-    //       ),
-    //     const Text('Middle Words:'),
-    //     for (Combination combo in middleCombos)
-    //       Text(
-    //         '${combo.word}, ',
-    //         style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-    //               color: combo.favorite
-    //                   ? Theme.of(context).colorScheme.primary
-    //                   : null,
-    //               fontWeight: combo.favorite ? FontWeight.bold : null,
-    //             ),
-    //       ),
-    //     // const Text('Inside Words:'),
-    //     // for (Combination combo in insideCombos) Text(combo.word),
-    //   ],
-    // );
   }
 }
+
+class ResultCard extends StatelessWidget {
+  const ResultCard({required this.result, super.key});
+
+  final Result result;
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      child: InkWell(
+        radius: 10.0,
+        onTap: () async {
+          context.goNamed(AppRoute.result,
+              pathParameters: {'resultId': result.id});
+        },
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text('${result.numbers}'),
+              Text('[favorites]'),
+              // Text('${result.favorites}'),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+// class ResultsList extends ConsumerWidget {
+//   const ResultsList({super.key});
+//
+//   @override
+//   Widget build(BuildContext context, WidgetRef ref) {
+//     final outsideCombos = ref.watch(outsideCombosProvider);
+//     final middleCombos = ref.watch(middleCombosProvider);
+//     final insideCombos = ref.watch(middleCombosProvider);
+//     return GridView.count(
+//       crossAxisCount: 4,
+//       primary: false,
+//       crossAxisSpacing: 8,
+//       mainAxisSpacing: 8,
+//       childAspectRatio: 2.0,
+//       physics: const NeverScrollableScrollPhysics(),
+//       shrinkWrap: true,
+//       children: [
+//         for (Combination combo in outsideCombos)
+//           GestureDetector(
+//             onTap: () async {
+//               ref.read(outsideCombosProvider.notifier).toggleFavorite(combo);
+//               // combo.favorite = !combo.favorite;
+//             },
+//             child: Container(
+//               // color: Colors.green,
+//               child: Center(
+//                 child: Text(
+//                   '${combo.word}, ',
+//                   style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+//                         color: combo.favorite
+//                             ? Theme.of(context).colorScheme.primary
+//                             : null,
+//                         fontWeight: combo.favorite ? FontWeight.bold : null,
+//                       ),
+//                 ),
+//               ),
+//             ),
+//           ),
+//       ],
+//     );
+//   }
+// }

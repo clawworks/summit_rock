@@ -5,6 +5,8 @@ import 'package:summit_rock/src/common_widgets/oops_page.dart';
 import 'package:summit_rock/src/features/authentication/data/auth_repository.dart';
 import 'package:summit_rock/src/features/authentication/presentation/sign_in_page.dart';
 import 'package:summit_rock/src/features/settings/presentation/settings_page.dart';
+import 'package:summit_rock/src/features/word_decoder/domain/result.dart';
+import 'package:summit_rock/src/features/word_decoder/presentation/result_page.dart';
 import 'package:summit_rock/src/features/word_decoder/presentation/word_decoder_page.dart';
 import 'package:summit_rock/src/routing/go_router_refresh_stream.dart';
 
@@ -18,8 +20,9 @@ import 'package:summit_rock/src/routing/go_router_refresh_stream.dart';
 /// Aka, `AppRoute.home` will return `home` NOT `/home`
 class AppRoute {
   static const home = 'home';
-  static const settings = 'settings';
   static const signIn = 'signIn';
+  static const settings = 'settings';
+  static const result = 'result';
   static const oops = 'oops';
 }
 
@@ -87,6 +90,22 @@ final goRouterProvider = Provider((ref) {
             },
             routes: [],
           ),
+          GoRoute(
+            path: 'result/:resultId',
+            name: AppRoute.result,
+            builder: (context, state) {
+              ResultId id = state.pathParameters['resultId']!;
+              return ResultPage(resultId: id);
+            },
+            routes: [],
+          ),
+          // GoRoute(
+          //   path: 'drills/:drillId',
+          //   name: AppRoute.drill.name,
+          //   builder: (context, state) {
+          //     return GetDrillPage(drillId: state.pathParameters['drillId']);
+          //   },
+          // ),
           GoRoute(
             path: 'oops',
             name: AppRoute.oops,

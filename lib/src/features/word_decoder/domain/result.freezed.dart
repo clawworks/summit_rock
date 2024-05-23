@@ -28,6 +28,8 @@ mixin _$Result {
       throw _privateConstructorUsedError;
   List<Combination> get insideCombinations =>
       throw _privateConstructorUsedError;
+  DateTime get createdAt => throw _privateConstructorUsedError;
+  DateTime get updatedAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -44,7 +46,9 @@ abstract class $ResultCopyWith<$Res> {
       List<int> numbers,
       List<Combination> outsideCombinations,
       List<Combination> middleCombinations,
-      List<Combination> insideCombinations});
+      List<Combination> insideCombinations,
+      DateTime createdAt,
+      DateTime updatedAt});
 }
 
 /// @nodoc
@@ -65,6 +69,8 @@ class _$ResultCopyWithImpl<$Res, $Val extends Result>
     Object? outsideCombinations = null,
     Object? middleCombinations = null,
     Object? insideCombinations = null,
+    Object? createdAt = null,
+    Object? updatedAt = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -87,6 +93,14 @@ class _$ResultCopyWithImpl<$Res, $Val extends Result>
           ? _value.insideCombinations
           : insideCombinations // ignore: cast_nullable_to_non_nullable
               as List<Combination>,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      updatedAt: null == updatedAt
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ) as $Val);
   }
 }
@@ -103,7 +117,9 @@ abstract class _$$ResultImplCopyWith<$Res> implements $ResultCopyWith<$Res> {
       List<int> numbers,
       List<Combination> outsideCombinations,
       List<Combination> middleCombinations,
-      List<Combination> insideCombinations});
+      List<Combination> insideCombinations,
+      DateTime createdAt,
+      DateTime updatedAt});
 }
 
 /// @nodoc
@@ -122,6 +138,8 @@ class __$$ResultImplCopyWithImpl<$Res>
     Object? outsideCombinations = null,
     Object? middleCombinations = null,
     Object? insideCombinations = null,
+    Object? createdAt = null,
+    Object? updatedAt = null,
   }) {
     return _then(_$ResultImpl(
       id: null == id
@@ -144,6 +162,14 @@ class __$$ResultImplCopyWithImpl<$Res>
           ? _value._insideCombinations
           : insideCombinations // ignore: cast_nullable_to_non_nullable
               as List<Combination>,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      updatedAt: null == updatedAt
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ));
   }
 }
@@ -156,7 +182,9 @@ class _$ResultImpl implements _Result {
       required final List<int> numbers,
       required final List<Combination> outsideCombinations,
       required final List<Combination> middleCombinations,
-      required final List<Combination> insideCombinations})
+      required final List<Combination> insideCombinations,
+      required this.createdAt,
+      required this.updatedAt})
       : _numbers = numbers,
         _outsideCombinations = outsideCombinations,
         _middleCombinations = middleCombinations,
@@ -203,8 +231,13 @@ class _$ResultImpl implements _Result {
   }
 
   @override
+  final DateTime createdAt;
+  @override
+  final DateTime updatedAt;
+
+  @override
   String toString() {
-    return 'Result(id: $id, numbers: $numbers, outsideCombinations: $outsideCombinations, middleCombinations: $middleCombinations, insideCombinations: $insideCombinations)';
+    return 'Result(id: $id, numbers: $numbers, outsideCombinations: $outsideCombinations, middleCombinations: $middleCombinations, insideCombinations: $insideCombinations, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -219,7 +252,11 @@ class _$ResultImpl implements _Result {
             const DeepCollectionEquality()
                 .equals(other._middleCombinations, _middleCombinations) &&
             const DeepCollectionEquality()
-                .equals(other._insideCombinations, _insideCombinations));
+                .equals(other._insideCombinations, _insideCombinations) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
+            (identical(other.updatedAt, updatedAt) ||
+                other.updatedAt == updatedAt));
   }
 
   @JsonKey(ignore: true)
@@ -230,7 +267,9 @@ class _$ResultImpl implements _Result {
       const DeepCollectionEquality().hash(_numbers),
       const DeepCollectionEquality().hash(_outsideCombinations),
       const DeepCollectionEquality().hash(_middleCombinations),
-      const DeepCollectionEquality().hash(_insideCombinations));
+      const DeepCollectionEquality().hash(_insideCombinations),
+      createdAt,
+      updatedAt);
 
   @JsonKey(ignore: true)
   @override
@@ -252,7 +291,9 @@ abstract class _Result implements Result {
       required final List<int> numbers,
       required final List<Combination> outsideCombinations,
       required final List<Combination> middleCombinations,
-      required final List<Combination> insideCombinations}) = _$ResultImpl;
+      required final List<Combination> insideCombinations,
+      required final DateTime createdAt,
+      required final DateTime updatedAt}) = _$ResultImpl;
 
   factory _Result.fromJson(Map<String, dynamic> json) = _$ResultImpl.fromJson;
 
@@ -266,6 +307,10 @@ abstract class _Result implements Result {
   List<Combination> get middleCombinations;
   @override
   List<Combination> get insideCombinations;
+  @override
+  DateTime get createdAt;
+  @override
+  DateTime get updatedAt;
   @override
   @JsonKey(ignore: true)
   _$$ResultImplCopyWith<_$ResultImpl> get copyWith =>

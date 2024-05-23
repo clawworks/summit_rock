@@ -6,6 +6,171 @@ part of 'result_service.dart';
 // RiverpodGenerator
 // **************************************************************************
 
+String _$resultsListStreamHash() => r'2d7aaa0a1037459957737708380f479d9173d5da';
+
+/// See also [resultsListStream].
+@ProviderFor(resultsListStream)
+final resultsListStreamProvider =
+    AutoDisposeStreamProvider<List<Result>>.internal(
+  resultsListStream,
+  name: r'resultsListStreamProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$resultsListStreamHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef ResultsListStreamRef = AutoDisposeStreamProviderRef<List<Result>>;
+String _$resultStreamHash() => r'c098d13013ef15064dda993c91b049e4bb6d6ec0';
+
+/// Copied from Dart SDK
+class _SystemHash {
+  _SystemHash._();
+
+  static int combine(int hash, int value) {
+    // ignore: parameter_assignments
+    hash = 0x1fffffff & (hash + value);
+    // ignore: parameter_assignments
+    hash = 0x1fffffff & (hash + ((0x0007ffff & hash) << 10));
+    return hash ^ (hash >> 6);
+  }
+
+  static int finish(int hash) {
+    // ignore: parameter_assignments
+    hash = 0x1fffffff & (hash + ((0x03ffffff & hash) << 3));
+    // ignore: parameter_assignments
+    hash = hash ^ (hash >> 11);
+    return 0x1fffffff & (hash + ((0x00003fff & hash) << 15));
+  }
+}
+
+/// See also [resultStream].
+@ProviderFor(resultStream)
+const resultStreamProvider = ResultStreamFamily();
+
+/// See also [resultStream].
+class ResultStreamFamily extends Family<AsyncValue<Result?>> {
+  /// See also [resultStream].
+  const ResultStreamFamily();
+
+  /// See also [resultStream].
+  ResultStreamProvider call(
+    String id,
+  ) {
+    return ResultStreamProvider(
+      id,
+    );
+  }
+
+  @override
+  ResultStreamProvider getProviderOverride(
+    covariant ResultStreamProvider provider,
+  ) {
+    return call(
+      provider.id,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'resultStreamProvider';
+}
+
+/// See also [resultStream].
+class ResultStreamProvider extends AutoDisposeStreamProvider<Result?> {
+  /// See also [resultStream].
+  ResultStreamProvider(
+    String id,
+  ) : this._internal(
+          (ref) => resultStream(
+            ref as ResultStreamRef,
+            id,
+          ),
+          from: resultStreamProvider,
+          name: r'resultStreamProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$resultStreamHash,
+          dependencies: ResultStreamFamily._dependencies,
+          allTransitiveDependencies:
+              ResultStreamFamily._allTransitiveDependencies,
+          id: id,
+        );
+
+  ResultStreamProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.id,
+  }) : super.internal();
+
+  final String id;
+
+  @override
+  Override overrideWith(
+    Stream<Result?> Function(ResultStreamRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: ResultStreamProvider._internal(
+        (ref) => create(ref as ResultStreamRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        id: id,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeStreamProviderElement<Result?> createElement() {
+    return _ResultStreamProviderElement(this);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is ResultStreamProvider && other.id == id;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, id.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+mixin ResultStreamRef on AutoDisposeStreamProviderRef<Result?> {
+  /// The parameter `id` of this provider.
+  String get id;
+}
+
+class _ResultStreamProviderElement
+    extends AutoDisposeStreamProviderElement<Result?> with ResultStreamRef {
+  _ResultStreamProviderElement(super.provider);
+
+  @override
+  String get id => (origin as ResultStreamProvider).id;
+}
+
 String _$resultServiceHash() => r'625c599de1c6b22da30175422af180cad3baf134';
 
 /// See also [resultService].

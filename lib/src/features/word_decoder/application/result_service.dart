@@ -7,6 +7,18 @@ import 'package:summit_rock/src/features/word_decoder/domain/result.dart';
 part 'result_service.g.dart';
 
 @riverpod
+Stream<List<Result>> resultsListStream(ResultsListStreamRef ref) {
+  final service = ref.watch(resultServiceProvider);
+  return service.watchResults();
+}
+
+@riverpod
+Stream<Result?> resultStream(ResultStreamRef ref, ResultId id) {
+  final service = ref.watch(resultServiceProvider);
+  return service.watchResult(id);
+}
+
+@riverpod
 ResultService resultService(ResultServiceRef ref) {
   return ResultService(ref);
 }
@@ -26,5 +38,21 @@ class ResultService {
       throw Exception('User cannot be null when setting Results');
     }
     await resultsRepository.setResult(user.uid, result);
+  }
+
+  Stream<Result?> watchResult(ResultId resultId) {
+    final user = authRepository.currentUser;
+    if (user == null) {
+      throw Exception('User cannot be null when watching Results');
+    }
+    return resultsRepository.watchResult(user.uid, resultId);
+  }
+
+  Stream<List<Result>> watchResults() {
+    final user = authRepository.currentUser;
+    if (user == null) {
+      throw Exception('User cannot be null when watching Results');
+    }
+    return resultsRepository.watchResultsList(user.uid);
   }
 }

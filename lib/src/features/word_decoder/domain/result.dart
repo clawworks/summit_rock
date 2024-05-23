@@ -16,6 +16,8 @@ class Result with _$Result {
     required List<Combination> outsideCombinations,
     required List<Combination> middleCombinations,
     required List<Combination> insideCombinations,
+    required DateTime createdAt,
+    required DateTime updatedAt,
   }) = _Result;
 
   factory Result.fromJson(Map<String, Object?> json) => _$ResultFromJson(json);

@@ -22,6 +22,15 @@ class WordDecoderController extends _$WordDecoderController {
     // Nothing to do
   }
 
+  String _makeId(List<int> numbers) {
+    String id = '';
+    for (int i = 0; i < numbers.length; i++) {
+      int num = numbers[i];
+      id += i == 0 ? '$num' : '_$num';
+    }
+    return id;
+  }
+
   Future<void> getResults() async {
     List<int> numbers = ref.read(numberListProvider);
     List<Combination> outsideCombos =
@@ -30,13 +39,15 @@ class WordDecoderController extends _$WordDecoderController {
         ref.read(middleCombosProvider.notifier).checkNumbers();
     List<Combination> insideCombos =
         ref.read(insideCombosProvider.notifier).checkNumbers();
-    // TODO call service to create Result and store it in firebase
+    final date = DateTime.now();
     final result = Result(
-      id: 'FixID',
+      id: _makeId(numbers),
       numbers: numbers,
       outsideCombinations: outsideCombos,
       middleCombinations: middleCombos,
       insideCombinations: insideCombos,
+      createdAt: date,
+      updatedAt: date,
     );
     state = const AsyncValue.loading();
     state = await AsyncValue.guard(() async {
