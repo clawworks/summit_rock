@@ -22,6 +22,7 @@ Result _$ResultFromJson(Map<String, dynamic> json) {
 mixin _$Result {
   String get id => throw _privateConstructorUsedError;
   List<int> get numbers => throw _privateConstructorUsedError;
+  List<String> get favorites => throw _privateConstructorUsedError;
   List<String> get outsideWords => throw _privateConstructorUsedError;
   List<String> get middleWords => throw _privateConstructorUsedError;
   List<String> get insideWords => throw _privateConstructorUsedError;
@@ -41,6 +42,7 @@ abstract class $ResultCopyWith<$Res> {
   $Res call(
       {String id,
       List<int> numbers,
+      List<String> favorites,
       List<String> outsideWords,
       List<String> middleWords,
       List<String> insideWords,
@@ -63,6 +65,7 @@ class _$ResultCopyWithImpl<$Res, $Val extends Result>
   $Res call({
     Object? id = null,
     Object? numbers = null,
+    Object? favorites = null,
     Object? outsideWords = null,
     Object? middleWords = null,
     Object? insideWords = null,
@@ -78,6 +81,10 @@ class _$ResultCopyWithImpl<$Res, $Val extends Result>
           ? _value.numbers
           : numbers // ignore: cast_nullable_to_non_nullable
               as List<int>,
+      favorites: null == favorites
+          ? _value.favorites
+          : favorites // ignore: cast_nullable_to_non_nullable
+              as List<String>,
       outsideWords: null == outsideWords
           ? _value.outsideWords
           : outsideWords // ignore: cast_nullable_to_non_nullable
@@ -112,6 +119,7 @@ abstract class _$$ResultImplCopyWith<$Res> implements $ResultCopyWith<$Res> {
   $Res call(
       {String id,
       List<int> numbers,
+      List<String> favorites,
       List<String> outsideWords,
       List<String> middleWords,
       List<String> insideWords,
@@ -132,6 +140,7 @@ class __$$ResultImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? numbers = null,
+    Object? favorites = null,
     Object? outsideWords = null,
     Object? middleWords = null,
     Object? insideWords = null,
@@ -147,6 +156,10 @@ class __$$ResultImplCopyWithImpl<$Res>
           ? _value._numbers
           : numbers // ignore: cast_nullable_to_non_nullable
               as List<int>,
+      favorites: null == favorites
+          ? _value._favorites
+          : favorites // ignore: cast_nullable_to_non_nullable
+              as List<String>,
       outsideWords: null == outsideWords
           ? _value._outsideWords
           : outsideWords // ignore: cast_nullable_to_non_nullable
@@ -177,12 +190,14 @@ class _$ResultImpl implements _Result {
   const _$ResultImpl(
       {required this.id,
       required final List<int> numbers,
+      required final List<String> favorites,
       required final List<String> outsideWords,
       required final List<String> middleWords,
       required final List<String> insideWords,
       required this.createdAt,
       required this.updatedAt})
       : _numbers = numbers,
+        _favorites = favorites,
         _outsideWords = outsideWords,
         _middleWords = middleWords,
         _insideWords = insideWords;
@@ -198,6 +213,14 @@ class _$ResultImpl implements _Result {
     if (_numbers is EqualUnmodifiableListView) return _numbers;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_numbers);
+  }
+
+  final List<String> _favorites;
+  @override
+  List<String> get favorites {
+    if (_favorites is EqualUnmodifiableListView) return _favorites;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_favorites);
   }
 
   final List<String> _outsideWords;
@@ -231,7 +254,7 @@ class _$ResultImpl implements _Result {
 
   @override
   String toString() {
-    return 'Result(id: $id, numbers: $numbers, outsideWords: $outsideWords, middleWords: $middleWords, insideWords: $insideWords, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'Result(id: $id, numbers: $numbers, favorites: $favorites, outsideWords: $outsideWords, middleWords: $middleWords, insideWords: $insideWords, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -241,6 +264,8 @@ class _$ResultImpl implements _Result {
             other is _$ResultImpl &&
             (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality().equals(other._numbers, _numbers) &&
+            const DeepCollectionEquality()
+                .equals(other._favorites, _favorites) &&
             const DeepCollectionEquality()
                 .equals(other._outsideWords, _outsideWords) &&
             const DeepCollectionEquality()
@@ -259,6 +284,7 @@ class _$ResultImpl implements _Result {
       runtimeType,
       id,
       const DeepCollectionEquality().hash(_numbers),
+      const DeepCollectionEquality().hash(_favorites),
       const DeepCollectionEquality().hash(_outsideWords),
       const DeepCollectionEquality().hash(_middleWords),
       const DeepCollectionEquality().hash(_insideWords),
@@ -283,6 +309,7 @@ abstract class _Result implements Result {
   const factory _Result(
       {required final String id,
       required final List<int> numbers,
+      required final List<String> favorites,
       required final List<String> outsideWords,
       required final List<String> middleWords,
       required final List<String> insideWords,
@@ -295,6 +322,8 @@ abstract class _Result implements Result {
   String get id;
   @override
   List<int> get numbers;
+  @override
+  List<String> get favorites;
   @override
   List<String> get outsideWords;
   @override

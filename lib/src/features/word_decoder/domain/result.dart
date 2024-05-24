@@ -11,6 +11,7 @@ class Result with _$Result {
   const factory Result({
     required ResultId id,
     required List<int> numbers,
+    required List<String> favorites,
     required List<String> outsideWords,
     required List<String> middleWords,
     required List<String> insideWords,

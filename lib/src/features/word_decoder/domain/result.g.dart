@@ -11,6 +11,8 @@ _$ResultImpl _$$ResultImplFromJson(Map<String, dynamic> json) => _$ResultImpl(
       numbers: (json['numbers'] as List<dynamic>)
           .map((e) => (e as num).toInt())
           .toList(),
+      favorites:
+          (json['favorites'] as List<dynamic>).map((e) => e as String).toList(),
       outsideWords: (json['outsideWords'] as List<dynamic>)
           .map((e) => e as String)
           .toList(),
@@ -28,6 +30,7 @@ Map<String, dynamic> _$$ResultImplToJson(_$ResultImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'numbers': instance.numbers,
+      'favorites': instance.favorites,
       'outsideWords': instance.outsideWords,
       'middleWords': instance.middleWords,
       'insideWords': instance.insideWords,
