@@ -18,8 +18,8 @@ class ResultPage extends ConsumerWidget {
           appBar: AppBar(
             title: Text('${result?.numbers}'),
           ),
-          body: const Center(
-            child: Column(
+          body: Center(
+            child: ListView(
               children: [
                 Padding(
                   padding: EdgeInsets.all(8.0),
