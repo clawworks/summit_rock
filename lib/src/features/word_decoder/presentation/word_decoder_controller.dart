@@ -1,17 +1,16 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:summit_rock/src/features/word_decoder/application/result_service.dart';
-import 'package:summit_rock/src/features/word_decoder/domain/combination.dart';
 import 'package:summit_rock/src/features/word_decoder/domain/result.dart';
 
 part 'word_decoder_controller.g.dart';
 //
 // @riverpod
-// List<Combination> outsideWords(OutsideWordsRef ref) {
+// List<String> outsideWords(OutsideWordsRef ref) {
 //   return [];
 // }
 //
 // @riverpod
-// List<Combination> middleWords(MiddleWordsRef ref) {
+// List<String> middleWords(MiddleWordsRef ref) {
 //   return [];
 // }
 
@@ -33,19 +32,19 @@ class WordDecoderController extends _$WordDecoderController {
 
   Future<void> getResults() async {
     List<int> numbers = ref.read(numberListProvider);
-    List<Combination> outsideCombos =
+    List<String> outsideCombos =
         ref.read(outsideCombosProvider.notifier).checkNumbers();
-    List<Combination> middleCombos =
+    List<String> middleCombos =
         ref.read(middleCombosProvider.notifier).checkNumbers();
-    List<Combination> insideCombos =
+    List<String> insideCombos =
         ref.read(insideCombosProvider.notifier).checkNumbers();
     final date = DateTime.now();
     final result = Result(
       id: _makeId(numbers),
       numbers: numbers,
-      outsideCombinations: outsideCombos,
-      middleCombinations: middleCombos,
-      insideCombinations: insideCombos,
+      outsideWords: outsideCombos,
+      middleWords: middleCombos,
+      insideWords: insideCombos,
       createdAt: date,
       updatedAt: date,
     );
@@ -60,32 +59,33 @@ class WordDecoderController extends _$WordDecoderController {
 @riverpod
 class OutsideCombos extends _$OutsideCombos {
   @override
-  List<Combination> build() {
+  List<String> build() {
     // Nothing to do, no state
     return [];
   }
 
-  void addCombo(Combination combo) {
-    state = [...state, combo];
+  void addWord(String word) {
+    state = [...state, word];
   }
 
   void clearCombos() {
     state = [];
   }
 
-  void toggleFavorite(Combination combo) {
-    // combo.favorite = !combo.favorite;
-    state = [
-      for (final c in state)
-        if (c.word == combo.word)
-          // Mark only the matching combo as favorite
-          // Make a copy since the state is immutable.
-          c.copyWith(favorite: !c.favorite)
-        else
-          // Other combos are not modified
-          c,
-    ];
-  }
+  // void toggleFavorite(String word) {
+  //   // word.favorite = !word.favorite;
+  //   state = [
+  //     for (final c in state)
+  //       if (c == word)
+  //         // Mark only the matching word as favorite
+  //         // Make a copy since the state is immutable.
+  //         // TODO save in favorites
+  //         // c.copyWith(favorite: !c.favorite)
+  //       // else
+  //         // Other words are not modified
+  //         // c,
+  //   ];
+  // }
 
   final _outsideRing = [
     "M",
@@ -195,7 +195,7 @@ class OutsideCombos extends _$OutsideCombos {
     "R"
   ];
 
-  List<Combination> checkNumbers() {
+  List<String> checkNumbers() {
     final numbers = ref.read(numberListProvider);
     print("Words from the Outside Ring:");
     for (int i = 0; i < _outsideRing.length; i++) {
@@ -205,9 +205,8 @@ class OutsideCombos extends _$OutsideCombos {
         word += _outsideRing[index];
       }
       print(word);
-      final combo = Combination(word: word, favorite: false);
       // TODO check if word is in dictionary, of so favorite it
-      addCombo(combo);
+      addWord(word);
     }
     print("Outside Ring State: $state");
     return state;
@@ -217,33 +216,33 @@ class OutsideCombos extends _$OutsideCombos {
 @riverpod
 class MiddleCombos extends _$MiddleCombos {
   @override
-  List<Combination> build() {
+  List<String> build() {
     // Nothing to do, no state
     return [];
   }
 
-  void addCombo(Combination combo) {
-    state = [...state, combo];
+  void addWord(String word) {
+    state = [...state, word];
   }
 
-  void clearCombos() {
+  void clearWords() {
     state = [];
   }
 
-  void toggleFavorite(Combination combo) {
-    // combo.favorite = !combo.favorite;
-
-    state = [
-      for (final c in state)
-        if (c.word == combo.word)
-          // Mark only the matching combo as favorite
-          // Make a copy since the state is immutable.
-          c.copyWith(favorite: !c.favorite)
-        else
-          // Other combos are not modified
-          c,
-    ];
-  }
+  // void toggleFavorite(String word) {
+  //   // word.favorite = !word.favorite;
+  //
+  //   state = [
+  //     for (final c in state)
+  //       if (c == word)
+  //         // Mark only the matching word as favorite
+  //         // Make a copy since the state is immutable.
+  //         c.copyWith(favorite: !c.favorite)
+  //       else
+  //         // Other words are not modified
+  //         c,
+  //   ];
+  // }
 
   final _middleRing = [
     "S",
@@ -350,7 +349,7 @@ class MiddleCombos extends _$MiddleCombos {
     "K"
   ];
 
-  List<Combination> checkNumbers() {
+  List<String> checkNumbers() {
     final numbers = ref.read(numberListProvider);
     print("Words from the Middle Ring:");
     for (int i = 0; i < _middleRing.length; i++) {
@@ -360,9 +359,8 @@ class MiddleCombos extends _$MiddleCombos {
         word += _middleRing[index];
       }
       print(word);
-      final combo = Combination(word: word, favorite: false);
       // TODO check if word is in dictionary and mark as favorite
-      addCombo(combo);
+      addWord(word);
     }
     print("Middle Ring State: $state");
     return state;
@@ -372,33 +370,33 @@ class MiddleCombos extends _$MiddleCombos {
 @riverpod
 class InsideCombos extends _$InsideCombos {
   @override
-  List<Combination> build() {
+  List<String> build() {
     // Nothing to do, no state
     return [];
   }
 
-  void addCombo(Combination combo) {
-    state = [...state, combo];
+  void addCombo(String word) {
+    state = [...state, word];
   }
 
   void clearCombos() {
     state = [];
   }
 
-  void toggleFavorite(Combination combo) {
-    // combo.favorite = !combo.favorite;
-
-    state = [
-      for (final c in state)
-        if (c.word == combo.word)
-          // Mark only the matching combo as favorite
-          // Make a copy since the state is immutable.
-          c.copyWith(favorite: !c.favorite)
-        else
-          // Other combos are not modified
-          c,
-    ];
-  }
+  // void toggleFavorite(String word) {
+  //   // word.favorite = !word.favorite;
+  //
+  //   state = [
+  //     for (final c in state)
+  //       if (c == word)
+  //         // Mark only the matching word as favorite
+  //         // Make a copy since the state is immutable.
+  //         c.copyWith(favorite: !c.favorite)
+  //       else
+  //         // Other words are not modified
+  //         c,
+  //   ];
+  // }
 
   final _insideRing = [
     "Y",
@@ -472,7 +470,7 @@ class InsideCombos extends _$InsideCombos {
     "G",
   ];
 
-  List<Combination> checkNumbers() {
+  List<String> checkNumbers() {
     final numbers = ref.read(numberListProvider);
     print("Words from the Inside Ring:");
     for (int i = 0; i < _insideRing.length; i++) {
@@ -482,9 +480,8 @@ class InsideCombos extends _$InsideCombos {
         word += _insideRing[index];
       }
       print(word);
-      final combo = Combination(word: word, favorite: false);
       // TODO check if word is in dictionary and mark as favorite
-      addCombo(combo);
+      addCombo(word);
     }
     print("Inside Ring State: $state");
     return state;

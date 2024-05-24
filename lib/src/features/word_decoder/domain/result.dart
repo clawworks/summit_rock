@@ -1,7 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'combination.dart';
-
 part 'result.freezed.dart';
 part 'result.g.dart';
 
@@ -13,9 +11,9 @@ class Result with _$Result {
   const factory Result({
     required ResultId id,
     required List<int> numbers,
-    required List<Combination> outsideCombinations,
-    required List<Combination> middleCombinations,
-    required List<Combination> insideCombinations,
+    required List<String> outsideWords,
+    required List<String> middleWords,
+    required List<String> insideWords,
     required DateTime createdAt,
     required DateTime updatedAt,
   }) = _Result;

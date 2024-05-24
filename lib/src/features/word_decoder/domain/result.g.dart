@@ -11,14 +11,14 @@ _$ResultImpl _$$ResultImplFromJson(Map<String, dynamic> json) => _$ResultImpl(
       numbers: (json['numbers'] as List<dynamic>)
           .map((e) => (e as num).toInt())
           .toList(),
-      outsideCombinations: (json['outsideCombinations'] as List<dynamic>)
-          .map((e) => Combination.fromJson(e as Map<String, dynamic>))
+      outsideWords: (json['outsideWords'] as List<dynamic>)
+          .map((e) => e as String)
           .toList(),
-      middleCombinations: (json['middleCombinations'] as List<dynamic>)
-          .map((e) => Combination.fromJson(e as Map<String, dynamic>))
+      middleWords: (json['middleWords'] as List<dynamic>)
+          .map((e) => e as String)
           .toList(),
-      insideCombinations: (json['insideCombinations'] as List<dynamic>)
-          .map((e) => Combination.fromJson(e as Map<String, dynamic>))
+      insideWords: (json['insideWords'] as List<dynamic>)
+          .map((e) => e as String)
           .toList(),
       createdAt: DateTime.parse(json['createdAt'] as String),
       updatedAt: DateTime.parse(json['updatedAt'] as String),
@@ -28,12 +28,9 @@ Map<String, dynamic> _$$ResultImplToJson(_$ResultImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'numbers': instance.numbers,
-      'outsideCombinations':
-          instance.outsideCombinations.map((e) => e.toJson()).toList(),
-      'middleCombinations':
-          instance.middleCombinations.map((e) => e.toJson()).toList(),
-      'insideCombinations':
-          instance.insideCombinations.map((e) => e.toJson()).toList(),
+      'outsideWords': instance.outsideWords,
+      'middleWords': instance.middleWords,
+      'insideWords': instance.insideWords,
       'createdAt': instance.createdAt.toIso8601String(),
       'updatedAt': instance.updatedAt.toIso8601String(),
     };

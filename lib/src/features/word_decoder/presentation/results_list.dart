@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:summit_rock/src/features/word_decoder/domain/combination.dart';
 
 class ResultsList extends ConsumerWidget {
   const ResultsList({required this.title, required this.list, super.key});
 
   final String title;
-  final List<Combination> list;
+  final List<String> list;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -19,23 +18,24 @@ class ResultsList extends ConsumerWidget {
       physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       children: [
-        for (Combination combo in list)
+        for (String word in list)
           GestureDetector(
             onTap: () async {
-              // ref.read(outsideCombosProvider.notifier).toggleFavorite(combo);
-              // combo.favorite = !combo.favorite;
+              // ref.read(outsideCombosProvider.notifier).toggleFavorite(word);
+              // word.favorite = !word.favorite;
             },
             child: Container(
               // color: Colors.green,
               child: Center(
                 child: Text(
-                  '${combo.word}, ',
-                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                        color: combo.favorite
-                            ? Theme.of(context).colorScheme.primary
-                            : null,
-                        fontWeight: combo.favorite ? FontWeight.bold : null,
-                      ),
+                  '$word, ',
+                  // TODO style this, bold if favorite
+                  // style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                  //       color: word.favorite
+                  //           ? Theme.of(context).colorScheme.primary
+                  //           : null,
+                  //       fontWeight: word.favorite ? FontWeight.bold : null,
+                  //     ),
                 ),
               ),
             ),

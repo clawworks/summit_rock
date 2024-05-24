@@ -1,12 +1,11 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:summit_rock/src/features/word_decoder/domain/combination.dart';
 
 part 'tick_decoder_controller.g.dart';
 
 @riverpod
 class TickDecoderController extends _$TickDecoderController {
   @override
-  List<Combination> build() {
+  List<String> build() {
     return [];
   }
 

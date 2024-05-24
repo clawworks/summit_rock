@@ -22,12 +22,9 @@ Result _$ResultFromJson(Map<String, dynamic> json) {
 mixin _$Result {
   String get id => throw _privateConstructorUsedError;
   List<int> get numbers => throw _privateConstructorUsedError;
-  List<Combination> get outsideCombinations =>
-      throw _privateConstructorUsedError;
-  List<Combination> get middleCombinations =>
-      throw _privateConstructorUsedError;
-  List<Combination> get insideCombinations =>
-      throw _privateConstructorUsedError;
+  List<String> get outsideWords => throw _privateConstructorUsedError;
+  List<String> get middleWords => throw _privateConstructorUsedError;
+  List<String> get insideWords => throw _privateConstructorUsedError;
   DateTime get createdAt => throw _privateConstructorUsedError;
   DateTime get updatedAt => throw _privateConstructorUsedError;
 
@@ -44,9 +41,9 @@ abstract class $ResultCopyWith<$Res> {
   $Res call(
       {String id,
       List<int> numbers,
-      List<Combination> outsideCombinations,
-      List<Combination> middleCombinations,
-      List<Combination> insideCombinations,
+      List<String> outsideWords,
+      List<String> middleWords,
+      List<String> insideWords,
       DateTime createdAt,
       DateTime updatedAt});
 }
@@ -66,9 +63,9 @@ class _$ResultCopyWithImpl<$Res, $Val extends Result>
   $Res call({
     Object? id = null,
     Object? numbers = null,
-    Object? outsideCombinations = null,
-    Object? middleCombinations = null,
-    Object? insideCombinations = null,
+    Object? outsideWords = null,
+    Object? middleWords = null,
+    Object? insideWords = null,
     Object? createdAt = null,
     Object? updatedAt = null,
   }) {
@@ -81,18 +78,18 @@ class _$ResultCopyWithImpl<$Res, $Val extends Result>
           ? _value.numbers
           : numbers // ignore: cast_nullable_to_non_nullable
               as List<int>,
-      outsideCombinations: null == outsideCombinations
-          ? _value.outsideCombinations
-          : outsideCombinations // ignore: cast_nullable_to_non_nullable
-              as List<Combination>,
-      middleCombinations: null == middleCombinations
-          ? _value.middleCombinations
-          : middleCombinations // ignore: cast_nullable_to_non_nullable
-              as List<Combination>,
-      insideCombinations: null == insideCombinations
-          ? _value.insideCombinations
-          : insideCombinations // ignore: cast_nullable_to_non_nullable
-              as List<Combination>,
+      outsideWords: null == outsideWords
+          ? _value.outsideWords
+          : outsideWords // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      middleWords: null == middleWords
+          ? _value.middleWords
+          : middleWords // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      insideWords: null == insideWords
+          ? _value.insideWords
+          : insideWords // ignore: cast_nullable_to_non_nullable
+              as List<String>,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -115,9 +112,9 @@ abstract class _$$ResultImplCopyWith<$Res> implements $ResultCopyWith<$Res> {
   $Res call(
       {String id,
       List<int> numbers,
-      List<Combination> outsideCombinations,
-      List<Combination> middleCombinations,
-      List<Combination> insideCombinations,
+      List<String> outsideWords,
+      List<String> middleWords,
+      List<String> insideWords,
       DateTime createdAt,
       DateTime updatedAt});
 }
@@ -135,9 +132,9 @@ class __$$ResultImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? numbers = null,
-    Object? outsideCombinations = null,
-    Object? middleCombinations = null,
-    Object? insideCombinations = null,
+    Object? outsideWords = null,
+    Object? middleWords = null,
+    Object? insideWords = null,
     Object? createdAt = null,
     Object? updatedAt = null,
   }) {
@@ -150,18 +147,18 @@ class __$$ResultImplCopyWithImpl<$Res>
           ? _value._numbers
           : numbers // ignore: cast_nullable_to_non_nullable
               as List<int>,
-      outsideCombinations: null == outsideCombinations
-          ? _value._outsideCombinations
-          : outsideCombinations // ignore: cast_nullable_to_non_nullable
-              as List<Combination>,
-      middleCombinations: null == middleCombinations
-          ? _value._middleCombinations
-          : middleCombinations // ignore: cast_nullable_to_non_nullable
-              as List<Combination>,
-      insideCombinations: null == insideCombinations
-          ? _value._insideCombinations
-          : insideCombinations // ignore: cast_nullable_to_non_nullable
-              as List<Combination>,
+      outsideWords: null == outsideWords
+          ? _value._outsideWords
+          : outsideWords // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      middleWords: null == middleWords
+          ? _value._middleWords
+          : middleWords // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      insideWords: null == insideWords
+          ? _value._insideWords
+          : insideWords // ignore: cast_nullable_to_non_nullable
+              as List<String>,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -180,15 +177,15 @@ class _$ResultImpl implements _Result {
   const _$ResultImpl(
       {required this.id,
       required final List<int> numbers,
-      required final List<Combination> outsideCombinations,
-      required final List<Combination> middleCombinations,
-      required final List<Combination> insideCombinations,
+      required final List<String> outsideWords,
+      required final List<String> middleWords,
+      required final List<String> insideWords,
       required this.createdAt,
       required this.updatedAt})
       : _numbers = numbers,
-        _outsideCombinations = outsideCombinations,
-        _middleCombinations = middleCombinations,
-        _insideCombinations = insideCombinations;
+        _outsideWords = outsideWords,
+        _middleWords = middleWords,
+        _insideWords = insideWords;
 
   factory _$ResultImpl.fromJson(Map<String, dynamic> json) =>
       _$$ResultImplFromJson(json);
@@ -203,31 +200,28 @@ class _$ResultImpl implements _Result {
     return EqualUnmodifiableListView(_numbers);
   }
 
-  final List<Combination> _outsideCombinations;
+  final List<String> _outsideWords;
   @override
-  List<Combination> get outsideCombinations {
-    if (_outsideCombinations is EqualUnmodifiableListView)
-      return _outsideCombinations;
+  List<String> get outsideWords {
+    if (_outsideWords is EqualUnmodifiableListView) return _outsideWords;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_outsideCombinations);
+    return EqualUnmodifiableListView(_outsideWords);
   }
 
-  final List<Combination> _middleCombinations;
+  final List<String> _middleWords;
   @override
-  List<Combination> get middleCombinations {
-    if (_middleCombinations is EqualUnmodifiableListView)
-      return _middleCombinations;
+  List<String> get middleWords {
+    if (_middleWords is EqualUnmodifiableListView) return _middleWords;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_middleCombinations);
+    return EqualUnmodifiableListView(_middleWords);
   }
 
-  final List<Combination> _insideCombinations;
+  final List<String> _insideWords;
   @override
-  List<Combination> get insideCombinations {
-    if (_insideCombinations is EqualUnmodifiableListView)
-      return _insideCombinations;
+  List<String> get insideWords {
+    if (_insideWords is EqualUnmodifiableListView) return _insideWords;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_insideCombinations);
+    return EqualUnmodifiableListView(_insideWords);
   }
 
   @override
@@ -237,7 +231,7 @@ class _$ResultImpl implements _Result {
 
   @override
   String toString() {
-    return 'Result(id: $id, numbers: $numbers, outsideCombinations: $outsideCombinations, middleCombinations: $middleCombinations, insideCombinations: $insideCombinations, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'Result(id: $id, numbers: $numbers, outsideWords: $outsideWords, middleWords: $middleWords, insideWords: $insideWords, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -248,11 +242,11 @@ class _$ResultImpl implements _Result {
             (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality().equals(other._numbers, _numbers) &&
             const DeepCollectionEquality()
-                .equals(other._outsideCombinations, _outsideCombinations) &&
+                .equals(other._outsideWords, _outsideWords) &&
             const DeepCollectionEquality()
-                .equals(other._middleCombinations, _middleCombinations) &&
+                .equals(other._middleWords, _middleWords) &&
             const DeepCollectionEquality()
-                .equals(other._insideCombinations, _insideCombinations) &&
+                .equals(other._insideWords, _insideWords) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.updatedAt, updatedAt) ||
@@ -265,9 +259,9 @@ class _$ResultImpl implements _Result {
       runtimeType,
       id,
       const DeepCollectionEquality().hash(_numbers),
-      const DeepCollectionEquality().hash(_outsideCombinations),
-      const DeepCollectionEquality().hash(_middleCombinations),
-      const DeepCollectionEquality().hash(_insideCombinations),
+      const DeepCollectionEquality().hash(_outsideWords),
+      const DeepCollectionEquality().hash(_middleWords),
+      const DeepCollectionEquality().hash(_insideWords),
       createdAt,
       updatedAt);
 
@@ -289,9 +283,9 @@ abstract class _Result implements Result {
   const factory _Result(
       {required final String id,
       required final List<int> numbers,
-      required final List<Combination> outsideCombinations,
-      required final List<Combination> middleCombinations,
-      required final List<Combination> insideCombinations,
+      required final List<String> outsideWords,
+      required final List<String> middleWords,
+      required final List<String> insideWords,
       required final DateTime createdAt,
       required final DateTime updatedAt}) = _$ResultImpl;
 
@@ -302,11 +296,11 @@ abstract class _Result implements Result {
   @override
   List<int> get numbers;
   @override
-  List<Combination> get outsideCombinations;
+  List<String> get outsideWords;
   @override
-  List<Combination> get middleCombinations;
+  List<String> get middleWords;
   @override
-  List<Combination> get insideCombinations;
+  List<String> get insideWords;
   @override
   DateTime get createdAt;
   @override

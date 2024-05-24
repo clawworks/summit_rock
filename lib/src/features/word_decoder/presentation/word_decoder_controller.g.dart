@@ -7,7 +7,7 @@ part of 'word_decoder_controller.dart';
 // **************************************************************************
 
 String _$wordDecoderControllerHash() =>
-    r'229df1a2e5e9858ee6fc825164018ff79a919e2c';
+    r'8bb6619ccc21780da2b56dfe352e7302962a1359';
 
 /// See also [WordDecoderController].
 @ProviderFor(WordDecoderController)
@@ -23,12 +23,12 @@ final wordDecoderControllerProvider =
 );
 
 typedef _$WordDecoderController = AsyncNotifier<void>;
-String _$outsideCombosHash() => r'6e8c29e56a434f43b37ab1700cff5001a96a9fac';
+String _$outsideCombosHash() => r'0c2c3785373e949229ad312a8368aee9274a9e87';
 
 /// See also [OutsideCombos].
 @ProviderFor(OutsideCombos)
 final outsideCombosProvider =
-    AutoDisposeNotifierProvider<OutsideCombos, List<Combination>>.internal(
+    AutoDisposeNotifierProvider<OutsideCombos, List<String>>.internal(
   OutsideCombos.new,
   name: r'outsideCombosProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -38,13 +38,13 @@ final outsideCombosProvider =
   allTransitiveDependencies: null,
 );
 
-typedef _$OutsideCombos = AutoDisposeNotifier<List<Combination>>;
-String _$middleCombosHash() => r'4101334e7fd5152545530d7e0aee2e2e2dcc2d4f';
+typedef _$OutsideCombos = AutoDisposeNotifier<List<String>>;
+String _$middleCombosHash() => r'b7247ecc156a3ef7c14117dc2b0fbe578b404ea0';
 
 /// See also [MiddleCombos].
 @ProviderFor(MiddleCombos)
 final middleCombosProvider =
-    AutoDisposeNotifierProvider<MiddleCombos, List<Combination>>.internal(
+    AutoDisposeNotifierProvider<MiddleCombos, List<String>>.internal(
   MiddleCombos.new,
   name: r'middleCombosProvider',
   debugGetCreateSourceHash:
@@ -53,13 +53,13 @@ final middleCombosProvider =
   allTransitiveDependencies: null,
 );
 
-typedef _$MiddleCombos = AutoDisposeNotifier<List<Combination>>;
-String _$insideCombosHash() => r'4171e1bec6621d8c078e2967411a73fec44d96d2';
+typedef _$MiddleCombos = AutoDisposeNotifier<List<String>>;
+String _$insideCombosHash() => r'97e74a7d497e01a738e7a25d18a393bd3e43402e';
 
 /// See also [InsideCombos].
 @ProviderFor(InsideCombos)
 final insideCombosProvider =
-    AutoDisposeNotifierProvider<InsideCombos, List<Combination>>.internal(
+    AutoDisposeNotifierProvider<InsideCombos, List<String>>.internal(
   InsideCombos.new,
   name: r'insideCombosProvider',
   debugGetCreateSourceHash:
@@ -68,7 +68,7 @@ final insideCombosProvider =
   allTransitiveDependencies: null,
 );
 
-typedef _$InsideCombos = AutoDisposeNotifier<List<Combination>>;
+typedef _$InsideCombos = AutoDisposeNotifier<List<String>>;
 String _$numberListHash() => r'26367976ef5a26a0f17b4aa13e82455a61699165';
 
 /// See also [NumberList].
