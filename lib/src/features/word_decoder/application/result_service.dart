@@ -19,6 +19,12 @@ Stream<Result?> resultStream(ResultStreamRef ref, ResultId id) {
 }
 
 @riverpod
+Future<Result?> result(ResultRef ref, ResultId id) {
+  final service = ref.watch(resultServiceProvider);
+  return service.fetchResult(id);
+}
+
+@riverpod
 ResultService resultService(ResultServiceRef ref) {
   return ResultService(ref);
 }
@@ -38,6 +44,14 @@ class ResultService {
       throw Exception('User cannot be null when setting Results');
     }
     await resultsRepository.setResult(user.uid, result);
+  }
+
+  Future<Result?> fetchResult(ResultId resultId) {
+    final user = authRepository.currentUser;
+    if (user == null) {
+      throw Exception('User cannot be null when watching Results');
+    }
+    return resultsRepository.fetchResult(user.uid, resultId);
   }
 
   Stream<Result?> watchResult(ResultId resultId) {

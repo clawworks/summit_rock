@@ -47,11 +47,11 @@ class ResultsRepository {
   //   );
   // }
 
-  // Future<Result> fetchResult(UserId uid) async {
-  //   final ref = _resultRef(uid);
-  //   final snapshot = await ref.get();
-  //   return snapshot.data() ?? const Result();
-  // }
+  Future<Result?> fetchResult(UserId uid, ResultId resultId) async {
+    final ref = _resultRef(uid, resultId);
+    final snapshot = await ref.get();
+    return snapshot.data();
+  }
 
   Stream<Result?> watchResult(UserId uid, ResultId resultId) {
     final ref = _resultRef(uid, resultId);

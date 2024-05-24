@@ -49,7 +49,6 @@ class WordDecoderController extends _$WordDecoderController {
     state = await AsyncValue.guard(() async {
       await ref.read(resultServiceProvider).setResult(result);
     });
-    // ref.read(numberListProvider.notifier).clearNumbers();
   }
 
   List<String> _checkNumbers(List<int> numbers, List<String> letters) {

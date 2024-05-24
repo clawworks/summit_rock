@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:summit_rock/src/common_widgets/oops_page.dart';
-import 'package:summit_rock/src/features/word_decoder/application/result_service.dart';
+import 'package:summit_rock/src/common_widgets/text_widgets.dart';
 import 'package:summit_rock/src/features/word_decoder/domain/result.dart';
+import 'package:summit_rock/src/features/word_decoder/presentation/result_page_controller.dart';
+import 'package:summit_rock/src/features/word_decoder/presentation/results_list.dart';
 
 class ResultPage extends ConsumerWidget {
   const ResultPage({required this.resultId, super.key});
@@ -11,20 +13,60 @@ class ResultPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    AsyncValue<Result?> asyncValue = ref.watch(resultStreamProvider(resultId));
+    AsyncValue<Result?> asyncValue =
+        ref.watch(resultPageControllerProvider(resultId));
     return asyncValue.when(
       data: (result) {
+        if (result == null) {
+          return const OopsPage(
+            message: 'We cannot find that result... Please try again.',
+          );
+        }
         return Scaffold(
           appBar: AppBar(
-            title: Text('${result?.numbers}'),
+            title: Text('${result.numbers}'),
           ),
           body: Center(
             child: ListView(
               children: [
                 Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Text('No settings yet...'),
-                )
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    children: [
+                      const HeadlineSmall('Favorites:'),
+                      WordList(
+                          resultId: resultId,
+                          title: 'Favorites',
+                          list: result.favorites),
+                      const HeadlineSmall('Outside Ring Words:'),
+                      WordList(
+                          resultId: resultId,
+                          title: 'Outside Ring Words',
+                          list: result.outsideWords),
+                      const HeadlineSmall('Middle Ring Words:'),
+                      WordList(
+                          resultId: resultId,
+                          title: 'Middle Ring Words',
+                          list: result.middleWords),
+                      const HeadlineSmall('Inside Ring Words:'),
+                      WordList(
+                          resultId: resultId,
+                          title: 'Inside Ring Words',
+                          list: result.insideWords),
+                      // const HeadlineSmall('Tick Ring Words:'),
+                      // WordList(resultId: resultId, title: 'Favorites', list: result.favorites),
+                      // const HeadlineSmall('Inside Dot Ring Words:'),
+                      // WordList(resultId: resultId, title: 'Favorites', list: result.favorites),
+                      // const HeadlineSmall('Outside Dot Ring Words:'),
+                      // WordList(resultId: resultId, title: 'Favorites', list: result.favorites),
+                      // const HeadlineSmall('Inside Dot Ring With Arrows Words:'),
+                      // WordList(resultId: resultId, title: 'Favorites', list: result.favorites),
+                      // const HeadlineSmall(
+                      //     'Outside Dot Ring With Arrows Words:'),
+                      // WordList(resultId: resultId, title: 'Favorites', list: result.favorites),
+                    ],
+                  ),
+                ),
               ],
             ),
           ),

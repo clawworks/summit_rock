@@ -171,6 +171,133 @@ class _ResultStreamProviderElement
   String get id => (origin as ResultStreamProvider).id;
 }
 
+String _$resultHash() => r'e7b240e2b37f9d5c1bdba1957f129513389c8e2f';
+
+/// See also [result].
+@ProviderFor(result)
+const resultProvider = ResultFamily();
+
+/// See also [result].
+class ResultFamily extends Family<AsyncValue<Result?>> {
+  /// See also [result].
+  const ResultFamily();
+
+  /// See also [result].
+  ResultProvider call(
+    String id,
+  ) {
+    return ResultProvider(
+      id,
+    );
+  }
+
+  @override
+  ResultProvider getProviderOverride(
+    covariant ResultProvider provider,
+  ) {
+    return call(
+      provider.id,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'resultProvider';
+}
+
+/// See also [result].
+class ResultProvider extends AutoDisposeFutureProvider<Result?> {
+  /// See also [result].
+  ResultProvider(
+    String id,
+  ) : this._internal(
+          (ref) => result(
+            ref as ResultRef,
+            id,
+          ),
+          from: resultProvider,
+          name: r'resultProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$resultHash,
+          dependencies: ResultFamily._dependencies,
+          allTransitiveDependencies: ResultFamily._allTransitiveDependencies,
+          id: id,
+        );
+
+  ResultProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.id,
+  }) : super.internal();
+
+  final String id;
+
+  @override
+  Override overrideWith(
+    FutureOr<Result?> Function(ResultRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: ResultProvider._internal(
+        (ref) => create(ref as ResultRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        id: id,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeFutureProviderElement<Result?> createElement() {
+    return _ResultProviderElement(this);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is ResultProvider && other.id == id;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, id.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+mixin ResultRef on AutoDisposeFutureProviderRef<Result?> {
+  /// The parameter `id` of this provider.
+  String get id;
+}
+
+class _ResultProviderElement extends AutoDisposeFutureProviderElement<Result?>
+    with ResultRef {
+  _ResultProviderElement(super.provider);
+
+  @override
+  String get id => (origin as ResultProvider).id;
+}
+
 String _$resultServiceHash() => r'625c599de1c6b22da30175422af180cad3baf134';
 
 /// See also [resultService].
