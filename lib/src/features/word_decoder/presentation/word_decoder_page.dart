@@ -64,10 +64,13 @@ class ResultsList extends ConsumerWidget {
     final asyncValue = ref.watch(resultsListStreamProvider);
     return asyncValue.when(
       data: (results) {
-        return Column(
-          children: [
-            for (Result result in results) ResultCard(result: result),
-          ],
+        return Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              for (Result result in results) ResultCard(result: result),
+            ],
+          ),
         );
       },
       error: (err, stack) {
@@ -100,8 +103,17 @@ class ResultCard extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('${result.numbers}'),
-              Text('[favorites]'),
+              Text(
+                '${result.numbers}',
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+              const SizedBox(width: 20.0),
+              Flexible(
+                child: Wrap(
+                  children:
+                      result.favorites.map((fav) => Text('${fav}, ')).toList(),
+                ),
+              ),
               // Text('${result.favorites}'),
             ],
           ),

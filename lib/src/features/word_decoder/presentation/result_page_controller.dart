@@ -34,7 +34,6 @@ class ResultPageController extends _$ResultPageController {
       await ref.read(resultServiceProvider).setResult(copy);
       return _fetch(copy.id);
     });
-    ref.invalidateSelf();
 
     //   for (final fav in state.value?.favorites ?? [])
     //     if (fav == word)

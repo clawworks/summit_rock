@@ -7,7 +7,7 @@ part of 'result_page_controller.dart';
 // **************************************************************************
 
 String _$resultPageControllerHash() =>
-    r'2a500ea7b3fa413e7b07ae5a1745d4b6a3bf2022';
+    r'15d6fac548a62d41d4faa4004ea360758c762ab9';
 
 /// Copied from Dart SDK
 class _SystemHash {
