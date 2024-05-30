@@ -31,7 +31,7 @@ class WordDecoderController extends _$WordDecoderController {
     return id;
   }
 
-  Future<void> getResults({required List<int> numbers}) async {
+  Future<Result> getResults({required List<int> numbers}) async {
     List<String> outsideWords = _checkNumbers(numbers, _outsideRing);
     List<String> middleWords = _checkNumbers(numbers, _middleRing);
     List<String> insideWords = _checkNumbers(numbers, _insideRing);
@@ -57,6 +57,7 @@ class WordDecoderController extends _$WordDecoderController {
     state = await AsyncValue.guard(() async {
       await ref.read(resultServiceProvider).setResult(result);
     });
+    return result;
   }
 
   List<String> _checkNumbers(List<int> numbers, List<String> letters) {

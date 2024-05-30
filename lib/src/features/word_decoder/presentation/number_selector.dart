@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:summit_rock/src/features/word_decoder/domain/result.dart';
 import 'package:summit_rock/src/features/word_decoder/presentation/word_decoder_controller.dart';
+import 'package:summit_rock/src/routing/app_router.dart';
 
 class NumberSelector extends HookConsumerWidget {
   const NumberSelector({super.key});
@@ -97,10 +100,15 @@ class NumberSelector extends HookConsumerWidget {
                 }
               }
               FocusManager.instance.primaryFocus?.unfocus();
-              await ref
+              Result result = await ref
                   .read(wordDecoderControllerProvider.notifier)
                   .getResults(numbers: numbers.value);
-              // context.goNamed();
+              if (context.mounted) {
+                context.goNamed(
+                  AppRoute.result,
+                  pathParameters: {'resultId': result.id},
+                );
+              }
               numbers.value = [];
             },
             child: const Text('Check Numbers!'),
