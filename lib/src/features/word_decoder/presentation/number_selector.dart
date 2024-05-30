@@ -100,6 +100,7 @@ class NumberSelector extends HookConsumerWidget {
               await ref
                   .read(wordDecoderControllerProvider.notifier)
                   .getResults(numbers: numbers.value);
+              // context.goNamed();
               numbers.value = [];
             },
             child: const Text('Check Numbers!'),
