@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:summit_rock/src/features/settings/presentation/setting_tile.dart';
+import 'package:summit_rock/src/features/settings/presentation/settings_card.dart';
+import 'package:summit_rock/src/utilities/show_custom_dialog.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
@@ -9,14 +12,27 @@ class SettingsPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Settings'),
       ),
-      body: const Center(
-        child: Column(
-          children: [
-            Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Text('No settings yet...'),
-            )
-          ],
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            children: [
+              SettingsCard(
+                children: [
+                  SettingTile(
+                    title: 'Delete ALL History',
+                    onTap: () async {
+                      final bool? delete = await showCustomDialog(
+                        context: context,
+                        title: 'Delete ALL History?',
+                        message: 'This action cannot be undone!',
+                      );
+                    },
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
