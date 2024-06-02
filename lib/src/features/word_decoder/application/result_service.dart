@@ -69,4 +69,12 @@ class ResultService {
     }
     return resultsRepository.watchResultsList(user.uid);
   }
+
+  Future<void> deleteAllResults() async {
+    final user = authRepository.currentUser;
+    if (user == null) {
+      throw Exception('User cannot be null when deleting Results');
+    }
+    return resultsRepository.deleteAllResults(user.uid);
+  }
 }

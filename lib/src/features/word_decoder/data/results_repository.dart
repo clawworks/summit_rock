@@ -83,6 +83,14 @@ class ResultsRepository {
     final ref = _resultRef(uid, result.id);
     await ref.set(result, SetOptions(merge: true));
   }
+
+  Future<void> deleteAllResults(UserId uid) async {
+    await _firestore.collection(userResultsPath(uid)).get().then((snapshot) {
+      for (DocumentSnapshot doc in snapshot.docs) {
+        doc.reference.delete();
+      }
+    });
+  }
 }
 
 // import 'dart:async';
