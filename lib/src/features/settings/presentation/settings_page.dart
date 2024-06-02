@@ -47,6 +47,13 @@ class _DeleteAll extends ConsumerWidget {
               await ref
                   .read(settingsControllerProvider.notifier)
                   .deleteAllHistory();
+              if (context.mounted) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text('Deleted All Results'),
+                  ),
+                );
+              }
             }
           },
         ),

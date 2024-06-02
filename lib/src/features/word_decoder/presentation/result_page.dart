@@ -39,6 +39,16 @@ class ResultPage extends ConsumerWidget {
                           title: 'Favorites',
                           list: result.favorites),
                       // TODO display all lists
+                      for (var entry in result.decodedWords.entries)
+                        Column(
+                          children: [
+                            HeadlineSmall(entry.key.toString()),
+                            WordList(
+                                resultId: resultId,
+                                title: entry.key.toString(),
+                                list: entry.value),
+                          ],
+                        )
 
                       // const HeadlineSmall('Outside Ring Words:'),
                       // WordList(
