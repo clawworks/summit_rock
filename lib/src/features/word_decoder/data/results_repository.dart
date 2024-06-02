@@ -81,7 +81,7 @@ class ResultsRepository {
 
   Future<void> setResult(UserId uid, Result result) async {
     final ref = _resultRef(uid, result.id);
-    await ref.set(result);
+    await ref.set(result, SetOptions(merge: true));
   }
 }
 

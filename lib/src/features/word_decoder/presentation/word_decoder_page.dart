@@ -75,7 +75,23 @@ class ResultsList extends ConsumerWidget {
       },
       error: (err, stack) {
         print("ERROR loading results: $err\n$stack");
-        return const Text('Error loading Results...');
+        return const Padding(
+          padding: EdgeInsets.all(20.0),
+          child: Center(
+            child: Column(
+              children: [
+                Icon(
+                  Icons.error_outline,
+                  size: 60.0,
+                ),
+                Text(
+                  'Error loading results...\n\nYou may need to delete your data in order to proceed.',
+                  textAlign: TextAlign.center,
+                ),
+              ],
+            ),
+          ),
+        );
       },
       loading: () {
         return const CircularProgressIndicator.adaptive();

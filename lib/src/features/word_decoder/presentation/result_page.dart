@@ -38,21 +38,24 @@ class ResultPage extends ConsumerWidget {
                           resultId: resultId,
                           title: 'Favorites',
                           list: result.favorites),
-                      const HeadlineSmall('Outside Ring Words:'),
-                      WordList(
-                          resultId: resultId,
-                          title: 'Outside Ring Words',
-                          list: result.outsideWords),
-                      const HeadlineSmall('Middle Ring Words:'),
-                      WordList(
-                          resultId: resultId,
-                          title: 'Middle Ring Words',
-                          list: result.middleWords),
-                      const HeadlineSmall('Inside Ring Words:'),
-                      WordList(
-                          resultId: resultId,
-                          title: 'Inside Ring Words',
-                          list: result.insideWords),
+                      // TODO display all lists
+
+                      // const HeadlineSmall('Outside Ring Words:'),
+                      // WordList(
+                      //     resultId: resultId,
+                      //     title: 'Outside Ring Words',
+                      //     list: result.outsideWords),
+                      // const HeadlineSmall('Middle Ring Words:'),
+                      // WordList(
+                      //     resultId: resultId,
+                      //     title: 'Middle Ring Words',
+                      //     list: result.middleWords),
+                      // const HeadlineSmall('Inside Ring Words:'),
+                      // WordList(
+                      //     resultId: resultId,
+                      //     title: 'Inside Ring Words',
+                      //     list: result.insideWords),
+
                       // const HeadlineSmall('Tick Ring Words:'),
                       // WordList(resultId: resultId, title: 'Favorites', list: result.favorites),
                       // const HeadlineSmall('Inside Dot Ring Words:'),

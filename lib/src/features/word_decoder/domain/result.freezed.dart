@@ -23,9 +23,8 @@ mixin _$Result {
   String get id => throw _privateConstructorUsedError;
   List<int> get numbers => throw _privateConstructorUsedError;
   List<String> get favorites => throw _privateConstructorUsedError;
-  List<String> get outsideWords => throw _privateConstructorUsedError;
-  List<String> get middleWords => throw _privateConstructorUsedError;
-  List<String> get insideWords => throw _privateConstructorUsedError;
+  Map<DecodedList, List<String>> get decodedWords =>
+      throw _privateConstructorUsedError;
   DateTime get createdAt => throw _privateConstructorUsedError;
   DateTime get updatedAt => throw _privateConstructorUsedError;
 
@@ -43,9 +42,7 @@ abstract class $ResultCopyWith<$Res> {
       {String id,
       List<int> numbers,
       List<String> favorites,
-      List<String> outsideWords,
-      List<String> middleWords,
-      List<String> insideWords,
+      Map<DecodedList, List<String>> decodedWords,
       DateTime createdAt,
       DateTime updatedAt});
 }
@@ -66,9 +63,7 @@ class _$ResultCopyWithImpl<$Res, $Val extends Result>
     Object? id = null,
     Object? numbers = null,
     Object? favorites = null,
-    Object? outsideWords = null,
-    Object? middleWords = null,
-    Object? insideWords = null,
+    Object? decodedWords = null,
     Object? createdAt = null,
     Object? updatedAt = null,
   }) {
@@ -85,18 +80,10 @@ class _$ResultCopyWithImpl<$Res, $Val extends Result>
           ? _value.favorites
           : favorites // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      outsideWords: null == outsideWords
-          ? _value.outsideWords
-          : outsideWords // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      middleWords: null == middleWords
-          ? _value.middleWords
-          : middleWords // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      insideWords: null == insideWords
-          ? _value.insideWords
-          : insideWords // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+      decodedWords: null == decodedWords
+          ? _value.decodedWords
+          : decodedWords // ignore: cast_nullable_to_non_nullable
+              as Map<DecodedList, List<String>>,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -120,9 +107,7 @@ abstract class _$$ResultImplCopyWith<$Res> implements $ResultCopyWith<$Res> {
       {String id,
       List<int> numbers,
       List<String> favorites,
-      List<String> outsideWords,
-      List<String> middleWords,
-      List<String> insideWords,
+      Map<DecodedList, List<String>> decodedWords,
       DateTime createdAt,
       DateTime updatedAt});
 }
@@ -141,9 +126,7 @@ class __$$ResultImplCopyWithImpl<$Res>
     Object? id = null,
     Object? numbers = null,
     Object? favorites = null,
-    Object? outsideWords = null,
-    Object? middleWords = null,
-    Object? insideWords = null,
+    Object? decodedWords = null,
     Object? createdAt = null,
     Object? updatedAt = null,
   }) {
@@ -160,18 +143,10 @@ class __$$ResultImplCopyWithImpl<$Res>
           ? _value._favorites
           : favorites // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      outsideWords: null == outsideWords
-          ? _value._outsideWords
-          : outsideWords // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      middleWords: null == middleWords
-          ? _value._middleWords
-          : middleWords // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      insideWords: null == insideWords
-          ? _value._insideWords
-          : insideWords // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+      decodedWords: null == decodedWords
+          ? _value._decodedWords
+          : decodedWords // ignore: cast_nullable_to_non_nullable
+              as Map<DecodedList, List<String>>,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -191,16 +166,12 @@ class _$ResultImpl implements _Result {
       {required this.id,
       required final List<int> numbers,
       required final List<String> favorites,
-      required final List<String> outsideWords,
-      required final List<String> middleWords,
-      required final List<String> insideWords,
+      required final Map<DecodedList, List<String>> decodedWords,
       required this.createdAt,
       required this.updatedAt})
       : _numbers = numbers,
         _favorites = favorites,
-        _outsideWords = outsideWords,
-        _middleWords = middleWords,
-        _insideWords = insideWords;
+        _decodedWords = decodedWords;
 
   factory _$ResultImpl.fromJson(Map<String, dynamic> json) =>
       _$$ResultImplFromJson(json);
@@ -223,28 +194,12 @@ class _$ResultImpl implements _Result {
     return EqualUnmodifiableListView(_favorites);
   }
 
-  final List<String> _outsideWords;
+  final Map<DecodedList, List<String>> _decodedWords;
   @override
-  List<String> get outsideWords {
-    if (_outsideWords is EqualUnmodifiableListView) return _outsideWords;
+  Map<DecodedList, List<String>> get decodedWords {
+    if (_decodedWords is EqualUnmodifiableMapView) return _decodedWords;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_outsideWords);
-  }
-
-  final List<String> _middleWords;
-  @override
-  List<String> get middleWords {
-    if (_middleWords is EqualUnmodifiableListView) return _middleWords;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_middleWords);
-  }
-
-  final List<String> _insideWords;
-  @override
-  List<String> get insideWords {
-    if (_insideWords is EqualUnmodifiableListView) return _insideWords;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_insideWords);
+    return EqualUnmodifiableMapView(_decodedWords);
   }
 
   @override
@@ -254,7 +209,7 @@ class _$ResultImpl implements _Result {
 
   @override
   String toString() {
-    return 'Result(id: $id, numbers: $numbers, favorites: $favorites, outsideWords: $outsideWords, middleWords: $middleWords, insideWords: $insideWords, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'Result(id: $id, numbers: $numbers, favorites: $favorites, decodedWords: $decodedWords, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -267,11 +222,7 @@ class _$ResultImpl implements _Result {
             const DeepCollectionEquality()
                 .equals(other._favorites, _favorites) &&
             const DeepCollectionEquality()
-                .equals(other._outsideWords, _outsideWords) &&
-            const DeepCollectionEquality()
-                .equals(other._middleWords, _middleWords) &&
-            const DeepCollectionEquality()
-                .equals(other._insideWords, _insideWords) &&
+                .equals(other._decodedWords, _decodedWords) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.updatedAt, updatedAt) ||
@@ -285,9 +236,7 @@ class _$ResultImpl implements _Result {
       id,
       const DeepCollectionEquality().hash(_numbers),
       const DeepCollectionEquality().hash(_favorites),
-      const DeepCollectionEquality().hash(_outsideWords),
-      const DeepCollectionEquality().hash(_middleWords),
-      const DeepCollectionEquality().hash(_insideWords),
+      const DeepCollectionEquality().hash(_decodedWords),
       createdAt,
       updatedAt);
 
@@ -310,9 +259,7 @@ abstract class _Result implements Result {
       {required final String id,
       required final List<int> numbers,
       required final List<String> favorites,
-      required final List<String> outsideWords,
-      required final List<String> middleWords,
-      required final List<String> insideWords,
+      required final Map<DecodedList, List<String>> decodedWords,
       required final DateTime createdAt,
       required final DateTime updatedAt}) = _$ResultImpl;
 
@@ -325,11 +272,7 @@ abstract class _Result implements Result {
   @override
   List<String> get favorites;
   @override
-  List<String> get outsideWords;
-  @override
-  List<String> get middleWords;
-  @override
-  List<String> get insideWords;
+  Map<DecodedList, List<String>> get decodedWords;
   @override
   DateTime get createdAt;
   @override

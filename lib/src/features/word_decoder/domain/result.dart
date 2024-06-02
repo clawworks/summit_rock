@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:summit_rock/src/utilities/enums/decoded_list.dart';
 
 part 'result.freezed.dart';
 part 'result.g.dart';
@@ -12,9 +13,7 @@ class Result with _$Result {
     required ResultId id,
     required List<int> numbers,
     required List<String> favorites,
-    required List<String> outsideWords,
-    required List<String> middleWords,
-    required List<String> insideWords,
+    required Map<DecodedList, List<String>> decodedWords,
     required DateTime createdAt,
     required DateTime updatedAt,
   }) = _Result;
