@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:summit_rock/src/common_widgets/oops_page.dart';
-import 'package:summit_rock/src/common_widgets/text_widgets.dart';
 import 'package:summit_rock/src/features/word_decoder/domain/result.dart';
 import 'package:summit_rock/src/features/word_decoder/presentation/result_page_controller.dart';
 import 'package:summit_rock/src/features/word_decoder/presentation/results_list.dart';
@@ -22,6 +21,8 @@ class ResultPage extends ConsumerWidget {
             message: 'We cannot find that result... Please try again.',
           );
         }
+
+        final lists = result.decodedWords.entries.toList().reversed;
         return Scaffold(
           appBar: AppBar(
             title: Text('${result.numbers}'),
@@ -33,16 +34,16 @@ class ResultPage extends ConsumerWidget {
                   padding: const EdgeInsets.all(16.0),
                   child: Column(
                     children: [
-                      const HeadlineSmall('Favorites:'),
+                      // const HeadlineSmall('Favorites:'),
                       WordList(
                           resultId: resultId,
                           title: 'Favorites',
                           list: result.favorites),
                       // TODO reorder lists
-                      for (var entry in result.decodedWords.entries)
+                      for (var entry in lists)
                         Column(
                           children: [
-                            HeadlineSmall(entry.key.toString()),
+                            // HeadlineSmall(entry.key.toString()),
                             WordList(
                                 resultId: resultId,
                                 title: entry.key.toString(),
@@ -92,7 +93,8 @@ class ResultPage extends ConsumerWidget {
         );
       },
       loading: () {
-        return const CircularProgressIndicator.adaptive();
+        return const Scaffold(
+            body: Center(child: CircularProgressIndicator.adaptive()));
       },
     );
   }

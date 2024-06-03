@@ -62,7 +62,11 @@ class NumberSelector extends HookConsumerWidget {
                       numbers.value = [...numbers.value, number];
                       numController.clear();
                     } else {
-                      // TODO show snack bar
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Must enter a number'),
+                        ),
+                      );
                     }
                   },
                   style: TextButton.styleFrom(
