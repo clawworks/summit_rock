@@ -4,6 +4,8 @@ import 'package:summit_rock/src/common_widgets/text_widgets.dart';
 import 'package:summit_rock/src/features/word_decoder/domain/result.dart';
 import 'package:summit_rock/src/features/word_decoder/presentation/result_page_controller.dart';
 
+import '../../../common_widgets/oops_page.dart';
+
 class WordList extends ConsumerStatefulWidget {
   const WordList({
     required this.resultId,
@@ -48,7 +50,6 @@ class _WordListState extends ConsumerState<WordList> {
           ),
         ),
         if (expanded)
-          // TODO make this expandable...
           GridView.count(
             crossAxisCount: 4,
             primary: false,
@@ -76,30 +77,47 @@ class WordItem extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    bool isFavorite = ref
-        .watch(resultPageControllerProvider(resultId).notifier)
-        .isFavorite(word);
-    return GestureDetector(
-      onTap: () async {
-        ref
-            .read(resultPageControllerProvider(resultId).notifier)
-            .toggleFavorite(word);
-        // word.favorite = !word.favorite;
-      },
-      child: Container(
-        // color: Colors.green,
-        child: Center(
-          child: Text(
-            '$word, ',
-            // TODO style this, bold if favorite
-            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  color:
-                      isFavorite ? Theme.of(context).colorScheme.primary : null,
-                  fontWeight: isFavorite ? FontWeight.bold : null,
-                ),
+    AsyncValue<bool> asyncValue =
+        ref.watch(isWordFavoriteProvider(resultId, word));
+    return asyncValue.when(
+      data: (isFavorite) {
+        return GestureDetector(
+          onTap: () async {
+            await ref
+                .read(resultPageControllerProvider(resultId).notifier)
+                .toggleFavorite(word);
+            // word.favorite = !word.favorite;
+          },
+          child: Container(
+            // color: Colors.green,
+            child: Center(
+              child: Text(
+                '$word, ',
+                // TODO style this, bold if favorite
+                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                      color: isFavorite
+                          ? Theme.of(context).colorScheme.primary
+                          : null,
+                      fontWeight: isFavorite ? FontWeight.bold : null,
+                    ),
+              ),
+            ),
           ),
-        ),
-      ),
+        );
+      },
+      error: (err, stack) {
+        print("ERROR getting Result: $err\n$stack");
+        return const OopsPage(
+          message: 'We cannot find that result... Please try again.',
+        );
+      },
+      loading: () {
+        return const Scaffold(
+          body: Center(
+            child: CircularProgressIndicator.adaptive(),
+          ),
+        );
+      },
     );
   }
 }

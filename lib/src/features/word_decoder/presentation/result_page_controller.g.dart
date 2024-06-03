@@ -6,8 +6,7 @@ part of 'result_page_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$resultPageControllerHash() =>
-    r'15d6fac548a62d41d4faa4004ea360758c762ab9';
+String _$isWordFavoriteHash() => r'621c3cc49a883baa2a34f17770f71d0d8184c9a1';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -30,11 +29,157 @@ class _SystemHash {
   }
 }
 
+/// See also [isWordFavorite].
+@ProviderFor(isWordFavorite)
+const isWordFavoriteProvider = IsWordFavoriteFamily();
+
+/// See also [isWordFavorite].
+class IsWordFavoriteFamily extends Family<AsyncValue<bool>> {
+  /// See also [isWordFavorite].
+  const IsWordFavoriteFamily();
+
+  /// See also [isWordFavorite].
+  IsWordFavoriteProvider call(
+    String resultId,
+    String word,
+  ) {
+    return IsWordFavoriteProvider(
+      resultId,
+      word,
+    );
+  }
+
+  @override
+  IsWordFavoriteProvider getProviderOverride(
+    covariant IsWordFavoriteProvider provider,
+  ) {
+    return call(
+      provider.resultId,
+      provider.word,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'isWordFavoriteProvider';
+}
+
+/// See also [isWordFavorite].
+class IsWordFavoriteProvider extends AutoDisposeFutureProvider<bool> {
+  /// See also [isWordFavorite].
+  IsWordFavoriteProvider(
+    String resultId,
+    String word,
+  ) : this._internal(
+          (ref) => isWordFavorite(
+            ref as IsWordFavoriteRef,
+            resultId,
+            word,
+          ),
+          from: isWordFavoriteProvider,
+          name: r'isWordFavoriteProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$isWordFavoriteHash,
+          dependencies: IsWordFavoriteFamily._dependencies,
+          allTransitiveDependencies:
+              IsWordFavoriteFamily._allTransitiveDependencies,
+          resultId: resultId,
+          word: word,
+        );
+
+  IsWordFavoriteProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.resultId,
+    required this.word,
+  }) : super.internal();
+
+  final String resultId;
+  final String word;
+
+  @override
+  Override overrideWith(
+    FutureOr<bool> Function(IsWordFavoriteRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: IsWordFavoriteProvider._internal(
+        (ref) => create(ref as IsWordFavoriteRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        resultId: resultId,
+        word: word,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeFutureProviderElement<bool> createElement() {
+    return _IsWordFavoriteProviderElement(this);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is IsWordFavoriteProvider &&
+        other.resultId == resultId &&
+        other.word == word;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, resultId.hashCode);
+    hash = _SystemHash.combine(hash, word.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+mixin IsWordFavoriteRef on AutoDisposeFutureProviderRef<bool> {
+  /// The parameter `resultId` of this provider.
+  String get resultId;
+
+  /// The parameter `word` of this provider.
+  String get word;
+}
+
+class _IsWordFavoriteProviderElement
+    extends AutoDisposeFutureProviderElement<bool> with IsWordFavoriteRef {
+  _IsWordFavoriteProviderElement(super.provider);
+
+  @override
+  String get resultId => (origin as IsWordFavoriteProvider).resultId;
+  @override
+  String get word => (origin as IsWordFavoriteProvider).word;
+}
+
+String _$resultPageControllerHash() =>
+    r'709955ae99789954632dde7a76d758e52d946d6e';
+
 abstract class _$ResultPageController
-    extends BuildlessAutoDisposeAsyncNotifier<Result?> {
+    extends BuildlessAutoDisposeAsyncNotifier<void> {
   late final String resultId;
 
-  FutureOr<Result?> build(
+  FutureOr<void> build(
     String resultId,
   );
 }
@@ -44,7 +189,7 @@ abstract class _$ResultPageController
 const resultPageControllerProvider = ResultPageControllerFamily();
 
 /// See also [ResultPageController].
-class ResultPageControllerFamily extends Family<AsyncValue<Result?>> {
+class ResultPageControllerFamily extends Family<AsyncValue<void>> {
   /// See also [ResultPageController].
   const ResultPageControllerFamily();
 
@@ -82,8 +227,8 @@ class ResultPageControllerFamily extends Family<AsyncValue<Result?>> {
 }
 
 /// See also [ResultPageController].
-class ResultPageControllerProvider extends AutoDisposeAsyncNotifierProviderImpl<
-    ResultPageController, Result?> {
+class ResultPageControllerProvider
+    extends AutoDisposeAsyncNotifierProviderImpl<ResultPageController, void> {
   /// See also [ResultPageController].
   ResultPageControllerProvider(
     String resultId,
@@ -114,7 +259,7 @@ class ResultPageControllerProvider extends AutoDisposeAsyncNotifierProviderImpl<
   final String resultId;
 
   @override
-  FutureOr<Result?> runNotifierBuild(
+  FutureOr<void> runNotifierBuild(
     covariant ResultPageController notifier,
   ) {
     return notifier.build(
@@ -139,7 +284,7 @@ class ResultPageControllerProvider extends AutoDisposeAsyncNotifierProviderImpl<
   }
 
   @override
-  AutoDisposeAsyncNotifierProviderElement<ResultPageController, Result?>
+  AutoDisposeAsyncNotifierProviderElement<ResultPageController, void>
       createElement() {
     return _ResultPageControllerProviderElement(this);
   }
@@ -158,14 +303,14 @@ class ResultPageControllerProvider extends AutoDisposeAsyncNotifierProviderImpl<
   }
 }
 
-mixin ResultPageControllerRef on AutoDisposeAsyncNotifierProviderRef<Result?> {
+mixin ResultPageControllerRef on AutoDisposeAsyncNotifierProviderRef<void> {
   /// The parameter `resultId` of this provider.
   String get resultId;
 }
 
 class _ResultPageControllerProviderElement
-    extends AutoDisposeAsyncNotifierProviderElement<ResultPageController,
-        Result?> with ResultPageControllerRef {
+    extends AutoDisposeAsyncNotifierProviderElement<ResultPageController, void>
+    with ResultPageControllerRef {
   _ResultPageControllerProviderElement(super.provider);
 
   @override

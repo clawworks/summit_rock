@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:summit_rock/src/common_widgets/oops_page.dart';
+import 'package:summit_rock/src/features/word_decoder/application/result_service.dart';
 import 'package:summit_rock/src/features/word_decoder/domain/result.dart';
-import 'package:summit_rock/src/features/word_decoder/presentation/result_page_controller.dart';
 import 'package:summit_rock/src/features/word_decoder/presentation/results_list.dart';
 
 class ResultPage extends ConsumerWidget {
@@ -12,10 +12,11 @@ class ResultPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    AsyncValue<Result?> asyncValue =
-        ref.watch(resultPageControllerProvider(resultId));
+    AsyncValue<Result?> asyncValue = ref.watch(resultStreamProvider(resultId));
+    print("****************** Redrawing ResultPage build *******************");
     return asyncValue.when(
       data: (result) {
+        print("Got data Result: $result ");
         if (result == null) {
           return const OopsPage(
             message: 'We cannot find that result... Please try again.',
@@ -94,7 +95,10 @@ class ResultPage extends ConsumerWidget {
       },
       loading: () {
         return const Scaffold(
-            body: Center(child: CircularProgressIndicator.adaptive()));
+          body: Center(
+            child: CircularProgressIndicator.adaptive(),
+          ),
+        );
       },
     );
   }

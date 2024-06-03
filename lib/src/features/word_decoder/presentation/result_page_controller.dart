@@ -5,18 +5,29 @@ import 'package:summit_rock/src/features/word_decoder/domain/result.dart';
 part 'result_page_controller.g.dart';
 
 @riverpod
+Future<bool> isWordFavorite(
+    IsWordFavoriteRef ref, ResultId resultId, String word) async {
+  return ref
+          .watch(resultStreamProvider(resultId))
+          .value
+          ?.favorites
+          .contains(word) ??
+      false;
+}
+
+@riverpod
 class ResultPageController extends _$ResultPageController {
-  Future<Result?> _fetch(ResultId resultId) async {
-    return await ref.watch(resultProvider(resultId).future);
-  }
+  // Future<Result?> _fetch(ResultId resultId) async {
+  //   return await ref.watch(resultProvider(resultId).future);
+  // }
 
   @override
-  FutureOr<Result?> build(ResultId resultId) async {
-    return _fetch(resultId);
+  FutureOr<void> build(ResultId resultId) async {
+    // return _fetch(resultId);
   }
 
   Future<void> toggleFavorite(String word) async {
-    final Result? result = state.value;
+    final Result? result = await ref.read(resultProvider(resultId).future);
     if (result == null) return;
     List<String> updatedFavs = [];
     if (result.favorites.contains(word)) {
@@ -32,7 +43,7 @@ class ResultPageController extends _$ResultPageController {
     state = await AsyncValue.guard(() async {
       Result copy = result.copyWith(favorites: updatedFavs);
       await ref.read(resultServiceProvider).setResult(copy);
-      return _fetch(copy.id);
+      // return _fetch(copy.id);
     });
 
     //   for (final fav in state.value?.favorites ?? [])
@@ -51,10 +62,6 @@ class ResultPageController extends _$ResultPageController {
     //   // favorites: [...state.value.favorites, ]
     // );
     // });
-  }
-
-  bool isFavorite(String word) {
-    return state.value?.favorites.contains(word) ?? false;
   }
 }
 
