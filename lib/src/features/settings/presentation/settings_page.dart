@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:summit_rock/src/features/settings/presentation/setting_tile.dart';
 import 'package:summit_rock/src/features/settings/presentation/settings_card.dart';
 import 'package:summit_rock/src/features/settings/presentation/settings_controller.dart';
+import 'package:summit_rock/src/routing/app_router.dart';
 import 'package:summit_rock/src/utilities/show_custom_dialog.dart';
 
 class SettingsPage extends StatelessWidget {
@@ -53,6 +55,7 @@ class _DeleteAll extends ConsumerWidget {
                     content: Text('Deleted All Results'),
                   ),
                 );
+                context.goNamed(AppRoute.home);
               }
             }
           },

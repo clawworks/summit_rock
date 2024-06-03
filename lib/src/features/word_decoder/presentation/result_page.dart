@@ -38,7 +38,7 @@ class ResultPage extends ConsumerWidget {
                           resultId: resultId,
                           title: 'Favorites',
                           list: result.favorites),
-                      // TODO display all lists
+                      // TODO reorder lists
                       for (var entry in result.decodedWords.entries)
                         Column(
                           children: [

@@ -17,6 +17,7 @@ class WordList extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    // TODO make this expandable...
     return GridView.count(
       crossAxisCount: 4,
       primary: false,
