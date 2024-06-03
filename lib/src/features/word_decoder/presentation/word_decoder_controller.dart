@@ -38,7 +38,7 @@ class WordDecoderController extends _$WordDecoderController {
     _numbers = numbers;
     Map<DecodedList, List<String>> decodedWords = {};
     Set<String> favorites = {};
-    for (DecodedList list in DecodedList.values) {
+    for (DecodedList list in DecodedList.values.reversed) {
       List<String> decoded = _getDecodedList(list);
       decodedWords[list] = decoded;
       favorites.addAll(_findDictionaryWords(decoded));
