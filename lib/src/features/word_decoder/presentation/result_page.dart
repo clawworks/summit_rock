@@ -5,6 +5,7 @@ import 'package:summit_rock/src/features/word_decoder/application/result_service
 import 'package:summit_rock/src/features/word_decoder/domain/result.dart';
 import 'package:summit_rock/src/features/word_decoder/presentation/copy_button.dart';
 import 'package:summit_rock/src/features/word_decoder/presentation/results_list.dart';
+import 'package:summit_rock/src/features/word_decoder/presentation/results_list_controller.dart';
 
 class ResultPage extends ConsumerWidget {
   const ResultPage({required this.resultId, super.key});
@@ -38,18 +39,25 @@ class ResultPage extends ConsumerWidget {
                     children: [
                       // const HeadlineSmall('Favorites:'),
                       WordList(
-                          resultId: resultId,
-                          title: 'Favorites',
-                          list: result.favorites),
+                        resultId: resultId,
+                        title: 'Favorites',
+                        list: result.favorites,
+                        containsFavorite: false,
+                      ),
                       // TODO reorder lists
                       for (var entry in lists)
                         Column(
                           children: [
                             // HeadlineSmall(entry.key.toString()),
                             WordList(
-                                resultId: resultId,
-                                title: entry.key.toString(),
-                                list: entry.value),
+                              resultId: resultId,
+                              title: entry.key.toString(),
+                              list: entry.value,
+                              containsFavorite: ref.watch(
+                                listContainsFavoriteProvider(
+                                    entry.value, result.favorites),
+                              ),
+                            ),
                           ],
                         ),
 

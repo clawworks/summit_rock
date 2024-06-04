@@ -11,12 +11,14 @@ class WordList extends ConsumerStatefulWidget {
     required this.resultId,
     required this.title,
     required this.list,
+    required this.containsFavorite,
     super.key,
   });
 
   final ResultId resultId;
   final String title;
   final List<String> list;
+  final bool containsFavorite;
 
   @override
   ConsumerState<WordList> createState() => _WordListState();
@@ -42,16 +44,25 @@ class _WordListState extends ConsumerState<WordList> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 HeadlineSmall(widget.title),
-                Icon(expanded
-                    ? Icons.keyboard_arrow_down
-                    : Icons.keyboard_arrow_right),
+                Row(
+                  children: [
+                    if (widget.containsFavorite)
+                      Icon(
+                        Icons.star,
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
+                    Icon(expanded
+                        ? Icons.keyboard_arrow_down
+                        : Icons.keyboard_arrow_right),
+                  ],
+                ),
               ],
             ),
           ),
         ),
         if (expanded)
           GridView.count(
-            crossAxisCount: 4,
+            crossAxisCount: 4, // TODO make this dynamic based on word length
             primary: false,
             crossAxisSpacing: 8,
             mainAxisSpacing: 8,
