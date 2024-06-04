@@ -62,7 +62,8 @@ class _WordListState extends ConsumerState<WordList> {
         ),
         if (expanded)
           GridView.count(
-            crossAxisCount: 4, // TODO make this dynamic based on word length
+            crossAxisCount:
+                getCrossAxisCount(), // TODO make this dynamic based on word length
             primary: false,
             crossAxisSpacing: 8,
             mainAxisSpacing: 8,
@@ -77,6 +78,14 @@ class _WordListState extends ConsumerState<WordList> {
         const Divider(),
       ],
     );
+  }
+
+  int getCrossAxisCount() {
+    final int length = widget.list.firstOrNull?.length ?? 10;
+    if (length < 4) return 5;
+    if (length < 6) return 4;
+    if (length < 10) return 3;
+    return 2;
   }
 }
 
