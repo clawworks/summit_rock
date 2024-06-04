@@ -9,9 +9,12 @@ typedef ResultId = String;
 
 @freezed
 class Result with _$Result {
+  const Result._();
+
   const factory Result({
     required ResultId id,
     required List<int> numbers,
+    required Map<int, String> letterMap,
     required List<String> favorites,
     required Map<DecodedList, List<String>> decodedWords,
     required DateTime createdAt,
@@ -19,6 +22,19 @@ class Result with _$Result {
   }) = _Result;
 
   factory Result.fromJson(Map<String, Object?> json) => _$ResultFromJson(json);
+
+  String get combined {
+    String title = '';
+    for (int i = 0; i < numbers.length; i++) {
+      final String trailing = i != numbers.length - 1 ? ', ' : '';
+      String? letter = letterMap[i];
+      if (letter != null) {
+        title += '$letter$trailing';
+      }
+      title += '${numbers[i]}$trailing';
+    }
+    return title;
+  }
 
   // factory Result.fromMap(Map<String, dynamic> map) {
   //   final String id = map['id'];

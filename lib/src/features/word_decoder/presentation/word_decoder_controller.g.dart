@@ -7,7 +7,7 @@ part of 'word_decoder_controller.dart';
 // **************************************************************************
 
 String _$wordDecoderControllerHash() =>
-    r'f5ce7f1516f0bb82e02b7773699639c6fc171ec7';
+    r'9a1af5f703e2bf2c158be449fdd9924ce69ff971';
 
 /// See also [WordDecoderController].
 @ProviderFor(WordDecoderController)

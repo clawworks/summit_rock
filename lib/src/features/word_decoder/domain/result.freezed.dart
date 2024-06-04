@@ -22,6 +22,7 @@ Result _$ResultFromJson(Map<String, dynamic> json) {
 mixin _$Result {
   String get id => throw _privateConstructorUsedError;
   List<int> get numbers => throw _privateConstructorUsedError;
+  Map<int, String> get letterMap => throw _privateConstructorUsedError;
   List<String> get favorites => throw _privateConstructorUsedError;
   Map<DecodedList, List<String>> get decodedWords =>
       throw _privateConstructorUsedError;
@@ -41,6 +42,7 @@ abstract class $ResultCopyWith<$Res> {
   $Res call(
       {String id,
       List<int> numbers,
+      Map<int, String> letterMap,
       List<String> favorites,
       Map<DecodedList, List<String>> decodedWords,
       DateTime createdAt,
@@ -62,6 +64,7 @@ class _$ResultCopyWithImpl<$Res, $Val extends Result>
   $Res call({
     Object? id = null,
     Object? numbers = null,
+    Object? letterMap = null,
     Object? favorites = null,
     Object? decodedWords = null,
     Object? createdAt = null,
@@ -76,6 +79,10 @@ class _$ResultCopyWithImpl<$Res, $Val extends Result>
           ? _value.numbers
           : numbers // ignore: cast_nullable_to_non_nullable
               as List<int>,
+      letterMap: null == letterMap
+          ? _value.letterMap
+          : letterMap // ignore: cast_nullable_to_non_nullable
+              as Map<int, String>,
       favorites: null == favorites
           ? _value.favorites
           : favorites // ignore: cast_nullable_to_non_nullable
@@ -106,6 +113,7 @@ abstract class _$$ResultImplCopyWith<$Res> implements $ResultCopyWith<$Res> {
   $Res call(
       {String id,
       List<int> numbers,
+      Map<int, String> letterMap,
       List<String> favorites,
       Map<DecodedList, List<String>> decodedWords,
       DateTime createdAt,
@@ -125,6 +133,7 @@ class __$$ResultImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? numbers = null,
+    Object? letterMap = null,
     Object? favorites = null,
     Object? decodedWords = null,
     Object? createdAt = null,
@@ -139,6 +148,10 @@ class __$$ResultImplCopyWithImpl<$Res>
           ? _value._numbers
           : numbers // ignore: cast_nullable_to_non_nullable
               as List<int>,
+      letterMap: null == letterMap
+          ? _value._letterMap
+          : letterMap // ignore: cast_nullable_to_non_nullable
+              as Map<int, String>,
       favorites: null == favorites
           ? _value._favorites
           : favorites // ignore: cast_nullable_to_non_nullable
@@ -161,17 +174,20 @@ class __$$ResultImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$ResultImpl implements _Result {
+class _$ResultImpl extends _Result {
   const _$ResultImpl(
       {required this.id,
       required final List<int> numbers,
+      required final Map<int, String> letterMap,
       required final List<String> favorites,
       required final Map<DecodedList, List<String>> decodedWords,
       required this.createdAt,
       required this.updatedAt})
       : _numbers = numbers,
+        _letterMap = letterMap,
         _favorites = favorites,
-        _decodedWords = decodedWords;
+        _decodedWords = decodedWords,
+        super._();
 
   factory _$ResultImpl.fromJson(Map<String, dynamic> json) =>
       _$$ResultImplFromJson(json);
@@ -184,6 +200,14 @@ class _$ResultImpl implements _Result {
     if (_numbers is EqualUnmodifiableListView) return _numbers;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_numbers);
+  }
+
+  final Map<int, String> _letterMap;
+  @override
+  Map<int, String> get letterMap {
+    if (_letterMap is EqualUnmodifiableMapView) return _letterMap;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_letterMap);
   }
 
   final List<String> _favorites;
@@ -209,7 +233,7 @@ class _$ResultImpl implements _Result {
 
   @override
   String toString() {
-    return 'Result(id: $id, numbers: $numbers, favorites: $favorites, decodedWords: $decodedWords, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'Result(id: $id, numbers: $numbers, letterMap: $letterMap, favorites: $favorites, decodedWords: $decodedWords, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -219,6 +243,8 @@ class _$ResultImpl implements _Result {
             other is _$ResultImpl &&
             (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality().equals(other._numbers, _numbers) &&
+            const DeepCollectionEquality()
+                .equals(other._letterMap, _letterMap) &&
             const DeepCollectionEquality()
                 .equals(other._favorites, _favorites) &&
             const DeepCollectionEquality()
@@ -235,6 +261,7 @@ class _$ResultImpl implements _Result {
       runtimeType,
       id,
       const DeepCollectionEquality().hash(_numbers),
+      const DeepCollectionEquality().hash(_letterMap),
       const DeepCollectionEquality().hash(_favorites),
       const DeepCollectionEquality().hash(_decodedWords),
       createdAt,
@@ -254,14 +281,16 @@ class _$ResultImpl implements _Result {
   }
 }
 
-abstract class _Result implements Result {
+abstract class _Result extends Result {
   const factory _Result(
       {required final String id,
       required final List<int> numbers,
+      required final Map<int, String> letterMap,
       required final List<String> favorites,
       required final Map<DecodedList, List<String>> decodedWords,
       required final DateTime createdAt,
       required final DateTime updatedAt}) = _$ResultImpl;
+  const _Result._() : super._();
 
   factory _Result.fromJson(Map<String, dynamic> json) = _$ResultImpl.fromJson;
 
@@ -269,6 +298,8 @@ abstract class _Result implements Result {
   String get id;
   @override
   List<int> get numbers;
+  @override
+  Map<int, String> get letterMap;
   @override
   List<String> get favorites;
   @override

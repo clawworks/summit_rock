@@ -19,6 +19,7 @@ part 'word_decoder_controller.g.dart';
 @Riverpod(keepAlive: true)
 class WordDecoderController extends _$WordDecoderController {
   List<int> _numbers = [];
+  Map<int, String> _letterMap = {};
 
   @override
   FutureOr<void> build() {
@@ -34,8 +35,12 @@ class WordDecoderController extends _$WordDecoderController {
     return id;
   }
 
-  Future<Result> getResults({required List<int> numbers}) async {
+  Future<Result> getResults({
+    required List<int> numbers,
+    required Map<int, String> letterMap,
+  }) async {
     _numbers = numbers;
+    _letterMap = letterMap;
     Map<DecodedList, List<String>> decodedWords = {};
     Set<String> favorites = {};
     for (DecodedList list in DecodedList.values.reversed) {
@@ -48,6 +53,7 @@ class WordDecoderController extends _$WordDecoderController {
     final result = Result(
       id: _makeId(numbers),
       numbers: numbers,
+      letterMap: letterMap,
       favorites: favorites.toList(),
       decodedWords: decodedWords,
       createdAt: date,
@@ -58,6 +64,7 @@ class WordDecoderController extends _$WordDecoderController {
       await ref.read(resultServiceProvider).setResult(result);
     });
     _numbers.clear();
+    _letterMap.clear();
     return result;
   }
 
@@ -98,7 +105,10 @@ class WordDecoderController extends _$WordDecoderController {
         int index = (i + num) % letters.length;
         word += letters[index];
       }
-      print(word);
+      for (MapEntry entry in _letterMap.entries) {
+        word =
+            "${word.substring(0, entry.key)}${entry.value}${word.substring(entry.key)}";
+      }
       words.add(word);
     }
     return words;
@@ -112,7 +122,10 @@ class WordDecoderController extends _$WordDecoderController {
         int index = (i - num) % letters.length;
         word += letters[index];
       }
-      print(word);
+      for (MapEntry entry in _letterMap.entries) {
+        word =
+            "${word.substring(0, entry.key)}${entry.value}${word.substring(entry.key)}";
+      }
       words.add(word);
     }
     return words;

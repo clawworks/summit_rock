@@ -11,6 +11,9 @@ _$ResultImpl _$$ResultImplFromJson(Map<String, dynamic> json) => _$ResultImpl(
       numbers: (json['numbers'] as List<dynamic>)
           .map((e) => (e as num).toInt())
           .toList(),
+      letterMap: (json['letterMap'] as Map<String, dynamic>).map(
+        (k, e) => MapEntry(int.parse(k), e as String),
+      ),
       favorites:
           (json['favorites'] as List<dynamic>).map((e) => e as String).toList(),
       decodedWords: (json['decodedWords'] as Map<String, dynamic>).map(
@@ -25,6 +28,7 @@ Map<String, dynamic> _$$ResultImplToJson(_$ResultImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'numbers': instance.numbers,
+      'letterMap': instance.letterMap.map((k, e) => MapEntry(k.toString(), e)),
       'favorites': instance.favorites,
       'decodedWords': instance.decodedWords
           .map((k, e) => MapEntry(_$DecodedListEnumMap[k]!, e)),

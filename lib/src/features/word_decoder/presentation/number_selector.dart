@@ -13,6 +13,7 @@ class NumberSelector extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final numController = useTextEditingController(text: '');
     final numbers = useState<List<int>>([]);
+    final letterMap = useState<Map<int, String>>({});
     return Column(
       children: [
         Padding(
@@ -60,14 +61,16 @@ class NumberSelector extends HookConsumerWidget {
                     print("Number: $number");
                     if (number != null) {
                       numbers.value = [...numbers.value, number];
-                      numController.clear();
                     } else {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('Must enter a number'),
-                        ),
-                      );
+                      letterMap.value[numbers.value.length] =
+                          numController.text;
+                      // ScaffoldMessenger.of(context).showSnackBar(
+                      //   const SnackBar(
+                      //     content: Text('Must enter a number'),
+                      //   ),
+                      // );
                     }
+                    numController.clear();
                   },
                   style: TextButton.styleFrom(
                     // foregroundColor: Theme.of(context).colorScheme.onPrimary,
@@ -106,7 +109,10 @@ class NumberSelector extends HookConsumerWidget {
               FocusManager.instance.primaryFocus?.unfocus();
               Result result = await ref
                   .read(wordDecoderControllerProvider.notifier)
-                  .getResults(numbers: numbers.value);
+                  .getResults(
+                    numbers: numbers.value,
+                    letterMap: letterMap.value,
+                  );
               if (context.mounted) {
                 context.goNamed(
                   AppRoute.result,

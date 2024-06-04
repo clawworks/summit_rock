@@ -3,6 +3,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:summit_rock/src/common_widgets/oops_page.dart';
 import 'package:summit_rock/src/features/word_decoder/application/result_service.dart';
 import 'package:summit_rock/src/features/word_decoder/domain/result.dart';
+import 'package:summit_rock/src/features/word_decoder/presentation/copy_button.dart';
 import 'package:summit_rock/src/features/word_decoder/presentation/results_list.dart';
 
 class ResultPage extends ConsumerWidget {
@@ -26,7 +27,7 @@ class ResultPage extends ConsumerWidget {
         final lists = result.decodedWords.entries.toList().reversed;
         return Scaffold(
           appBar: AppBar(
-            title: Text('${result.numbers}'),
+            title: Text(result.combined),
           ),
           body: Center(
             child: ListView(
@@ -50,8 +51,9 @@ class ResultPage extends ConsumerWidget {
                                 title: entry.key.toString(),
                                 list: entry.value),
                           ],
-                        )
+                        ),
 
+                      CopyButton(result: result),
                       // const HeadlineSmall('Outside Ring Words:'),
                       // WordList(
                       //     resultId: resultId,
