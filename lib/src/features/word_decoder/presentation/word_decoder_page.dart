@@ -120,7 +120,7 @@ class ResultCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                '${result.numbers}',
+                result.combined,
                 style: Theme.of(context).textTheme.titleMedium,
               ),
               const SizedBox(width: 20.0),

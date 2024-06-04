@@ -25,13 +25,19 @@ class Result with _$Result {
 
   String get combined {
     String title = '';
+    String? lastLetter = letterMap[numbers.length];
     for (int i = 0; i < numbers.length; i++) {
-      final String trailing = i != numbers.length - 1 ? ', ' : '';
+      final bool showTrailingComma =
+          i != numbers.length - 1 || lastLetter != null;
+      final String trailing = showTrailingComma ? ', ' : '';
       String? letter = letterMap[i];
       if (letter != null) {
         title += '$letter$trailing';
       }
       title += '${numbers[i]}$trailing';
+    }
+    if (lastLetter != null) {
+      title += lastLetter;
     }
     return title;
   }
