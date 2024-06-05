@@ -45,11 +45,11 @@ class NumberSelector extends HookConsumerWidget {
                   // onTapOutside: (_) =>
                   //     FocusManager.instance.primaryFocus?.unfocus(),
                   controller: numController,
-                  textInputAction: TextInputAction.go,
+                  // textInputAction: TextInputAction.go,
                   onSubmitted: (value) {
                     print("Go button tapped!");
                   },
-                  keyboardType: TextInputType.number,
+                  keyboardType: TextInputType.datetime,
                   textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.titleLarge,
                 ),
