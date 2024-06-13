@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:summit_rock/src/common_widgets/text_widgets.dart';
+import 'package:summit_rock/src/features/results/application/result_service.dart';
 import 'package:summit_rock/src/features/word_decoder/domain/result.dart';
 import 'package:summit_rock/src/features/word_decoder/presentation/result_page_controller.dart';
 
@@ -62,8 +63,8 @@ class _WordListState extends ConsumerState<WordList> {
         ),
         if (expanded)
           GridView.count(
-            crossAxisCount:
-                getCrossAxisCount(), // TODO make this dynamic based on word length
+            crossAxisCount: ref.watch(getCrossAxisCountProvider(
+                length: widget.list.firstOrNull?.length ?? 10)),
             primary: false,
             crossAxisSpacing: 8,
             mainAxisSpacing: 8,
@@ -78,14 +79,6 @@ class _WordListState extends ConsumerState<WordList> {
         const Divider(),
       ],
     );
-  }
-
-  int getCrossAxisCount() {
-    final int length = widget.list.firstOrNull?.length ?? 10;
-    if (length < 4) return 5;
-    if (length < 6) return 4;
-    if (length < 10) return 3;
-    return 2;
   }
 }
 

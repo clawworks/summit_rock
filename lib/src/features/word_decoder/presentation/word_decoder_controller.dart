@@ -1,5 +1,5 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:summit_rock/src/features/word_decoder/application/result_service.dart';
+import 'package:summit_rock/src/features/results/application/result_service.dart';
 import 'package:summit_rock/src/features/word_decoder/domain/result.dart';
 import 'package:summit_rock/src/utilities/enums/decoded_list.dart';
 import 'package:summit_rock/src/utilities/list_english_words.dart';

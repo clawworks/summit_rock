@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:summit_rock/src/features/word_decoder/application/result_service.dart';
+import 'package:summit_rock/src/features/results/application/result_service.dart';
 import 'package:summit_rock/src/features/word_decoder/presentation/number_selector.dart';
 import 'package:summit_rock/src/features/word_decoder/presentation/word_decoder_controller.dart';
 import 'package:summit_rock/src/routing/app_router.dart';

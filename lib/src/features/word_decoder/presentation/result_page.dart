@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:summit_rock/src/common_widgets/oops_page.dart';
-import 'package:summit_rock/src/features/word_decoder/application/result_service.dart';
+import 'package:summit_rock/src/features/results/application/result_service.dart';
 import 'package:summit_rock/src/features/word_decoder/domain/result.dart';
 import 'package:summit_rock/src/features/word_decoder/presentation/copy_button.dart';
 import 'package:summit_rock/src/features/word_decoder/presentation/results_list.dart';
 import 'package:summit_rock/src/features/word_decoder/presentation/results_list_controller.dart';
+import 'package:summit_rock/src/routing/app_router.dart';
 
 class ResultPage extends ConsumerWidget {
   const ResultPage({required this.resultId, super.key});
@@ -28,7 +30,19 @@ class ResultPage extends ConsumerWidget {
         final lists = result.decodedWords.entries.toList().reversed;
         return Scaffold(
           appBar: AppBar(
-            title: Text(result.combined),
+            title: FittedBox(
+              fit: BoxFit.fitWidth,
+              child: Text(result.combined),
+            ),
+            actions: [
+              IconButton(
+                onPressed: () async {
+                  context.goNamed(AppRoute.resultSearch,
+                      pathParameters: {'resultId': resultId});
+                },
+                icon: const Icon(Icons.search),
+              ),
+            ],
           ),
           body: Center(
             child: ListView(

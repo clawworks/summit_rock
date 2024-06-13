@@ -6,23 +6,7 @@ part of 'result_service.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$resultsListStreamHash() => r'2d7aaa0a1037459957737708380f479d9173d5da';
-
-/// See also [resultsListStream].
-@ProviderFor(resultsListStream)
-final resultsListStreamProvider =
-    AutoDisposeStreamProvider<List<Result>>.internal(
-  resultsListStream,
-  name: r'resultsListStreamProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$resultsListStreamHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef ResultsListStreamRef = AutoDisposeStreamProviderRef<List<Result>>;
-String _$resultStreamHash() => r'c098d13013ef15064dda993c91b049e4bb6d6ec0';
+String _$getCrossAxisCountHash() => r'bdc676944c053dcff9659a2abdca69c8caedb4ee';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -44,6 +28,150 @@ class _SystemHash {
     return 0x1fffffff & (hash + ((0x00003fff & hash) << 15));
   }
 }
+
+/// See also [getCrossAxisCount].
+@ProviderFor(getCrossAxisCount)
+const getCrossAxisCountProvider = GetCrossAxisCountFamily();
+
+/// See also [getCrossAxisCount].
+class GetCrossAxisCountFamily extends Family<int> {
+  /// See also [getCrossAxisCount].
+  const GetCrossAxisCountFamily();
+
+  /// See also [getCrossAxisCount].
+  GetCrossAxisCountProvider call({
+    int? length = 10,
+  }) {
+    return GetCrossAxisCountProvider(
+      length: length,
+    );
+  }
+
+  @override
+  GetCrossAxisCountProvider getProviderOverride(
+    covariant GetCrossAxisCountProvider provider,
+  ) {
+    return call(
+      length: provider.length,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'getCrossAxisCountProvider';
+}
+
+/// See also [getCrossAxisCount].
+class GetCrossAxisCountProvider extends AutoDisposeProvider<int> {
+  /// See also [getCrossAxisCount].
+  GetCrossAxisCountProvider({
+    int? length = 10,
+  }) : this._internal(
+          (ref) => getCrossAxisCount(
+            ref as GetCrossAxisCountRef,
+            length: length,
+          ),
+          from: getCrossAxisCountProvider,
+          name: r'getCrossAxisCountProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$getCrossAxisCountHash,
+          dependencies: GetCrossAxisCountFamily._dependencies,
+          allTransitiveDependencies:
+              GetCrossAxisCountFamily._allTransitiveDependencies,
+          length: length,
+        );
+
+  GetCrossAxisCountProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.length,
+  }) : super.internal();
+
+  final int? length;
+
+  @override
+  Override overrideWith(
+    int Function(GetCrossAxisCountRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: GetCrossAxisCountProvider._internal(
+        (ref) => create(ref as GetCrossAxisCountRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        length: length,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeProviderElement<int> createElement() {
+    return _GetCrossAxisCountProviderElement(this);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is GetCrossAxisCountProvider && other.length == length;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, length.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+mixin GetCrossAxisCountRef on AutoDisposeProviderRef<int> {
+  /// The parameter `length` of this provider.
+  int? get length;
+}
+
+class _GetCrossAxisCountProviderElement extends AutoDisposeProviderElement<int>
+    with GetCrossAxisCountRef {
+  _GetCrossAxisCountProviderElement(super.provider);
+
+  @override
+  int? get length => (origin as GetCrossAxisCountProvider).length;
+}
+
+String _$resultsListStreamHash() => r'2d7aaa0a1037459957737708380f479d9173d5da';
+
+/// See also [resultsListStream].
+@ProviderFor(resultsListStream)
+final resultsListStreamProvider =
+    AutoDisposeStreamProvider<List<Result>>.internal(
+  resultsListStream,
+  name: r'resultsListStreamProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$resultsListStreamHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef ResultsListStreamRef = AutoDisposeStreamProviderRef<List<Result>>;
+String _$resultStreamHash() => r'c098d13013ef15064dda993c91b049e4bb6d6ec0';
 
 /// See also [resultStream].
 @ProviderFor(resultStream)

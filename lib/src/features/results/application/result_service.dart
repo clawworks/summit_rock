@@ -7,6 +7,15 @@ import 'package:summit_rock/src/features/word_decoder/domain/result.dart';
 part 'result_service.g.dart';
 
 @riverpod
+int getCrossAxisCount(GetCrossAxisCountRef ref, {int? length = 10}) {
+  if (length == null) return 3;
+  if (length < 4) return 5;
+  if (length < 6) return 4;
+  if (length < 10) return 3;
+  return 2;
+}
+
+@riverpod
 Stream<List<Result>> resultsListStream(ResultsListStreamRef ref) {
   final service = ref.watch(resultServiceProvider);
   return service.watchResults();
