@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:summit_rock/src/features/results/application/result_service.dart';
 import 'package:summit_rock/src/features/word_decoder/domain/result.dart';
 import 'package:summit_rock/src/features/word_decoder/presentation/word_decoder_controller.dart';
 import 'package:summit_rock/src/routing/app_router.dart';
@@ -14,6 +15,8 @@ class NumberSelector extends HookConsumerWidget {
     final numController = useTextEditingController(text: '');
     final numbers = useState<List<int>>([]);
     final letterMap = useState<Map<int, String>>({});
+    final combined = ref.watch(combinedListProvider(
+        numbers: numbers.value, letterMap: letterMap.value));
     return Column(
       children: [
         Padding(
@@ -33,13 +36,12 @@ class NumberSelector extends HookConsumerWidget {
                   decoration: InputDecoration(
                     // fillColor: Colors.white,
                     // focusColor: Colors.white,
-                    filled: true,
                     border: OutlineInputBorder(
                       borderSide: const BorderSide(
                         color: Colors.white,
-                        width: 2.0,
+                        width: 3.0,
                       ),
-                      borderRadius: BorderRadius.circular(25.0),
+                      borderRadius: BorderRadius.circular(16.0),
                     ),
                   ),
                   // onTapOutside: (_) =>
@@ -58,12 +60,14 @@ class NumberSelector extends HookConsumerWidget {
                 child: TextButton(
                   onPressed: () async {
                     int? number = int.tryParse(numController.text);
-                    print("Number: $number");
                     if (number != null) {
                       numbers.value = [...numbers.value, number];
                     } else {
                       int index = numbers.value.length + letterMap.value.length;
-                      letterMap.value[index] = numController.text.toUpperCase();
+                      letterMap.value = {
+                        ...letterMap.value,
+                        ...{index: numController.text.toUpperCase()}
+                      };
                       // ScaffoldMessenger.of(context).showSnackBar(
                       //   const SnackBar(
                       //     content: Text('Must enter a number'),
@@ -86,13 +90,15 @@ class NumberSelector extends HookConsumerWidget {
           padding: const EdgeInsets.all(24.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              for (int i = 0; i < numbers.value.length; i++)
-                Text(
-                  numbers.value[i].toString(),
+            children: List.generate(
+              combined.length,
+              (index) {
+                return Text(
+                  combined[index],
                   style: Theme.of(context).textTheme.titleLarge,
-                ),
-            ],
+                );
+              },
+            ),
           ),
         ),
         Visibility(

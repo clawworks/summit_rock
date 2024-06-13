@@ -6,7 +6,7 @@ part of 'result_service.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$getCrossAxisCountHash() => r'bdc676944c053dcff9659a2abdca69c8caedb4ee';
+String _$combinedListHash() => r'1191900cca06265e28bdbf4bceeb3074d301e2ee';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -28,6 +28,151 @@ class _SystemHash {
     return 0x1fffffff & (hash + ((0x00003fff & hash) << 15));
   }
 }
+
+/// See also [combinedList].
+@ProviderFor(combinedList)
+const combinedListProvider = CombinedListFamily();
+
+/// See also [combinedList].
+class CombinedListFamily extends Family<List<String>> {
+  /// See also [combinedList].
+  const CombinedListFamily();
+
+  /// See also [combinedList].
+  CombinedListProvider call({
+    required List<int> numbers,
+    required Map<int, String> letterMap,
+  }) {
+    return CombinedListProvider(
+      numbers: numbers,
+      letterMap: letterMap,
+    );
+  }
+
+  @override
+  CombinedListProvider getProviderOverride(
+    covariant CombinedListProvider provider,
+  ) {
+    return call(
+      numbers: provider.numbers,
+      letterMap: provider.letterMap,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'combinedListProvider';
+}
+
+/// See also [combinedList].
+class CombinedListProvider extends AutoDisposeProvider<List<String>> {
+  /// See also [combinedList].
+  CombinedListProvider({
+    required List<int> numbers,
+    required Map<int, String> letterMap,
+  }) : this._internal(
+          (ref) => combinedList(
+            ref as CombinedListRef,
+            numbers: numbers,
+            letterMap: letterMap,
+          ),
+          from: combinedListProvider,
+          name: r'combinedListProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$combinedListHash,
+          dependencies: CombinedListFamily._dependencies,
+          allTransitiveDependencies:
+              CombinedListFamily._allTransitiveDependencies,
+          numbers: numbers,
+          letterMap: letterMap,
+        );
+
+  CombinedListProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.numbers,
+    required this.letterMap,
+  }) : super.internal();
+
+  final List<int> numbers;
+  final Map<int, String> letterMap;
+
+  @override
+  Override overrideWith(
+    List<String> Function(CombinedListRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: CombinedListProvider._internal(
+        (ref) => create(ref as CombinedListRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        numbers: numbers,
+        letterMap: letterMap,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeProviderElement<List<String>> createElement() {
+    return _CombinedListProviderElement(this);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is CombinedListProvider &&
+        other.numbers == numbers &&
+        other.letterMap == letterMap;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, numbers.hashCode);
+    hash = _SystemHash.combine(hash, letterMap.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+mixin CombinedListRef on AutoDisposeProviderRef<List<String>> {
+  /// The parameter `numbers` of this provider.
+  List<int> get numbers;
+
+  /// The parameter `letterMap` of this provider.
+  Map<int, String> get letterMap;
+}
+
+class _CombinedListProviderElement
+    extends AutoDisposeProviderElement<List<String>> with CombinedListRef {
+  _CombinedListProviderElement(super.provider);
+
+  @override
+  List<int> get numbers => (origin as CombinedListProvider).numbers;
+  @override
+  Map<int, String> get letterMap => (origin as CombinedListProvider).letterMap;
+}
+
+String _$getCrossAxisCountHash() => r'bdc676944c053dcff9659a2abdca69c8caedb4ee';
 
 /// See also [getCrossAxisCount].
 @ProviderFor(getCrossAxisCount)

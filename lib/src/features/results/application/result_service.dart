@@ -7,6 +7,19 @@ import 'package:summit_rock/src/features/word_decoder/domain/result.dart';
 part 'result_service.g.dart';
 
 @riverpod
+List<String> combinedList(
+  CombinedListRef ref, {
+  required List<int> numbers,
+  required Map<int, String> letterMap,
+}) {
+  List<String> numberStrings = numbers.map((e) => e.toString()).toList();
+  for (final entry in letterMap.entries) {
+    numberStrings.insert(entry.key, entry.value);
+  }
+  return numberStrings;
+}
+
+@riverpod
 int getCrossAxisCount(GetCrossAxisCountRef ref, {int? length = 10}) {
   if (length == null) return 3;
   if (length < 4) return 5;
