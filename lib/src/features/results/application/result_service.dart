@@ -7,6 +7,18 @@ import 'package:summit_rock/src/features/word_decoder/domain/result.dart';
 part 'result_service.g.dart';
 
 @riverpod
+String resultTitle(ResultTitleRef ref, Result result) {
+  List<String> combined = ref.watch(combinedListProvider(
+      numbers: result.numbers, letterMap: result.letterMap));
+  String title = '';
+  for (var letter in combined) {
+    title += '$letter, ';
+  }
+  title = title.substring(0, title.length - 2);
+  return title;
+}
+
+@riverpod
 List<String> combinedList(
   CombinedListRef ref, {
   required List<int> numbers,
@@ -14,7 +26,11 @@ List<String> combinedList(
 }) {
   List<String> numberStrings = numbers.map((e) => e.toString()).toList();
   for (final entry in letterMap.entries) {
-    numberStrings.insert(entry.key, entry.value);
+    if (entry.key <= numberStrings.length) {
+      numberStrings.insert(entry.key, entry.value);
+    } else if (entry.key == numberStrings.length) {
+      numberStrings.add(entry.value);
+    }
   }
   return numberStrings;
 }

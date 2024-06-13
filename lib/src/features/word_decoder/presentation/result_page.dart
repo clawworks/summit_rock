@@ -28,13 +28,7 @@ class ResultPage extends ConsumerWidget {
         }
 
         final lists = result.decodedWords.entries.toList().reversed;
-        List<String> combined = ref.watch(combinedListProvider(
-            numbers: result.numbers, letterMap: result.letterMap));
-        String title = '';
-        for (var letter in combined) {
-          title += '$letter, ';
-        }
-        title = title.substring(0, title.length - 2);
+        final title = ref.watch(resultTitleProvider(result));
         return Scaffold(
           appBar: AppBar(
             title: FittedBox(

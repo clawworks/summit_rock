@@ -6,7 +6,7 @@ part of 'result_service.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$combinedListHash() => r'1191900cca06265e28bdbf4bceeb3074d301e2ee';
+String _$resultTitleHash() => r'b22502380b753fe702c0b1a6f53e2bf8a29a59e1';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -28,6 +28,134 @@ class _SystemHash {
     return 0x1fffffff & (hash + ((0x00003fff & hash) << 15));
   }
 }
+
+/// See also [resultTitle].
+@ProviderFor(resultTitle)
+const resultTitleProvider = ResultTitleFamily();
+
+/// See also [resultTitle].
+class ResultTitleFamily extends Family<String> {
+  /// See also [resultTitle].
+  const ResultTitleFamily();
+
+  /// See also [resultTitle].
+  ResultTitleProvider call(
+    Result result,
+  ) {
+    return ResultTitleProvider(
+      result,
+    );
+  }
+
+  @override
+  ResultTitleProvider getProviderOverride(
+    covariant ResultTitleProvider provider,
+  ) {
+    return call(
+      provider.result,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'resultTitleProvider';
+}
+
+/// See also [resultTitle].
+class ResultTitleProvider extends AutoDisposeProvider<String> {
+  /// See also [resultTitle].
+  ResultTitleProvider(
+    Result result,
+  ) : this._internal(
+          (ref) => resultTitle(
+            ref as ResultTitleRef,
+            result,
+          ),
+          from: resultTitleProvider,
+          name: r'resultTitleProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$resultTitleHash,
+          dependencies: ResultTitleFamily._dependencies,
+          allTransitiveDependencies:
+              ResultTitleFamily._allTransitiveDependencies,
+          result: result,
+        );
+
+  ResultTitleProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.result,
+  }) : super.internal();
+
+  final Result result;
+
+  @override
+  Override overrideWith(
+    String Function(ResultTitleRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: ResultTitleProvider._internal(
+        (ref) => create(ref as ResultTitleRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        result: result,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeProviderElement<String> createElement() {
+    return _ResultTitleProviderElement(this);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is ResultTitleProvider && other.result == result;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, result.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+mixin ResultTitleRef on AutoDisposeProviderRef<String> {
+  /// The parameter `result` of this provider.
+  Result get result;
+}
+
+class _ResultTitleProviderElement extends AutoDisposeProviderElement<String>
+    with ResultTitleRef {
+  _ResultTitleProviderElement(super.provider);
+
+  @override
+  Result get result => (origin as ResultTitleProvider).result;
+}
+
+String _$combinedListHash() => r'a113c19758519beb1a41c414fab74b99d111e377';
 
 /// See also [combinedList].
 @ProviderFor(combinedList)

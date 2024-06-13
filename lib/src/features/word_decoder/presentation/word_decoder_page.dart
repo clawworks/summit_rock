@@ -101,13 +101,13 @@ class ResultsList extends ConsumerWidget {
   }
 }
 
-class ResultCard extends StatelessWidget {
+class ResultCard extends ConsumerWidget {
   const ResultCard({required this.result, super.key});
 
   final Result result;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Card(
       child: InkWell(
         radius: 10.0,
@@ -121,7 +121,7 @@ class ResultCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                result.combined,
+                ref.watch(resultTitleProvider(result)),
                 style: Theme.of(context).textTheme.titleMedium,
               ),
               const SizedBox(width: 20.0),
