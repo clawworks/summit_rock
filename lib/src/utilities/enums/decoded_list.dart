@@ -1,5 +1,6 @@
 enum DecodedList {
   outsideWords,
+  outsideWordsWithSpaces,
   middleWords,
   insideWords,
   dotsOutside,
@@ -17,6 +18,8 @@ enum DecodedList {
     switch (this) {
       case DecodedList.outsideWords:
         return 'Outside Words';
+      case DecodedList.outsideWordsWithSpaces:
+        return 'Outside Words With Spaces';
       case DecodedList.middleWords:
         return 'Middle Words';
       case DecodedList.insideWords:

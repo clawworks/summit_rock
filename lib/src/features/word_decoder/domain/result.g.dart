@@ -38,6 +38,7 @@ Map<String, dynamic> _$$ResultImplToJson(_$ResultImpl instance) =>
 
 const _$DecodedListEnumMap = {
   DecodedList.outsideWords: 'outsideWords',
+  DecodedList.outsideWordsWithSpaces: 'outsideWordsWithSpaces',
   DecodedList.middleWords: 'middleWords',
   DecodedList.insideWords: 'insideWords',
   DecodedList.dotsOutside: 'dotsOutside',

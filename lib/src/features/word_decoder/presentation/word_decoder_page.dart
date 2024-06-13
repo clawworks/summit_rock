@@ -16,7 +16,8 @@ class WordDecoderPage extends HookConsumerWidget {
     ref.listen<AsyncValue>(wordDecoderControllerProvider, (_, state) {
       // state.showAlertDialogOnError(context);
       if (state.hasError) {
-        print("Error in WordDecoderController!\nError: ${state.error}");
+        print(
+            "Error in WordDecoderController!\nError: ${state.error}\nStack: ${state.stackTrace}");
         context.goNamed(AppRoute.oops);
       }
     });

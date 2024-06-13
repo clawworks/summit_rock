@@ -62,8 +62,8 @@ class NumberSelector extends HookConsumerWidget {
                     if (number != null) {
                       numbers.value = [...numbers.value, number];
                     } else {
-                      letterMap.value[numbers.value.length] =
-                          numController.text.toUpperCase();
+                      int index = numbers.value.length + letterMap.value.length;
+                      letterMap.value[index] = numController.text.toUpperCase();
                       // ScaffoldMessenger.of(context).showSnackBar(
                       //   const SnackBar(
                       //     content: Text('Must enter a number'),
