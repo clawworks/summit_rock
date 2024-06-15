@@ -44,7 +44,7 @@ class _WordListState extends ConsumerState<WordList> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                HeadlineSmall(widget.title),
+                TitleMedium(widget.title),
                 Row(
                   children: [
                     if (widget.containsFavorite)
