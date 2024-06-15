@@ -40,7 +40,6 @@ dependencies:
   hooks_riverpod: ^2.5.1
   json_annotation: ^4.9.0
   riverpod_annotation: ^2.3.5
-  vector_graphics: ^1.1.11+1
 
 dev_dependencies:
   build_runner: ^2.4.9
@@ -53,7 +52,6 @@ dev_dependencies:
   json_serializable: ^6.8.0
   riverpod_generator: ^2.4.0
   riverpod_lint: ^2.3.10
-  vector_graphics_compiler: ^1.1.11+1
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -69,12 +67,19 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/SummitRock2024.png
-    - path: assets/SummitRockLogo.svg
-      transformers:
-        - package: vector_graphics_compiler
-    - path: assets/SummitRock-01.svg
-      transformers:
-        - package: vector_graphics_compiler
+    - assets/fonts/
+
+  fonts:
+    - family: Summit
+      fonts:
+        - asset: assets/fonts/Summit.ttf
+
+  #    - path: assets/SummitRock-01.svg
+#      transformers:
+#        - package: vector_graphics_compiler
+#    - path: assets/SummitRockLogo.svg
+#      transformers:
+#        - package: vector_graphics_compiler
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
