@@ -25,11 +25,14 @@ List<String> combinedList(
   required Map<int, String> letterMap,
 }) {
   List<String> numberStrings = numbers.map((e) => e.toString()).toList();
-  for (final entry in letterMap.entries) {
-    if (entry.key <= numberStrings.length) {
-      numberStrings.insert(entry.key, entry.value);
-    } else if (entry.key == numberStrings.length) {
-      numberStrings.add(entry.value);
+  List<int> keys = letterMap.keys.toList();
+  keys.sort();
+  for (final key in keys) {
+    final String? value = letterMap[key];
+    if (key <= numberStrings.length && value != null) {
+      numberStrings.insert(key, value);
+    } else if (key == numberStrings.length && value != null) {
+      numberStrings.add(value);
     }
   }
   return numberStrings;
