@@ -20,6 +20,8 @@ final authRepositoryProvider = Provider<AuthRepository>.internal(
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef AuthRepositoryRef = ProviderRef<AuthRepository>;
 String _$authStateChangesHash() => r'70d96078e41cd44270b2118f16bcbed842f33064';
 
@@ -35,6 +37,8 @@ final authStateChangesProvider = StreamProvider<AppUser?>.internal(
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef AuthStateChangesRef = StreamProviderRef<AppUser?>;
 String _$idTokenChangesHash() => r'e6058ad0b90d6e10b628af4b3dbd180a67b7146e';
 
@@ -50,6 +54,8 @@ final idTokenChangesProvider = StreamProvider<AppUser?>.internal(
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef IdTokenChangesRef = StreamProviderRef<AppUser?>;
 String _$isCurrentUserAdminHash() =>
     r'69fab3db094dff0016a615b1e8b1047beabb06c5';
@@ -66,6 +72,8 @@ final isCurrentUserAdminProvider = AutoDisposeFutureProvider<bool>.internal(
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef IsCurrentUserAdminRef = AutoDisposeFutureProviderRef<bool>;
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

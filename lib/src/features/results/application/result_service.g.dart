@@ -142,6 +142,8 @@ class ResultTitleProvider extends AutoDisposeProvider<String> {
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin ResultTitleRef on AutoDisposeProviderRef<String> {
   /// The parameter `result` of this provider.
   Result get result;
@@ -282,6 +284,8 @@ class CombinedListProvider extends AutoDisposeProvider<List<String>> {
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin CombinedListRef on AutoDisposeProviderRef<List<String>> {
   /// The parameter `numbers` of this provider.
   List<int> get numbers;
@@ -415,6 +419,8 @@ class GetCrossAxisCountProvider extends AutoDisposeProvider<int> {
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin GetCrossAxisCountRef on AutoDisposeProviderRef<int> {
   /// The parameter `length` of this provider.
   int? get length;
@@ -443,6 +449,8 @@ final resultsListStreamProvider =
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef ResultsListStreamRef = AutoDisposeStreamProviderRef<List<Result>>;
 String _$resultStreamHash() => r'c098d13013ef15064dda993c91b049e4bb6d6ec0';
 
@@ -559,6 +567,8 @@ class ResultStreamProvider extends AutoDisposeStreamProvider<Result?> {
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin ResultStreamRef on AutoDisposeStreamProviderRef<Result?> {
   /// The parameter `id` of this provider.
   String get id;
@@ -686,6 +696,8 @@ class ResultProvider extends AutoDisposeFutureProvider<Result?> {
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin ResultRef on AutoDisposeFutureProviderRef<Result?> {
   /// The parameter `id` of this provider.
   String get id;
@@ -713,6 +725,8 @@ final resultServiceProvider = AutoDisposeProvider<ResultService>.internal(
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef ResultServiceRef = AutoDisposeProviderRef<ResultService>;
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

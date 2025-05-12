@@ -6,7 +6,7 @@ part of 'result.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ResultImpl _$$ResultImplFromJson(Map<String, dynamic> json) => _$ResultImpl(
+_Result _$ResultFromJson(Map<String, dynamic> json) => _Result(
       id: json['id'] as String,
       numbers: (json['numbers'] as List<dynamic>)
           .map((e) => (e as num).toInt())
@@ -24,8 +24,7 @@ _$ResultImpl _$$ResultImplFromJson(Map<String, dynamic> json) => _$ResultImpl(
       updatedAt: DateTime.parse(json['updatedAt'] as String),
     );
 
-Map<String, dynamic> _$$ResultImplToJson(_$ResultImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$ResultToJson(_Result instance) => <String, dynamic>{
       'id': instance.id,
       'numbers': instance.numbers,
       'letterMap': instance.letterMap.map((k, e) => MapEntry(k.toString(), e)),

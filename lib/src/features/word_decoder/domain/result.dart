@@ -4,11 +4,11 @@ import 'package:summit_rock/src/utilities/enums/decoded_list.dart';
 part 'result.freezed.dart';
 part 'result.g.dart';
 
-/// * The product identifier is an important concept and can have its own type.
+/// * The result identifier is an important concept and can have its own type.
 typedef ResultId = String;
 
 @freezed
-class Result with _$Result {
+abstract class Result with _$Result {
   const Result._();
 
   const factory Result({

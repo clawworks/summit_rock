@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,109 +10,71 @@ part of 'result.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-Result _$ResultFromJson(Map<String, dynamic> json) {
-  return _Result.fromJson(json);
-}
 
 /// @nodoc
 mixin _$Result {
-  String get id => throw _privateConstructorUsedError;
-  List<int> get numbers => throw _privateConstructorUsedError;
-  Map<int, String> get letterMap => throw _privateConstructorUsedError;
-  List<String> get favorites => throw _privateConstructorUsedError;
-  Map<DecodedList, List<String>> get decodedWords =>
-      throw _privateConstructorUsedError;
-  DateTime get createdAt => throw _privateConstructorUsedError;
-  DateTime get updatedAt => throw _privateConstructorUsedError;
+  ResultId get id;
+  List<int> get numbers;
+  Map<int, String> get letterMap;
+  List<String> get favorites;
+  Map<DecodedList, List<String>> get decodedWords;
+  DateTime get createdAt;
+  DateTime get updatedAt;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $ResultCopyWith<Result> get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $ResultCopyWith<$Res> {
-  factory $ResultCopyWith(Result value, $Res Function(Result) then) =
-      _$ResultCopyWithImpl<$Res, Result>;
-  @useResult
-  $Res call(
-      {String id,
-      List<int> numbers,
-      Map<int, String> letterMap,
-      List<String> favorites,
-      Map<DecodedList, List<String>> decodedWords,
-      DateTime createdAt,
-      DateTime updatedAt});
-}
-
-/// @nodoc
-class _$ResultCopyWithImpl<$Res, $Val extends Result>
-    implements $ResultCopyWith<$Res> {
-  _$ResultCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
+  /// Create a copy of Result
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
+  $ResultCopyWith<Result> get copyWith =>
+      _$ResultCopyWithImpl<Result>(this as Result, _$identity);
+
+  /// Serializes this Result to a JSON map.
+  Map<String, dynamic> toJson();
+
   @override
-  $Res call({
-    Object? id = null,
-    Object? numbers = null,
-    Object? letterMap = null,
-    Object? favorites = null,
-    Object? decodedWords = null,
-    Object? createdAt = null,
-    Object? updatedAt = null,
-  }) {
-    return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      numbers: null == numbers
-          ? _value.numbers
-          : numbers // ignore: cast_nullable_to_non_nullable
-              as List<int>,
-      letterMap: null == letterMap
-          ? _value.letterMap
-          : letterMap // ignore: cast_nullable_to_non_nullable
-              as Map<int, String>,
-      favorites: null == favorites
-          ? _value.favorites
-          : favorites // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      decodedWords: null == decodedWords
-          ? _value.decodedWords
-          : decodedWords // ignore: cast_nullable_to_non_nullable
-              as Map<DecodedList, List<String>>,
-      createdAt: null == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      updatedAt: null == updatedAt
-          ? _value.updatedAt
-          : updatedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-    ) as $Val);
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is Result &&
+            (identical(other.id, id) || other.id == id) &&
+            const DeepCollectionEquality().equals(other.numbers, numbers) &&
+            const DeepCollectionEquality().equals(other.letterMap, letterMap) &&
+            const DeepCollectionEquality().equals(other.favorites, favorites) &&
+            const DeepCollectionEquality()
+                .equals(other.decodedWords, decodedWords) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
+            (identical(other.updatedAt, updatedAt) ||
+                other.updatedAt == updatedAt));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      const DeepCollectionEquality().hash(numbers),
+      const DeepCollectionEquality().hash(letterMap),
+      const DeepCollectionEquality().hash(favorites),
+      const DeepCollectionEquality().hash(decodedWords),
+      createdAt,
+      updatedAt);
+
+  @override
+  String toString() {
+    return 'Result(id: $id, numbers: $numbers, letterMap: $letterMap, favorites: $favorites, decodedWords: $decodedWords, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 }
 
 /// @nodoc
-abstract class _$$ResultImplCopyWith<$Res> implements $ResultCopyWith<$Res> {
-  factory _$$ResultImplCopyWith(
-          _$ResultImpl value, $Res Function(_$ResultImpl) then) =
-      __$$ResultImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $ResultCopyWith<$Res> {
+  factory $ResultCopyWith(Result value, $Res Function(Result) _then) =
+      _$ResultCopyWithImpl;
   @useResult
   $Res call(
-      {String id,
+      {ResultId id,
       List<int> numbers,
       Map<int, String> letterMap,
       List<String> favorites,
@@ -121,13 +84,14 @@ abstract class _$$ResultImplCopyWith<$Res> implements $ResultCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$ResultImplCopyWithImpl<$Res>
-    extends _$ResultCopyWithImpl<$Res, _$ResultImpl>
-    implements _$$ResultImplCopyWith<$Res> {
-  __$$ResultImplCopyWithImpl(
-      _$ResultImpl _value, $Res Function(_$ResultImpl) _then)
-      : super(_value, _then);
+class _$ResultCopyWithImpl<$Res> implements $ResultCopyWith<$Res> {
+  _$ResultCopyWithImpl(this._self, this._then);
 
+  final Result _self;
+  final $Res Function(Result) _then;
+
+  /// Create a copy of Result
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -139,33 +103,33 @@ class __$$ResultImplCopyWithImpl<$Res>
     Object? createdAt = null,
     Object? updatedAt = null,
   }) {
-    return _then(_$ResultImpl(
+    return _then(_self.copyWith(
       id: null == id
-          ? _value.id
+          ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as ResultId,
       numbers: null == numbers
-          ? _value._numbers
+          ? _self.numbers
           : numbers // ignore: cast_nullable_to_non_nullable
               as List<int>,
       letterMap: null == letterMap
-          ? _value._letterMap
+          ? _self.letterMap
           : letterMap // ignore: cast_nullable_to_non_nullable
               as Map<int, String>,
       favorites: null == favorites
-          ? _value._favorites
+          ? _self.favorites
           : favorites // ignore: cast_nullable_to_non_nullable
               as List<String>,
       decodedWords: null == decodedWords
-          ? _value._decodedWords
+          ? _self.decodedWords
           : decodedWords // ignore: cast_nullable_to_non_nullable
               as Map<DecodedList, List<String>>,
       createdAt: null == createdAt
-          ? _value.createdAt
+          ? _self.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
       updatedAt: null == updatedAt
-          ? _value.updatedAt
+          ? _self.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
     ));
@@ -174,8 +138,8 @@ class __$$ResultImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$ResultImpl extends _Result {
-  const _$ResultImpl(
+class _Result extends Result {
+  const _Result(
       {required this.id,
       required final List<int> numbers,
       required final Map<int, String> letterMap,
@@ -188,12 +152,10 @@ class _$ResultImpl extends _Result {
         _favorites = favorites,
         _decodedWords = decodedWords,
         super._();
-
-  factory _$ResultImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ResultImplFromJson(json);
+  factory _Result.fromJson(Map<String, dynamic> json) => _$ResultFromJson(json);
 
   @override
-  final String id;
+  final ResultId id;
   final List<int> _numbers;
   @override
   List<int> get numbers {
@@ -231,16 +193,26 @@ class _$ResultImpl extends _Result {
   @override
   final DateTime updatedAt;
 
+  /// Create a copy of Result
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'Result(id: $id, numbers: $numbers, letterMap: $letterMap, favorites: $favorites, decodedWords: $decodedWords, createdAt: $createdAt, updatedAt: $updatedAt)';
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$ResultCopyWith<_Result> get copyWith =>
+      __$ResultCopyWithImpl<_Result>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$ResultToJson(
+      this,
+    );
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ResultImpl &&
+            other is _Result &&
             (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality().equals(other._numbers, _numbers) &&
             const DeepCollectionEquality()
@@ -255,7 +227,7 @@ class _$ResultImpl extends _Result {
                 other.updatedAt == updatedAt));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -267,49 +239,79 @@ class _$ResultImpl extends _Result {
       createdAt,
       updatedAt);
 
-  @JsonKey(ignore: true)
   @override
-  @pragma('vm:prefer-inline')
-  _$$ResultImplCopyWith<_$ResultImpl> get copyWith =>
-      __$$ResultImplCopyWithImpl<_$ResultImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$ResultImplToJson(
-      this,
-    );
+  String toString() {
+    return 'Result(id: $id, numbers: $numbers, letterMap: $letterMap, favorites: $favorites, decodedWords: $decodedWords, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 }
 
-abstract class _Result extends Result {
-  const factory _Result(
-      {required final String id,
-      required final List<int> numbers,
-      required final Map<int, String> letterMap,
-      required final List<String> favorites,
-      required final Map<DecodedList, List<String>> decodedWords,
-      required final DateTime createdAt,
-      required final DateTime updatedAt}) = _$ResultImpl;
-  const _Result._() : super._();
-
-  factory _Result.fromJson(Map<String, dynamic> json) = _$ResultImpl.fromJson;
-
+/// @nodoc
+abstract mixin class _$ResultCopyWith<$Res> implements $ResultCopyWith<$Res> {
+  factory _$ResultCopyWith(_Result value, $Res Function(_Result) _then) =
+      __$ResultCopyWithImpl;
   @override
-  String get id;
-  @override
-  List<int> get numbers;
-  @override
-  Map<int, String> get letterMap;
-  @override
-  List<String> get favorites;
-  @override
-  Map<DecodedList, List<String>> get decodedWords;
-  @override
-  DateTime get createdAt;
-  @override
-  DateTime get updatedAt;
-  @override
-  @JsonKey(ignore: true)
-  _$$ResultImplCopyWith<_$ResultImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @useResult
+  $Res call(
+      {ResultId id,
+      List<int> numbers,
+      Map<int, String> letterMap,
+      List<String> favorites,
+      Map<DecodedList, List<String>> decodedWords,
+      DateTime createdAt,
+      DateTime updatedAt});
 }
+
+/// @nodoc
+class __$ResultCopyWithImpl<$Res> implements _$ResultCopyWith<$Res> {
+  __$ResultCopyWithImpl(this._self, this._then);
+
+  final _Result _self;
+  final $Res Function(_Result) _then;
+
+  /// Create a copy of Result
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? id = null,
+    Object? numbers = null,
+    Object? letterMap = null,
+    Object? favorites = null,
+    Object? decodedWords = null,
+    Object? createdAt = null,
+    Object? updatedAt = null,
+  }) {
+    return _then(_Result(
+      id: null == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as ResultId,
+      numbers: null == numbers
+          ? _self._numbers
+          : numbers // ignore: cast_nullable_to_non_nullable
+              as List<int>,
+      letterMap: null == letterMap
+          ? _self._letterMap
+          : letterMap // ignore: cast_nullable_to_non_nullable
+              as Map<int, String>,
+      favorites: null == favorites
+          ? _self._favorites
+          : favorites // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      decodedWords: null == decodedWords
+          ? _self._decodedWords
+          : decodedWords // ignore: cast_nullable_to_non_nullable
+              as Map<DecodedList, List<String>>,
+      createdAt: null == createdAt
+          ? _self.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      updatedAt: null == updatedAt
+          ? _self.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+    ));
+  }
+}
+
+// dart format on

@@ -5,7 +5,7 @@ final pSignInController =
   return SignInController();
 });
 
-class SignInController extends Notifier<void> {
+class SignInController extends AutoDisposeNotifier<void> {
   @override
   void build() {
     // Nothing to do
