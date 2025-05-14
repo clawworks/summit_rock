@@ -13,16 +13,39 @@ class NumberSelector extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final numController = useTextEditingController(text: '');
+    final focusNode = useFocusNode();
     final numbers = useState<List<int>>([]);
     final letterMap = useState<Map<int, String>>({});
     final combined = ref.watch(combinedListProvider(
         numbers: numbers.value, letterMap: letterMap.value));
+
+    Future<void> addNumber() async {
+      if (numController.text.isEmpty) return;
+      int? number = int.tryParse(numController.text);
+      if (number != null) {
+        numbers.value = [...numbers.value, number];
+      } else {
+        int index = numbers.value.length + letterMap.value.length;
+        letterMap.value = {
+          ...letterMap.value,
+          ...{index: numController.text.toUpperCase()}
+        };
+        // ScaffoldMessenger.of(context).showSnackBar(
+        //   const SnackBar(
+        //     content: Text('Must enter a number'),
+        //   ),
+        // );
+      }
+      numController.clear();
+    }
+
     return Column(
       children: [
         Padding(
           padding: const EdgeInsets.all(24.0),
           child: Text(
-            "Enter the numbers in from the clue...",
+            "Enter the #'s from the clue, one at a time",
+            textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.titleMedium,
           ),
         ),
@@ -33,6 +56,7 @@ class NumberSelector extends HookConsumerWidget {
             children: [
               Flexible(
                 child: TextField(
+                  focusNode: focusNode,
                   decoration: InputDecoration(
                     // fillColor: Colors.white,
                     // focusColor: Colors.white,
@@ -48,34 +72,20 @@ class NumberSelector extends HookConsumerWidget {
                   //     FocusManager.instance.primaryFocus?.unfocus(),
                   controller: numController,
                   // textInputAction: TextInputAction.go,
-                  onSubmitted: (value) {
-                    print("Go button tapped!");
+                  onSubmitted: (value) async {
+                    focusNode.requestFocus();
+                    await addNumber();
                   },
                   keyboardType: TextInputType.datetime,
                   textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.titleLarge,
+                  textInputAction: TextInputAction.go,
                 ),
               ),
               Flexible(
+                flex: 2,
                 child: TextButton(
-                  onPressed: () async {
-                    int? number = int.tryParse(numController.text);
-                    if (number != null) {
-                      numbers.value = [...numbers.value, number];
-                    } else {
-                      int index = numbers.value.length + letterMap.value.length;
-                      letterMap.value = {
-                        ...letterMap.value,
-                        ...{index: numController.text.toUpperCase()}
-                      };
-                      // ScaffoldMessenger.of(context).showSnackBar(
-                      //   const SnackBar(
-                      //     content: Text('Must enter a number'),
-                      //   ),
-                      // );
-                    }
-                    numController.clear();
-                  },
+                  onPressed: () => addNumber(),
                   style: TextButton.styleFrom(
                     // foregroundColor: Theme.of(context).colorScheme.onPrimary,
                     textStyle: Theme.of(context).textTheme.titleLarge,
