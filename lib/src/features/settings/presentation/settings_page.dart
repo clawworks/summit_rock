@@ -1,42 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:summit_rock/src/features/settings/domain/summit_rock_year.dart';
 import 'package:summit_rock/src/features/settings/presentation/setting_tile.dart';
 import 'package:summit_rock/src/features/settings/presentation/settings_card.dart';
 import 'package:summit_rock/src/features/settings/presentation/settings_controller.dart';
 import 'package:summit_rock/src/routing/app_router.dart';
 import 'package:summit_rock/src/utilities/show_custom_dialog.dart';
-
-enum SummitRockYear {
-  twentyFour,
-  twentyFive;
-
-  @override
-  String toString() {
-    switch (this) {
-      case twentyFour:
-        return '2024';
-      case twentyFive:
-        return '2025';
-    }
-  }
-}
-
-final pYearSelection =
-    NotifierProvider.autoDispose<YearSelection, SummitRockYear>(() {
-  return YearSelection();
-});
-
-class YearSelection extends AutoDisposeNotifier<SummitRockYear> {
-  @override
-  SummitRockYear build() {
-    return SummitRockYear.twentyFour;
-  }
-
-  void set(SummitRockYear year) {
-    state = year;
-  }
-}
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
@@ -71,7 +41,7 @@ class _YearSelection extends ConsumerWidget {
       children: [
         SettingTile(
           title: 'Summit Rock Year',
-          value: ref.watch(pYearSelection).toString(),
+          value: ref.watch(yearSelectionProvider).toString(),
           showArrow: true,
           bottomDivider: false,
           onTap: () {

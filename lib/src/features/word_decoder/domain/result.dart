@@ -1,6 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:summit_rock/src/utilities/enums/decoded_list.dart';
 
+import '../../settings/domain/summit_rock_year.dart';
+
 part 'result.freezed.dart';
 part 'result.g.dart';
 
@@ -13,6 +15,7 @@ abstract class Result with _$Result {
 
   const factory Result({
     required ResultId id,
+    @Default(SummitRockYear.twentyFour) SummitRockYear year,
     required List<int> numbers,
     required Map<int, String> letterMap,
     required List<String> favorites,

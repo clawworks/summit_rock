@@ -16,6 +16,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$Result {
   ResultId get id;
+  SummitRockYear get year;
   List<int> get numbers;
   Map<int, String> get letterMap;
   List<String> get favorites;
@@ -39,6 +40,7 @@ mixin _$Result {
         (other.runtimeType == runtimeType &&
             other is Result &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.year, year) || other.year == year) &&
             const DeepCollectionEquality().equals(other.numbers, numbers) &&
             const DeepCollectionEquality().equals(other.letterMap, letterMap) &&
             const DeepCollectionEquality().equals(other.favorites, favorites) &&
@@ -55,6 +57,7 @@ mixin _$Result {
   int get hashCode => Object.hash(
       runtimeType,
       id,
+      year,
       const DeepCollectionEquality().hash(numbers),
       const DeepCollectionEquality().hash(letterMap),
       const DeepCollectionEquality().hash(favorites),
@@ -64,7 +67,7 @@ mixin _$Result {
 
   @override
   String toString() {
-    return 'Result(id: $id, numbers: $numbers, letterMap: $letterMap, favorites: $favorites, decodedWords: $decodedWords, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'Result(id: $id, year: $year, numbers: $numbers, letterMap: $letterMap, favorites: $favorites, decodedWords: $decodedWords, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 }
 
@@ -75,6 +78,7 @@ abstract mixin class $ResultCopyWith<$Res> {
   @useResult
   $Res call(
       {ResultId id,
+      SummitRockYear year,
       List<int> numbers,
       Map<int, String> letterMap,
       List<String> favorites,
@@ -96,6 +100,7 @@ class _$ResultCopyWithImpl<$Res> implements $ResultCopyWith<$Res> {
   @override
   $Res call({
     Object? id = null,
+    Object? year = null,
     Object? numbers = null,
     Object? letterMap = null,
     Object? favorites = null,
@@ -108,6 +113,10 @@ class _$ResultCopyWithImpl<$Res> implements $ResultCopyWith<$Res> {
           ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
               as ResultId,
+      year: null == year
+          ? _self.year
+          : year // ignore: cast_nullable_to_non_nullable
+              as SummitRockYear,
       numbers: null == numbers
           ? _self.numbers
           : numbers // ignore: cast_nullable_to_non_nullable
@@ -141,6 +150,7 @@ class _$ResultCopyWithImpl<$Res> implements $ResultCopyWith<$Res> {
 class _Result extends Result {
   const _Result(
       {required this.id,
+      this.year = SummitRockYear.twentyFour,
       required final List<int> numbers,
       required final Map<int, String> letterMap,
       required final List<String> favorites,
@@ -156,6 +166,9 @@ class _Result extends Result {
 
   @override
   final ResultId id;
+  @override
+  @JsonKey()
+  final SummitRockYear year;
   final List<int> _numbers;
   @override
   List<int> get numbers {
@@ -214,6 +227,7 @@ class _Result extends Result {
         (other.runtimeType == runtimeType &&
             other is _Result &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.year, year) || other.year == year) &&
             const DeepCollectionEquality().equals(other._numbers, _numbers) &&
             const DeepCollectionEquality()
                 .equals(other._letterMap, _letterMap) &&
@@ -232,6 +246,7 @@ class _Result extends Result {
   int get hashCode => Object.hash(
       runtimeType,
       id,
+      year,
       const DeepCollectionEquality().hash(_numbers),
       const DeepCollectionEquality().hash(_letterMap),
       const DeepCollectionEquality().hash(_favorites),
@@ -241,7 +256,7 @@ class _Result extends Result {
 
   @override
   String toString() {
-    return 'Result(id: $id, numbers: $numbers, letterMap: $letterMap, favorites: $favorites, decodedWords: $decodedWords, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'Result(id: $id, year: $year, numbers: $numbers, letterMap: $letterMap, favorites: $favorites, decodedWords: $decodedWords, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 }
 
@@ -253,6 +268,7 @@ abstract mixin class _$ResultCopyWith<$Res> implements $ResultCopyWith<$Res> {
   @useResult
   $Res call(
       {ResultId id,
+      SummitRockYear year,
       List<int> numbers,
       Map<int, String> letterMap,
       List<String> favorites,
@@ -274,6 +290,7 @@ class __$ResultCopyWithImpl<$Res> implements _$ResultCopyWith<$Res> {
   @pragma('vm:prefer-inline')
   $Res call({
     Object? id = null,
+    Object? year = null,
     Object? numbers = null,
     Object? letterMap = null,
     Object? favorites = null,
@@ -286,6 +303,10 @@ class __$ResultCopyWithImpl<$Res> implements _$ResultCopyWith<$Res> {
           ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
               as ResultId,
+      year: null == year
+          ? _self.year
+          : year // ignore: cast_nullable_to_non_nullable
+              as SummitRockYear,
       numbers: null == numbers
           ? _self._numbers
           : numbers // ignore: cast_nullable_to_non_nullable

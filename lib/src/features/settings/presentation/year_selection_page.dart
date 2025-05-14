@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:summit_rock/src/features/settings/domain/summit_rock_year.dart';
 import 'package:summit_rock/src/features/settings/presentation/setting_tile.dart';
 import 'package:summit_rock/src/features/settings/presentation/settings_card.dart';
-import 'package:summit_rock/src/features/settings/presentation/settings_page.dart'
-    show SummitRockYear, pYearSelection;
 
 class YearSelectionPage extends StatelessWidget {
   const YearSelectionPage({super.key});
@@ -37,17 +36,23 @@ class _YearSelection extends ConsumerWidget {
       children: [
         SettingTile(
           title: '2024',
-          selected: ref.watch(pYearSelection) == SummitRockYear.twentyFour,
+          selected:
+              ref.watch(yearSelectionProvider) == SummitRockYear.twentyFour,
           onTap: () {
-            ref.read(pYearSelection.notifier).set(SummitRockYear.twentyFour);
+            ref
+                .read(yearSelectionProvider.notifier)
+                .set(SummitRockYear.twentyFour);
           },
         ),
         SettingTile(
           title: '2025',
-          selected: ref.watch(pYearSelection) == SummitRockYear.twentyFive,
+          selected:
+              ref.watch(yearSelectionProvider) == SummitRockYear.twentyFive,
           bottomDivider: false,
           onTap: () {
-            ref.read(pYearSelection.notifier).set(SummitRockYear.twentyFive);
+            ref
+                .read(yearSelectionProvider.notifier)
+                .set(SummitRockYear.twentyFive);
           },
         ),
       ],

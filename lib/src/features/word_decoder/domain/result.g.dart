@@ -8,6 +8,8 @@ part of 'result.dart';
 
 _Result _$ResultFromJson(Map<String, dynamic> json) => _Result(
       id: json['id'] as String,
+      year: $enumDecodeNullable(_$SummitRockYearEnumMap, json['year']) ??
+          SummitRockYear.twentyFour,
       numbers: (json['numbers'] as List<dynamic>)
           .map((e) => (e as num).toInt())
           .toList(),
@@ -26,6 +28,7 @@ _Result _$ResultFromJson(Map<String, dynamic> json) => _Result(
 
 Map<String, dynamic> _$ResultToJson(_Result instance) => <String, dynamic>{
       'id': instance.id,
+      'year': _$SummitRockYearEnumMap[instance.year]!,
       'numbers': instance.numbers,
       'letterMap': instance.letterMap.map((k, e) => MapEntry(k.toString(), e)),
       'favorites': instance.favorites,
@@ -34,6 +37,11 @@ Map<String, dynamic> _$ResultToJson(_Result instance) => <String, dynamic>{
       'createdAt': instance.createdAt.toIso8601String(),
       'updatedAt': instance.updatedAt.toIso8601String(),
     };
+
+const _$SummitRockYearEnumMap = {
+  SummitRockYear.twentyFour: 'twentyFour',
+  SummitRockYear.twentyFive: 'twentyFive',
+};
 
 const _$DecodedListEnumMap = {
   DecodedList.outsideWords: 'outsideWords',

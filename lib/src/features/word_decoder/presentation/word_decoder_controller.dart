@@ -4,6 +4,8 @@ import 'package:summit_rock/src/features/word_decoder/domain/result.dart';
 import 'package:summit_rock/src/utilities/enums/decoded_list.dart';
 import 'package:summit_rock/src/utilities/list_english_words.dart';
 
+import '../../settings/domain/summit_rock_year.dart';
+
 part 'word_decoder_controller.g.dart';
 //
 // @riverpod
@@ -52,6 +54,7 @@ class WordDecoderController extends _$WordDecoderController {
     final date = DateTime.now();
     final result = Result(
       id: _makeId(numbers),
+      year: ref.watch(yearSelectionProvider),
       numbers: numbers,
       letterMap: letterMap,
       favorites: favorites.toList(),
