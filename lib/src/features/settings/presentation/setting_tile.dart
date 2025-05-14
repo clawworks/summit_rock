@@ -9,6 +9,7 @@ class SettingTile extends StatelessWidget {
     this.value,
     this.onTap,
     this.onLongPress,
+    this.selected,
     this.topDivider = false,
     this.bottomDivider = true,
     this.roundTop = false,
@@ -16,10 +17,13 @@ class SettingTile extends StatelessWidget {
     this.showArrow = false,
     this.hideSplash = false,
     Key? key,
-  }) : super(key: key);
+  })  : assert(value == null || selected == null),
+        // assert((showArrow == false && selected != null) || (showArrow == true && selected == null)),
+        super(key: key);
 
   final String title;
   final String? value;
+  final bool? selected;
   final bool topDivider;
   final bool bottomDivider;
   final bool roundTop;
@@ -80,6 +84,16 @@ class SettingTile extends StatelessWidget {
                                     color:
                                         Theme.of(context).colorScheme.onSurface,
                                   ),
+                            ),
+                          ),
+                        if (selected == true)
+                          Padding(
+                            padding: const EdgeInsets.only(left: 8.0),
+                            child: Icon(
+                              CupertinoIcons.check_mark,
+                              size: 18.0,
+                              color: Theme.of(context).colorScheme.onSurface,
+                              // color: Theme.of(context).colorScheme.secondary,
                             ),
                           ),
                         if (showArrow)

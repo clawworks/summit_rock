@@ -6,6 +6,7 @@ import 'package:summit_rock/src/features/authentication/data/auth_repository.dar
 import 'package:summit_rock/src/features/authentication/presentation/sign_in_page.dart';
 import 'package:summit_rock/src/features/search/presentation/result_search_page.dart';
 import 'package:summit_rock/src/features/settings/presentation/settings_page.dart';
+import 'package:summit_rock/src/features/settings/presentation/year_selection_page.dart';
 import 'package:summit_rock/src/features/word_decoder/domain/result.dart';
 import 'package:summit_rock/src/features/word_decoder/presentation/result_page.dart';
 import 'package:summit_rock/src/features/word_decoder/presentation/word_decoder_page.dart';
@@ -23,6 +24,7 @@ class AppRoute {
   static const home = 'home';
   static const signIn = 'signIn';
   static const settings = 'settings';
+  static const yearSelection = 'yearSelection';
   static const result = 'result';
   static const resultSearch = 'resultSearch';
   static const oops = 'oops';
@@ -90,7 +92,14 @@ final goRouterProvider = Provider((ref) {
             builder: (context, state) {
               return const SettingsPage();
             },
-            routes: [],
+            routes: [
+              GoRoute(
+                  path: 'yearSelection',
+                  name: AppRoute.yearSelection,
+                  builder: (context, state) {
+                    return const YearSelectionPage();
+                  }),
+            ],
           ),
           GoRoute(
             path: 'result/:resultId',

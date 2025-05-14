@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:summit_rock/src/features/results/application/result_service.dart';
+import 'package:summit_rock/src/features/settings/presentation/settings_page.dart';
 import 'package:summit_rock/src/features/word_decoder/presentation/number_selector.dart';
 import 'package:summit_rock/src/features/word_decoder/presentation/word_decoder_controller.dart';
 import 'package:summit_rock/src/routing/app_router.dart';
@@ -25,7 +26,7 @@ class WordDecoderPage extends HookConsumerWidget {
     return Scaffold(
       // backgroundColor: Theme.of(context).colorScheme.primary,
       appBar: AppBar(
-        title: const Text('Summit Rock 2024'),
+        title: Text('Summit Rock ${ref.watch(pYearSelection).toString()}'),
         // foregroundColor: Theme.of(context).colorScheme.primary,
         // foregroundColor: Theme.of(context).colorScheme.onPrimary,
         // backgroundColor: Theme.of(context).colorScheme.primary,

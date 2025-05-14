@@ -7,6 +7,37 @@ import 'package:summit_rock/src/features/settings/presentation/settings_controll
 import 'package:summit_rock/src/routing/app_router.dart';
 import 'package:summit_rock/src/utilities/show_custom_dialog.dart';
 
+enum SummitRockYear {
+  twentyFour,
+  twentyFive;
+
+  @override
+  String toString() {
+    switch (this) {
+      case twentyFour:
+        return '2024';
+      case twentyFive:
+        return '2025';
+    }
+  }
+}
+
+final pYearSelection =
+    NotifierProvider.autoDispose<YearSelection, SummitRockYear>(() {
+  return YearSelection();
+});
+
+class YearSelection extends AutoDisposeNotifier<SummitRockYear> {
+  @override
+  SummitRockYear build() {
+    return SummitRockYear.twentyFour;
+  }
+
+  void set(SummitRockYear year) {
+    state = year;
+  }
+}
+
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
 
@@ -21,11 +52,33 @@ class SettingsPage extends StatelessWidget {
           padding: EdgeInsets.all(16.0),
           child: Column(
             children: [
+              _YearSelection(),
               _DeleteAll(),
             ],
           ),
         ),
       ),
+    );
+  }
+}
+
+class _YearSelection extends ConsumerWidget {
+  const _YearSelection({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return SettingsCard(
+      children: [
+        SettingTile(
+          title: 'Summit Rock Year',
+          value: ref.watch(pYearSelection).toString(),
+          showArrow: true,
+          bottomDivider: false,
+          onTap: () {
+            context.goNamed(AppRoute.yearSelection);
+          },
+        ),
+      ],
     );
   }
 }
