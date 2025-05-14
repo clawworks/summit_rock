@@ -30,7 +30,7 @@ enum SummitRockYear {
 class YearSelection extends _$YearSelection {
   @override
   SummitRockYear build() {
-    return SummitRockYear.twentyFour;
+    return SummitRockYear.twentyFive;
   }
 
   void set(SummitRockYear year) {

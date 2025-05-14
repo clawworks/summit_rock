@@ -15,7 +15,7 @@ const _$SummitRockYearEnumMap = {
 // RiverpodGenerator
 // **************************************************************************
 
-String _$yearSelectionHash() => r'3d71d406b1b623d3943cfd0a9cd792550c47df8c';
+String _$yearSelectionHash() => r'82bc87da905de97d91c6183fa2df656782996728';
 
 /// See also [YearSelection].
 @ProviderFor(YearSelection)
