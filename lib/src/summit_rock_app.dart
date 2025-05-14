@@ -36,7 +36,9 @@ class SummitRockApp extends ConsumerWidget {
                 dynamicSchemeVariant: DynamicSchemeVariant.vibrant)
             : ColorScheme.fromSeed(
                 seedColor: Colors.green,
-                dynamicSchemeVariant: DynamicSchemeVariant.vibrant),
+                dynamicSchemeVariant: DynamicSchemeVariant.vibrant,
+                surface: Colors.white,
+              ),
         useMaterial3: true,
       ),
     );
