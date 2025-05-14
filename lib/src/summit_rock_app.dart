@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:summit_rock/src/features/settings/domain/summit_rock_year.dart';
 import 'package:summit_rock/src/routing/app_router.dart';
 
 class SummitRockApp extends ConsumerWidget {
@@ -8,6 +9,8 @@ class SummitRockApp extends ConsumerWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final year = ref.watch(yearSelectionProvider);
+    final is2025 = year == SummitRockYear.twentyFive;
     return MaterialApp.router(
       title: 'Summit Rock',
       routerConfig: ref.watch(goRouterProvider),
@@ -27,7 +30,13 @@ class SummitRockApp extends ConsumerWidget {
         //
         // This works for code too, not just values: Most code changes can be
         // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
+        colorScheme: is2025
+            ? ColorScheme.fromSeed(
+                seedColor: Colors.blueAccent,
+                dynamicSchemeVariant: DynamicSchemeVariant.vibrant)
+            : ColorScheme.fromSeed(
+                seedColor: Colors.green,
+                dynamicSchemeVariant: DynamicSchemeVariant.vibrant),
         useMaterial3: true,
       ),
     );
