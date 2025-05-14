@@ -129,8 +129,10 @@ class ResultCard extends ConsumerWidget {
               const SizedBox(width: 20.0),
               Flexible(
                 child: Wrap(
-                  children:
-                      result.favorites.map((fav) => Text('${fav}, ')).toList(),
+                  children: [
+                    for (String fav in result.favorites)
+                      Text('$fav${fav == result.favorites.last ? '' : ', '}'),
+                  ],
                 ),
               ),
               // Text('${result.favorites}'),

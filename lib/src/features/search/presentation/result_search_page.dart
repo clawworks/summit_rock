@@ -122,7 +122,11 @@ class _ListResults extends ConsumerWidget {
             shrinkWrap: true,
             children: [
               for (String word in matches)
-                WordItem(resultId: resultId, word: word),
+                WordItem(
+                  resultId: resultId,
+                  word: word,
+                  last: word == matches.last,
+                ),
             ],
           ),
         // Wrap(

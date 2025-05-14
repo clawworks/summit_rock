@@ -73,7 +73,11 @@ class _WordListState extends ConsumerState<WordList> {
             shrinkWrap: true,
             children: [
               for (String word in widget.list)
-                WordItem(resultId: widget.resultId, word: word),
+                WordItem(
+                  resultId: widget.resultId,
+                  word: word,
+                  last: word == widget.list.last,
+                ),
             ],
           ),
         const Divider(),
@@ -83,10 +87,16 @@ class _WordListState extends ConsumerState<WordList> {
 }
 
 class WordItem extends ConsumerWidget {
-  const WordItem({required this.resultId, required this.word, super.key});
+  const WordItem({
+    required this.resultId,
+    required this.word,
+    required this.last,
+    super.key,
+  });
 
   final ResultId resultId;
   final String word;
+  final bool last;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -105,7 +115,7 @@ class WordItem extends ConsumerWidget {
             // color: Colors.green,
             child: Center(
               child: Text(
-                '$word, ',
+                '$word${last ? '' : ', '}',
                 // TODO style this, bold if favorite
                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                       color: isFavorite
