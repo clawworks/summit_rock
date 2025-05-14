@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:summit_rock/src/features/authentication/domain/app_user.dart';
+import 'package:summit_rock/src/features/settings/domain/summit_rock_year.dart';
 import 'package:summit_rock/src/features/word_decoder/domain/result.dart';
 
 part 'results_repository.g.dart';
@@ -32,13 +33,25 @@ class ResultsRepository {
         );
   }
 
-  Query<Result> _resultsRef(UserId uid) => _firestore
-      .collection(userResultsPath(uid))
-      .withConverter(
-        fromFirestore: (doc, _) => Result.fromJson(doc.data()!),
-        toFirestore: (Result result, options) => result.toJson(),
-      )
-      .orderBy('updatedAt', descending: true);
+  Query<Result> _resultsRef(UserId uid, SummitRockYear? year) {
+    if (year != null) {
+      return _firestore
+          .collection(userResultsPath(uid))
+          .where("year", isEqualTo: year.name)
+          .withConverter(
+            fromFirestore: (doc, _) => Result.fromJson(doc.data()!),
+            toFirestore: (Result result, options) => result.toJson(),
+          )
+          .orderBy('updatedAt', descending: true);
+    }
+    return _firestore
+        .collection(userResultsPath(uid))
+        .withConverter(
+          fromFirestore: (doc, _) => Result.fromJson(doc.data()!),
+          toFirestore: (Result result, options) => result.toJson(),
+        )
+        .orderBy('updatedAt', descending: true);
+  }
 
   // CollectionReference<List<Result>> _resultsRef(UserId uid) {
   //   return _firestore.collection(userResultsPath(uid)).withConverter(
@@ -58,8 +71,11 @@ class ResultsRepository {
     return ref.snapshots().map((snapshot) => snapshot.data());
   }
 
-  Stream<List<Result>> watchResultsList(UserId uid) {
-    final ref = _resultsRef(uid);
+  Stream<List<Result>> watchResultsList({
+    required UserId uid,
+    required SummitRockYear? year,
+  }) {
+    final ref = _resultsRef(uid, year);
     return ref.snapshots().map((snapshot) =>
         snapshot.docs.map((docSnapshot) => docSnapshot.data()).toList());
   }

@@ -1,6 +1,8 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:summit_rock/src/features/authentication/data/auth_repository.dart';
+import 'package:summit_rock/src/features/settings/domain/summit_rock_year.dart';
+import 'package:summit_rock/src/features/settings/presentation/settings_controller.dart';
 import 'package:summit_rock/src/features/word_decoder/data/results_repository.dart';
 import 'package:summit_rock/src/features/word_decoder/domain/result.dart';
 
@@ -49,8 +51,17 @@ int getCrossAxisCount(GetCrossAxisCountRef ref, {int? length = 10}) {
 
 @riverpod
 Stream<List<Result>> resultsListStream(ResultsListStreamRef ref) {
+  final onlyYear = ref.watch(filterByYearProvider);
+  final year = ref.watch(yearSelectionProvider);
   final service = ref.watch(resultServiceProvider);
-  return service.watchResults();
+  return service.watchResults(onlyYear ? year : null);
+}
+
+@riverpod
+Stream<List<Result>> yearResultsListStream(ResultsListStreamRef ref) {
+  final year = ref.watch(yearSelectionProvider);
+  final service = ref.watch(resultServiceProvider);
+  return service.watchResults(year);
 }
 
 @riverpod
@@ -103,12 +114,12 @@ class ResultService {
     return resultsRepository.watchResult(user.uid, resultId);
   }
 
-  Stream<List<Result>> watchResults() {
+  Stream<List<Result>> watchResults(SummitRockYear? year) {
     final user = authRepository.currentUser;
     if (user == null) {
       throw Exception('User cannot be null when watching Results');
     }
-    return resultsRepository.watchResultsList(user.uid);
+    return resultsRepository.watchResultsList(uid: user.uid, year: year);
   }
 
   Future<void> deleteAllResults() async {

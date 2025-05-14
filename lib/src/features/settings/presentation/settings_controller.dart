@@ -14,3 +14,15 @@ class SettingsController extends _$SettingsController {
     ref.read(resultServiceProvider).deleteAllResults();
   }
 }
+
+@Riverpod(keepAlive: true)
+class FilterByYear extends _$FilterByYear {
+  @override
+  bool build() {
+    return true;
+  }
+
+  void set(bool value) {
+    state = value;
+  }
+}

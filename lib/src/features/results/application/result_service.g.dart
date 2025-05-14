@@ -434,7 +434,7 @@ class _GetCrossAxisCountProviderElement extends AutoDisposeProviderElement<int>
   int? get length => (origin as GetCrossAxisCountProvider).length;
 }
 
-String _$resultsListStreamHash() => r'2d7aaa0a1037459957737708380f479d9173d5da';
+String _$resultsListStreamHash() => r'0aebdf07444bedca73851f82e1386e03777f9148';
 
 /// See also [resultsListStream].
 @ProviderFor(resultsListStream)
@@ -452,6 +452,25 @@ final resultsListStreamProvider =
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef ResultsListStreamRef = AutoDisposeStreamProviderRef<List<Result>>;
+String _$yearResultsListStreamHash() =>
+    r'8781cac9b6664c541ad81e0c7e41385c955c5a49';
+
+/// See also [yearResultsListStream].
+@ProviderFor(yearResultsListStream)
+final yearResultsListStreamProvider =
+    AutoDisposeStreamProvider<List<Result>>.internal(
+  yearResultsListStream,
+  name: r'yearResultsListStreamProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$yearResultsListStreamHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef YearResultsListStreamRef = AutoDisposeStreamProviderRef<List<Result>>;
 String _$resultStreamHash() => r'c098d13013ef15064dda993c91b049e4bb6d6ec0';
 
 /// See also [resultStream].

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:summit_rock/src/common_widgets/oops_page.dart';
+import 'package:summit_rock/src/common_widgets/text_widgets.dart';
 import 'package:summit_rock/src/features/results/application/result_service.dart';
 import 'package:summit_rock/src/features/word_decoder/domain/result.dart';
 import 'package:summit_rock/src/features/word_decoder/presentation/copy_button.dart';
@@ -77,6 +78,10 @@ class ResultPage extends ConsumerWidget {
                         ),
 
                       CopyButton(result: result),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: TitleLarge('${result.year} T-Shirt'),
+                      ),
                       // const HeadlineSmall('Outside Ring Words:'),
                       // WordList(
                       //     resultId: resultId,

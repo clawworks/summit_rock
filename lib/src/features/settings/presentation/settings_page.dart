@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:summit_rock/src/features/settings/domain/summit_rock_year.dart';
 import 'package:summit_rock/src/features/settings/presentation/setting_tile.dart';
+import 'package:summit_rock/src/features/settings/presentation/setting_toggle_tile.dart';
 import 'package:summit_rock/src/features/settings/presentation/settings_card.dart';
 import 'package:summit_rock/src/features/settings/presentation/settings_controller.dart';
 import 'package:summit_rock/src/routing/app_router.dart';
@@ -23,6 +24,7 @@ class SettingsPage extends StatelessWidget {
           child: Column(
             children: [
               _YearSelection(),
+              _YearFilter(),
               _DeleteAll(),
             ],
           ),
@@ -43,9 +45,37 @@ class _YearSelection extends ConsumerWidget {
           title: 'Summit Rock Year',
           value: ref.watch(yearSelectionProvider).toString(),
           showArrow: true,
+          roundTop: true,
+          roundBottom: true,
           bottomDivider: false,
           onTap: () {
             context.goNamed(AppRoute.yearSelection);
+          },
+        ),
+      ],
+    );
+  }
+}
+
+class _YearFilter extends ConsumerWidget {
+  const _YearFilter({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final selected = ref.watch(filterByYearProvider);
+    return SettingsCard(
+      children: [
+        SettingToggleTile(
+          title: 'Filter History by Year',
+          selected: selected,
+          bottomDivider: false,
+          roundTop: true,
+          roundBottom: true,
+          onChanged: (value) {
+            ref.read(filterByYearProvider.notifier).set(value);
+          },
+          onTap: () {
+            ref.read(filterByYearProvider.notifier).set(!selected);
           },
         ),
       ],
@@ -62,6 +92,8 @@ class _DeleteAll extends ConsumerWidget {
       children: [
         SettingTile(
           title: 'Delete ALL History',
+          roundTop: true,
+          roundBottom: true,
           onTap: () async {
             final bool? delete = await showCustomDialog(
               context: context,
