@@ -20,7 +20,7 @@ mixin _$Result {
   List<int> get numbers;
   Map<int, String> get letterMap;
   List<String> get favorites;
-  Map<DecodedList, List<String>> get decodedWords;
+  Map<EncodedList, List<String>> get decodedWords;
   DateTime get createdAt;
   DateTime get updatedAt;
 
@@ -82,7 +82,7 @@ abstract mixin class $ResultCopyWith<$Res> {
       List<int> numbers,
       Map<int, String> letterMap,
       List<String> favorites,
-      Map<DecodedList, List<String>> decodedWords,
+      Map<EncodedList, List<String>> decodedWords,
       DateTime createdAt,
       DateTime updatedAt});
 }
@@ -132,7 +132,7 @@ class _$ResultCopyWithImpl<$Res> implements $ResultCopyWith<$Res> {
       decodedWords: null == decodedWords
           ? _self.decodedWords
           : decodedWords // ignore: cast_nullable_to_non_nullable
-              as Map<DecodedList, List<String>>,
+              as Map<EncodedList, List<String>>,
       createdAt: null == createdAt
           ? _self.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -154,7 +154,7 @@ class _Result extends Result {
       required final List<int> numbers,
       required final Map<int, String> letterMap,
       required final List<String> favorites,
-      required final Map<DecodedList, List<String>> decodedWords,
+      required final Map<EncodedList, List<String>> decodedWords,
       required this.createdAt,
       required this.updatedAt})
       : _numbers = numbers,
@@ -193,9 +193,9 @@ class _Result extends Result {
     return EqualUnmodifiableListView(_favorites);
   }
 
-  final Map<DecodedList, List<String>> _decodedWords;
+  final Map<EncodedList, List<String>> _decodedWords;
   @override
-  Map<DecodedList, List<String>> get decodedWords {
+  Map<EncodedList, List<String>> get decodedWords {
     if (_decodedWords is EqualUnmodifiableMapView) return _decodedWords;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableMapView(_decodedWords);
@@ -272,7 +272,7 @@ abstract mixin class _$ResultCopyWith<$Res> implements $ResultCopyWith<$Res> {
       List<int> numbers,
       Map<int, String> letterMap,
       List<String> favorites,
-      Map<DecodedList, List<String>> decodedWords,
+      Map<EncodedList, List<String>> decodedWords,
       DateTime createdAt,
       DateTime updatedAt});
 }
@@ -322,7 +322,7 @@ class __$ResultCopyWithImpl<$Res> implements _$ResultCopyWith<$Res> {
       decodedWords: null == decodedWords
           ? _self._decodedWords
           : decodedWords // ignore: cast_nullable_to_non_nullable
-              as Map<DecodedList, List<String>>,
+              as Map<EncodedList, List<String>>,
       createdAt: null == createdAt
           ? _self.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable

@@ -1,7 +1,7 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:summit_rock/src/features/results/application/result_service.dart';
 import 'package:summit_rock/src/features/word_decoder/domain/result.dart';
-import 'package:summit_rock/src/utilities/enums/decoded_list.dart';
+import 'package:summit_rock/src/utilities/enums/encoded_lists.dart';
 import 'package:summit_rock/src/utilities/list_english_words.dart';
 
 import '../../settings/domain/summit_rock_year.dart';
@@ -43,9 +43,10 @@ class WordDecoderController extends _$WordDecoderController {
   }) async {
     _numbers = numbers;
     _letterMap = letterMap;
-    Map<DecodedList, List<String>> decodedWords = {};
+    Map<EncodedList, List<String>> decodedWords = {};
     Set<String> favorites = {};
-    for (DecodedList list in DecodedList.values.reversed) {
+    List<EncodedList> lists = ref.watch(encodedListsProvider);
+    for (EncodedList list in lists.reversed) {
       List<String> decoded = _getDecodedList(list);
       decodedWords[list] = decoded;
       favorites.addAll(_findDictionaryWords(decoded));
@@ -71,34 +72,42 @@ class WordDecoderController extends _$WordDecoderController {
     return result;
   }
 
-  List<String> _getDecodedList(DecodedList list) {
+  List<String> _getDecodedList(EncodedList list) {
     switch (list) {
-      case DecodedList.outsideWords:
-        return _decodeNormal(_outsideRing);
-      case DecodedList.outsideWordsWithSpaces:
-        return _decodeNormal(_outsideRingWithSpaces);
-      case DecodedList.middleWords:
-        return _decodeNormal(_middleRing);
-      case DecodedList.insideWords:
-        return _decodeNormal(_insideRing);
-      case DecodedList.dotsOutside:
-        return _decodeNormal(_dotsOutsideRing);
-      case DecodedList.dotsInside:
-        return _decodeNormal(_dotsInsideRing);
-      case DecodedList.ticks:
-        return _decodeNormal(_ticksRing);
-      case DecodedList.outsideWordsReverse:
-        return _decodeReverse(_outsideRing);
-      case DecodedList.middleWordsReverse:
-        return _decodeReverse(_middleRing);
-      case DecodedList.insideWordsReverse:
-        return _decodeReverse(_insideRing);
-      case DecodedList.dotsOutsideReverse:
-        return _decodeReverse(_dotsOutsideRing);
-      case DecodedList.dotsInsideReverse:
-        return _decodeReverse(_dotsInsideRing);
-      case DecodedList.ticksReverse:
-        return _decodeReverse(_ticksRing);
+      case EncodedList.outsideWords:
+        return _decodeNormal(_outsideRing24);
+      case EncodedList.outsideWordsWithSpaces:
+        return _decodeNormal(_outsideRingWithSpaces24);
+      case EncodedList.middleWords:
+        return _decodeNormal(_middleRing24);
+      case EncodedList.insideWords:
+        return _decodeNormal(_insideRing24);
+      case EncodedList.dotsOutside:
+        return _decodeNormal(_dotsOutsideRing24);
+      case EncodedList.dotsInside:
+        return _decodeNormal(_dotsInsideRing24);
+      case EncodedList.ticks:
+        return _decodeNormal(_ticksRing24);
+      case EncodedList.outsideWordsReverse:
+        return _decodeReverse(_outsideRing24);
+      case EncodedList.middleWordsReverse:
+        return _decodeReverse(_middleRing24);
+      case EncodedList.insideWordsReverse:
+        return _decodeReverse(_insideRing24);
+      case EncodedList.dotsOutsideReverse:
+        return _decodeReverse(_dotsOutsideRing24);
+      case EncodedList.dotsInsideReverse:
+        return _decodeReverse(_dotsInsideRing24);
+      case EncodedList.ticksReverse:
+        return _decodeReverse(_ticksRing24);
+      case EncodedList.outsideLetters25:
+        return _decodeNormal(_outsideRing25);
+      case EncodedList.outsideLettersReverse25:
+        return _decodeReverse(_outsideRing25);
+      case EncodedList.ticks25:
+        return _decodeNormal(_ticksRing25);
+      case EncodedList.ticksReverse25:
+        return _decodeReverse(_ticksRing25);
     }
   }
 
@@ -149,7 +158,7 @@ class WordDecoderController extends _$WordDecoderController {
     return dictionaryWords.toList();
   }
 
-  final _outsideRing = [
+  final _outsideRing24 = [
     "M",
     "O",
     "M",
@@ -256,7 +265,7 @@ class WordDecoderController extends _$WordDecoderController {
     "E",
     "R"
   ];
-  final _outsideRingWithSpaces = [
+  final _outsideRingWithSpaces24 = [
     "M",
     "O",
     "M",
@@ -376,7 +385,7 @@ class WordDecoderController extends _$WordDecoderController {
     "R",
     " "
   ];
-  final _middleRing = [
+  final _middleRing24 = [
     "S",
     "U",
     "M",
@@ -480,7 +489,7 @@ class WordDecoderController extends _$WordDecoderController {
     "R",
     "K"
   ];
-  final _insideRing = [
+  final _insideRing24 = [
     "Y",
     "O",
     "U",
@@ -552,7 +561,7 @@ class WordDecoderController extends _$WordDecoderController {
     "G"
   ];
 
-  final _dotsOutsideRing = [
+  final _dotsOutsideRing24 = [
     "E",
     "N",
     "T",
@@ -671,7 +680,7 @@ class WordDecoderController extends _$WordDecoderController {
     "M"
   ];
 
-  final _dotsInsideRing = [
+  final _dotsInsideRing24 = [
     "S",
     "U",
     "M",
@@ -789,7 +798,7 @@ class WordDecoderController extends _$WordDecoderController {
     "R",
     "K"
   ];
-  final _ticksRing = [
+  final _ticksRing24 = [
     " ",
     " ",
     " ",
@@ -883,5 +892,187 @@ class WordDecoderController extends _$WordDecoderController {
     " ",
     " ",
     " "
+  ];
+
+  final _outsideRing25 = [
+    "N",
+    "X",
+    "D",
+    "Y",
+    "G",
+    "L",
+    "P",
+    "J",
+    "K",
+    "B",
+    "D",
+    "Q",
+    "U",
+    "H",
+    "D",
+    "V",
+    "Y",
+    "Z",
+    "N",
+    "P",
+    "A",
+    "N",
+    "C",
+    "A",
+    "R",
+    "K",
+    "E",
+    "M",
+    "G",
+    "F",
+    "S",
+    "U",
+    "T",
+    "U",
+    "G",
+    "L",
+    "R",
+    "E",
+    "F",
+    "Y",
+    "J",
+    "A",
+    "W",
+    "L",
+    "S",
+    "W",
+    "C",
+    "V",
+    "H",
+    "O",
+    "T",
+    "Z",
+    "S",
+    "I",
+    "X",
+    "B",
+    "C",
+    "E",
+    "X",
+    "F",
+    "Q",
+    "S",
+    "M",
+    "K",
+    "O",
+    "Z",
+    "V",
+    "M",
+    "F",
+    "H",
+    "A",
+    "J",
+    "R",
+    "W",
+    "I",
+    "P",
+    "Z",
+    "Q",
+    "W",
+    "X",
+    "B",
+    "T",
+    "J",
+    "R",
+    "H",
+    "E",
+    "O",
+    "Y",
+    "D",
+    "S",
+    "V",
+    "O",
+    "T",
+    "L",
+    "I",
+    "C",
+    "G",
+    "M",
+    "I",
+    "W",
+    "N",
+    "P",
+    "Q",
+    "B"
+  ];
+
+  final _ticksRing25 = [
+    "N",
+    "X",
+    "Y",
+    "G",
+    "P",
+    "J",
+    "B",
+    "D",
+    "U",
+    "H",
+    "V",
+    "Y",
+    "Z",
+    "P",
+    "A",
+    "C",
+    "A",
+    "K",
+    "E",
+    "M",
+    "F",
+    "S",
+    "T",
+    "U",
+    "L",
+    "R",
+    "F",
+    "Y",
+    "A",
+    "W",
+    "S",
+    "W",
+    "C",
+    "H",
+    "O",
+    "Z",
+    "S",
+    "X",
+    "B",
+    "E",
+    "X",
+    "Q",
+    "S",
+    "M",
+    "O",
+    "Z",
+    "M",
+    "F",
+    "A",
+    "J",
+    "W",
+    "I",
+    "Z",
+    "Q",
+    "W",
+    "X",
+    "T",
+    "J",
+    "H",
+    "E",
+    "Y",
+    "D",
+    "V",
+    "O",
+    "L",
+    "I",
+    "G",
+    "M",
+    "W",
+    "N",
+    "Q",
+    "B"
   ];
 }

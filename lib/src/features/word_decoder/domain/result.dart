@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:summit_rock/src/utilities/enums/decoded_list.dart';
+import 'package:summit_rock/src/utilities/enums/encoded_lists.dart';
 
 import '../../settings/domain/summit_rock_year.dart';
 
@@ -19,7 +19,7 @@ abstract class Result with _$Result {
     required List<int> numbers,
     required Map<int, String> letterMap,
     required List<String> favorites,
-    required Map<DecodedList, List<String>> decodedWords,
+    required Map<EncodedList, List<String>> decodedWords,
     required DateTime createdAt,
     required DateTime updatedAt,
   }) = _Result;
