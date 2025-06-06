@@ -23,7 +23,15 @@ mixin _$Result {
   Map<EncodedList, List<String>> get decodedWords;
   DateTime get createdAt;
   DateTime get updatedAt;
+
+  /// Rock number enum the results are tied to.
   RockNumber? get rockNumber;
+
+  /// Number of clue these results are tied to.
+  ///
+  /// Not an index. Aka, starts at 1 not 0.
+  /// To stay in line with the clue numbers Summit puts out.
+  int? get clueNumber;
 
   /// Create a copy of Result
   /// with the given fields replaced by the non-null parameter values.
@@ -52,7 +60,9 @@ mixin _$Result {
             (identical(other.updatedAt, updatedAt) ||
                 other.updatedAt == updatedAt) &&
             (identical(other.rockNumber, rockNumber) ||
-                other.rockNumber == rockNumber));
+                other.rockNumber == rockNumber) &&
+            (identical(other.clueNumber, clueNumber) ||
+                other.clueNumber == clueNumber));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -67,11 +77,12 @@ mixin _$Result {
       const DeepCollectionEquality().hash(decodedWords),
       createdAt,
       updatedAt,
-      rockNumber);
+      rockNumber,
+      clueNumber);
 
   @override
   String toString() {
-    return 'Result(id: $id, year: $year, numbers: $numbers, letterMap: $letterMap, favorites: $favorites, decodedWords: $decodedWords, createdAt: $createdAt, updatedAt: $updatedAt, rockNumber: $rockNumber)';
+    return 'Result(id: $id, year: $year, numbers: $numbers, letterMap: $letterMap, favorites: $favorites, decodedWords: $decodedWords, createdAt: $createdAt, updatedAt: $updatedAt, rockNumber: $rockNumber, clueNumber: $clueNumber)';
   }
 }
 
@@ -89,7 +100,8 @@ abstract mixin class $ResultCopyWith<$Res> {
       Map<EncodedList, List<String>> decodedWords,
       DateTime createdAt,
       DateTime updatedAt,
-      RockNumber? rockNumber});
+      RockNumber? rockNumber,
+      int? clueNumber});
 }
 
 /// @nodoc
@@ -113,6 +125,7 @@ class _$ResultCopyWithImpl<$Res> implements $ResultCopyWith<$Res> {
     Object? createdAt = null,
     Object? updatedAt = null,
     Object? rockNumber = freezed,
+    Object? clueNumber = freezed,
   }) {
     return _then(_self.copyWith(
       id: null == id
@@ -151,6 +164,10 @@ class _$ResultCopyWithImpl<$Res> implements $ResultCopyWith<$Res> {
           ? _self.rockNumber
           : rockNumber // ignore: cast_nullable_to_non_nullable
               as RockNumber?,
+      clueNumber: freezed == clueNumber
+          ? _self.clueNumber
+          : clueNumber // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -167,7 +184,8 @@ class _Result extends Result {
       required final Map<EncodedList, List<String>> decodedWords,
       required this.createdAt,
       required this.updatedAt,
-      this.rockNumber})
+      this.rockNumber,
+      this.clueNumber})
       : _numbers = numbers,
         _letterMap = letterMap,
         _favorites = favorites,
@@ -216,8 +234,17 @@ class _Result extends Result {
   final DateTime createdAt;
   @override
   final DateTime updatedAt;
+
+  /// Rock number enum the results are tied to.
   @override
   final RockNumber? rockNumber;
+
+  /// Number of clue these results are tied to.
+  ///
+  /// Not an index. Aka, starts at 1 not 0.
+  /// To stay in line with the clue numbers Summit puts out.
+  @override
+  final int? clueNumber;
 
   /// Create a copy of Result
   /// with the given fields replaced by the non-null parameter values.
@@ -253,7 +280,9 @@ class _Result extends Result {
             (identical(other.updatedAt, updatedAt) ||
                 other.updatedAt == updatedAt) &&
             (identical(other.rockNumber, rockNumber) ||
-                other.rockNumber == rockNumber));
+                other.rockNumber == rockNumber) &&
+            (identical(other.clueNumber, clueNumber) ||
+                other.clueNumber == clueNumber));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -268,11 +297,12 @@ class _Result extends Result {
       const DeepCollectionEquality().hash(_decodedWords),
       createdAt,
       updatedAt,
-      rockNumber);
+      rockNumber,
+      clueNumber);
 
   @override
   String toString() {
-    return 'Result(id: $id, year: $year, numbers: $numbers, letterMap: $letterMap, favorites: $favorites, decodedWords: $decodedWords, createdAt: $createdAt, updatedAt: $updatedAt, rockNumber: $rockNumber)';
+    return 'Result(id: $id, year: $year, numbers: $numbers, letterMap: $letterMap, favorites: $favorites, decodedWords: $decodedWords, createdAt: $createdAt, updatedAt: $updatedAt, rockNumber: $rockNumber, clueNumber: $clueNumber)';
   }
 }
 
@@ -291,7 +321,8 @@ abstract mixin class _$ResultCopyWith<$Res> implements $ResultCopyWith<$Res> {
       Map<EncodedList, List<String>> decodedWords,
       DateTime createdAt,
       DateTime updatedAt,
-      RockNumber? rockNumber});
+      RockNumber? rockNumber,
+      int? clueNumber});
 }
 
 /// @nodoc
@@ -315,6 +346,7 @@ class __$ResultCopyWithImpl<$Res> implements _$ResultCopyWith<$Res> {
     Object? createdAt = null,
     Object? updatedAt = null,
     Object? rockNumber = freezed,
+    Object? clueNumber = freezed,
   }) {
     return _then(_Result(
       id: null == id
@@ -353,6 +385,10 @@ class __$ResultCopyWithImpl<$Res> implements _$ResultCopyWith<$Res> {
           ? _self.rockNumber
           : rockNumber // ignore: cast_nullable_to_non_nullable
               as RockNumber?,
+      clueNumber: freezed == clueNumber
+          ? _self.clueNumber
+          : clueNumber // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }

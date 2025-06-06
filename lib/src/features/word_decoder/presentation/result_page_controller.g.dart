@@ -6,7 +6,7 @@ part of 'result_page_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$isWordFavoriteHash() => r'621c3cc49a883baa2a34f17770f71d0d8184c9a1';
+String _$isWordFavoriteHash() => r'd29516d206a465e77fcdb25d320eb20b4ef2da32';
 
 /// Copied from Dart SDK
 class _SystemHash {

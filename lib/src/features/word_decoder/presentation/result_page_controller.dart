@@ -1,3 +1,4 @@
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:summit_rock/src/features/results/application/result_service.dart';
 import 'package:summit_rock/src/features/word_decoder/domain/result.dart';
@@ -5,8 +6,7 @@ import 'package:summit_rock/src/features/word_decoder/domain/result.dart';
 part 'result_page_controller.g.dart';
 
 @riverpod
-Future<bool> isWordFavorite(
-    IsWordFavoriteRef ref, ResultId resultId, String word) async {
+Future<bool> isWordFavorite(Ref ref, ResultId resultId, String word) async {
   return ref
           .watch(resultStreamProvider(resultId))
           .value

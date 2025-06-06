@@ -25,6 +25,7 @@ _Result _$ResultFromJson(Map<String, dynamic> json) => _Result(
       createdAt: DateTime.parse(json['createdAt'] as String),
       updatedAt: DateTime.parse(json['updatedAt'] as String),
       rockNumber: $enumDecodeNullable(_$RockNumberEnumMap, json['rockNumber']),
+      clueNumber: (json['clueNumber'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$ResultToJson(_Result instance) => <String, dynamic>{
@@ -38,6 +39,7 @@ Map<String, dynamic> _$ResultToJson(_Result instance) => <String, dynamic>{
       'createdAt': instance.createdAt.toIso8601String(),
       'updatedAt': instance.updatedAt.toIso8601String(),
       'rockNumber': _$RockNumberEnumMap[instance.rockNumber],
+      'clueNumber': instance.clueNumber,
     };
 
 const _$SummitRockYearEnumMap = {

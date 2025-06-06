@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:summit_rock/src/common_widgets/text_widgets.dart';
 import 'package:summit_rock/src/features/results/application/result_service.dart';
+import 'package:summit_rock/src/features/settings/domain/summit_rock_year.dart';
 import 'package:summit_rock/src/features/word_decoder/domain/result.dart';
 import 'package:summit_rock/src/features/word_decoder/presentation/result_page_controller.dart';
+import 'package:summit_rock/src/features/word_decoder/presentation/word_decoder_controller.dart';
 
 import '../../../common_widgets/oops_page.dart';
 
@@ -30,6 +32,9 @@ class _WordListState extends ConsumerState<WordList> {
 
   @override
   Widget build(BuildContext context) {
+    List<int> specialIndexes = ref.watch(specialIndexesProvider(
+        year:
+            SummitRockYear.twentyFive)); // TODO this should probably be watched
     if (widget.title == 'Favorites') {
       expanded = true;
     }
@@ -77,6 +82,8 @@ class _WordListState extends ConsumerState<WordList> {
                   resultId: widget.resultId,
                   word: word,
                   last: word == widget.list.last,
+                  specialIndex: specialIndexes
+                      .contains(widget.list.indexOf(word)), // TODO
                 ),
             ],
           ),
@@ -91,12 +98,14 @@ class WordItem extends ConsumerWidget {
     required this.resultId,
     required this.word,
     required this.last,
+    required this.specialIndex,
     super.key,
   });
 
   final ResultId resultId;
   final String word;
   final bool last;
+  final bool specialIndex;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -120,7 +129,9 @@ class WordItem extends ConsumerWidget {
                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                       color: isFavorite
                           ? Theme.of(context).colorScheme.primary
-                          : null,
+                          : specialIndex
+                              ? Theme.of(context).colorScheme.secondary
+                              : null,
                       fontWeight: isFavorite ? FontWeight.bold : null,
                     ),
               ),

@@ -88,7 +88,6 @@ class _ListResults extends ConsumerWidget {
     required this.resultId,
     required this.listName,
     required this.words,
-    super.key,
   });
   final ResultId resultId;
   final String listName;
@@ -126,6 +125,7 @@ class _ListResults extends ConsumerWidget {
                   resultId: resultId,
                   word: word,
                   last: word == matches.last,
+                  specialIndex: false,
                 ),
             ],
           ),

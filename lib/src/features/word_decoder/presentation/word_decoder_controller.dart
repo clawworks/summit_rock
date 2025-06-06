@@ -1,3 +1,4 @@
+import 'package:riverpod/riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:summit_rock/src/features/results/application/result_service.dart';
 import 'package:summit_rock/src/features/word_decoder/domain/result.dart';
@@ -17,6 +18,17 @@ part 'word_decoder_controller.g.dart';
 // List<String> middleWords(MiddleWordsRef ref) {
 //   return [];
 // }
+
+@riverpod
+List<int> specialIndexes(Ref ref, {required SummitRockYear year}) {
+  switch (year) {
+    case SummitRockYear.twentyFour:
+      return [];
+    case SummitRockYear.twentyFive:
+      // Special Indexes for N, E, S, W on the shirt
+      return [0, 25, 50, 75]; // TODO Check these!
+  }
+}
 
 @Riverpod(keepAlive: true)
 class WordDecoderController extends _$WordDecoderController {

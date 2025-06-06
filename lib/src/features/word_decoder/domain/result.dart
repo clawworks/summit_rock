@@ -23,7 +23,15 @@ abstract class Result with _$Result {
     required Map<EncodedList, List<String>> decodedWords,
     required DateTime createdAt,
     required DateTime updatedAt,
+
+    /// Rock number enum the results are tied to.
     RockNumber? rockNumber,
+
+    /// Number of clue these results are tied to.
+    ///
+    /// Not an index. Aka, starts at 1 not 0.
+    /// To stay in line with the clue numbers Summit puts out.
+    int? clueNumber,
   }) = _Result;
 
   factory Result.fromJson(Map<String, Object?> json) => _$ResultFromJson(json);
