@@ -23,6 +23,7 @@ mixin _$Result {
   Map<EncodedList, List<String>> get decodedWords;
   DateTime get createdAt;
   DateTime get updatedAt;
+  RockNumber? get rockNumber;
 
   /// Create a copy of Result
   /// with the given fields replaced by the non-null parameter values.
@@ -49,7 +50,9 @@ mixin _$Result {
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.updatedAt, updatedAt) ||
-                other.updatedAt == updatedAt));
+                other.updatedAt == updatedAt) &&
+            (identical(other.rockNumber, rockNumber) ||
+                other.rockNumber == rockNumber));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -63,11 +66,12 @@ mixin _$Result {
       const DeepCollectionEquality().hash(favorites),
       const DeepCollectionEquality().hash(decodedWords),
       createdAt,
-      updatedAt);
+      updatedAt,
+      rockNumber);
 
   @override
   String toString() {
-    return 'Result(id: $id, year: $year, numbers: $numbers, letterMap: $letterMap, favorites: $favorites, decodedWords: $decodedWords, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'Result(id: $id, year: $year, numbers: $numbers, letterMap: $letterMap, favorites: $favorites, decodedWords: $decodedWords, createdAt: $createdAt, updatedAt: $updatedAt, rockNumber: $rockNumber)';
   }
 }
 
@@ -84,7 +88,8 @@ abstract mixin class $ResultCopyWith<$Res> {
       List<String> favorites,
       Map<EncodedList, List<String>> decodedWords,
       DateTime createdAt,
-      DateTime updatedAt});
+      DateTime updatedAt,
+      RockNumber? rockNumber});
 }
 
 /// @nodoc
@@ -107,6 +112,7 @@ class _$ResultCopyWithImpl<$Res> implements $ResultCopyWith<$Res> {
     Object? decodedWords = null,
     Object? createdAt = null,
     Object? updatedAt = null,
+    Object? rockNumber = freezed,
   }) {
     return _then(_self.copyWith(
       id: null == id
@@ -141,6 +147,10 @@ class _$ResultCopyWithImpl<$Res> implements $ResultCopyWith<$Res> {
           ? _self.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      rockNumber: freezed == rockNumber
+          ? _self.rockNumber
+          : rockNumber // ignore: cast_nullable_to_non_nullable
+              as RockNumber?,
     ));
   }
 }
@@ -156,7 +166,8 @@ class _Result extends Result {
       required final List<String> favorites,
       required final Map<EncodedList, List<String>> decodedWords,
       required this.createdAt,
-      required this.updatedAt})
+      required this.updatedAt,
+      this.rockNumber})
       : _numbers = numbers,
         _letterMap = letterMap,
         _favorites = favorites,
@@ -205,6 +216,8 @@ class _Result extends Result {
   final DateTime createdAt;
   @override
   final DateTime updatedAt;
+  @override
+  final RockNumber? rockNumber;
 
   /// Create a copy of Result
   /// with the given fields replaced by the non-null parameter values.
@@ -238,7 +251,9 @@ class _Result extends Result {
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.updatedAt, updatedAt) ||
-                other.updatedAt == updatedAt));
+                other.updatedAt == updatedAt) &&
+            (identical(other.rockNumber, rockNumber) ||
+                other.rockNumber == rockNumber));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -252,11 +267,12 @@ class _Result extends Result {
       const DeepCollectionEquality().hash(_favorites),
       const DeepCollectionEquality().hash(_decodedWords),
       createdAt,
-      updatedAt);
+      updatedAt,
+      rockNumber);
 
   @override
   String toString() {
-    return 'Result(id: $id, year: $year, numbers: $numbers, letterMap: $letterMap, favorites: $favorites, decodedWords: $decodedWords, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'Result(id: $id, year: $year, numbers: $numbers, letterMap: $letterMap, favorites: $favorites, decodedWords: $decodedWords, createdAt: $createdAt, updatedAt: $updatedAt, rockNumber: $rockNumber)';
   }
 }
 
@@ -274,7 +290,8 @@ abstract mixin class _$ResultCopyWith<$Res> implements $ResultCopyWith<$Res> {
       List<String> favorites,
       Map<EncodedList, List<String>> decodedWords,
       DateTime createdAt,
-      DateTime updatedAt});
+      DateTime updatedAt,
+      RockNumber? rockNumber});
 }
 
 /// @nodoc
@@ -297,6 +314,7 @@ class __$ResultCopyWithImpl<$Res> implements _$ResultCopyWith<$Res> {
     Object? decodedWords = null,
     Object? createdAt = null,
     Object? updatedAt = null,
+    Object? rockNumber = freezed,
   }) {
     return _then(_Result(
       id: null == id
@@ -331,6 +349,10 @@ class __$ResultCopyWithImpl<$Res> implements _$ResultCopyWith<$Res> {
           ? _self.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      rockNumber: freezed == rockNumber
+          ? _self.rockNumber
+          : rockNumber // ignore: cast_nullable_to_non_nullable
+              as RockNumber?,
     ));
   }
 }

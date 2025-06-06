@@ -9,7 +9,7 @@ import 'package:summit_rock/src/features/word_decoder/domain/result.dart';
 part 'result_service.g.dart';
 
 @riverpod
-String resultTitle(ResultTitleRef ref, Result result) {
+String resultTitle(Ref ref, Result result) {
   List<String> combined = ref.watch(combinedListProvider(
       numbers: result.numbers, letterMap: result.letterMap));
   String title = '';
@@ -22,7 +22,7 @@ String resultTitle(ResultTitleRef ref, Result result) {
 
 @riverpod
 List<String> combinedList(
-  CombinedListRef ref, {
+  Ref ref, {
   required List<int> numbers,
   required Map<int, String> letterMap,
 }) {
@@ -41,7 +41,7 @@ List<String> combinedList(
 }
 
 @riverpod
-int getCrossAxisCount(GetCrossAxisCountRef ref, {int? length = 10}) {
+int getCrossAxisCount(Ref ref, {int? length = 10}) {
   if (length == null) return 3;
   if (length < 4) return 5;
   if (length < 6) return 4;
@@ -50,7 +50,7 @@ int getCrossAxisCount(GetCrossAxisCountRef ref, {int? length = 10}) {
 }
 
 @riverpod
-Stream<List<Result>> resultsListStream(ResultsListStreamRef ref) {
+Stream<List<Result>> resultsListStream(Ref ref) {
   final onlyYear = ref.watch(filterByYearProvider);
   final year = ref.watch(yearSelectionProvider);
   final service = ref.watch(resultServiceProvider);
@@ -58,26 +58,26 @@ Stream<List<Result>> resultsListStream(ResultsListStreamRef ref) {
 }
 
 @riverpod
-Stream<List<Result>> yearResultsListStream(ResultsListStreamRef ref) {
+Stream<List<Result>> yearResultsListStream(Ref ref) {
   final year = ref.watch(yearSelectionProvider);
   final service = ref.watch(resultServiceProvider);
   return service.watchResults(year);
 }
 
 @riverpod
-Stream<Result?> resultStream(ResultStreamRef ref, ResultId id) {
+Stream<Result?> resultStream(Ref ref, ResultId id) {
   final service = ref.watch(resultServiceProvider);
   return service.watchResult(id);
 }
 
 @riverpod
-Future<Result?> result(ResultRef ref, ResultId id) {
+Future<Result?> result(Ref ref, ResultId id) {
   final service = ref.watch(resultServiceProvider);
   return service.fetchResult(id);
 }
 
 @riverpod
-ResultService resultService(ResultServiceRef ref) {
+ResultService resultService(Ref ref) {
   return ResultService(ref);
 }
 

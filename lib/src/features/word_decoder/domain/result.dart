@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:summit_rock/src/utilities/enums/encoded_lists.dart';
+import 'package:summit_rock/src/utilities/enums/rock_number.dart';
 
 import '../../settings/domain/summit_rock_year.dart';
 
@@ -22,6 +23,7 @@ abstract class Result with _$Result {
     required Map<EncodedList, List<String>> decodedWords,
     required DateTime createdAt,
     required DateTime updatedAt,
+    RockNumber? rockNumber,
   }) = _Result;
 
   factory Result.fromJson(Map<String, Object?> json) => _$ResultFromJson(json);

@@ -24,6 +24,7 @@ _Result _$ResultFromJson(Map<String, dynamic> json) => _Result(
       ),
       createdAt: DateTime.parse(json['createdAt'] as String),
       updatedAt: DateTime.parse(json['updatedAt'] as String),
+      rockNumber: $enumDecodeNullable(_$RockNumberEnumMap, json['rockNumber']),
     );
 
 Map<String, dynamic> _$ResultToJson(_Result instance) => <String, dynamic>{
@@ -36,6 +37,7 @@ Map<String, dynamic> _$ResultToJson(_Result instance) => <String, dynamic>{
           .map((k, e) => MapEntry(_$EncodedListEnumMap[k]!, e)),
       'createdAt': instance.createdAt.toIso8601String(),
       'updatedAt': instance.updatedAt.toIso8601String(),
+      'rockNumber': _$RockNumberEnumMap[instance.rockNumber],
     };
 
 const _$SummitRockYearEnumMap = {
@@ -61,4 +63,13 @@ const _$EncodedListEnumMap = {
   EncodedList.ticks25: 'ticks25',
   EncodedList.outsideLettersReverse25: 'outsideLettersReverse25',
   EncodedList.ticksReverse25: 'ticksReverse25',
+};
+
+const _$RockNumberEnumMap = {
+  RockNumber.miniOne: 'miniOne',
+  RockNumber.miniTwo: 'miniTwo',
+  RockNumber.miniThree: 'miniThree',
+  RockNumber.bigOne: 'bigOne',
+  RockNumber.bigTwo: 'bigTwo',
+  RockNumber.bigThree: 'bigThree',
 };

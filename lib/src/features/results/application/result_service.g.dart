@@ -6,7 +6,7 @@ part of 'result_service.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$resultTitleHash() => r'b22502380b753fe702c0b1a6f53e2bf8a29a59e1';
+String _$resultTitleHash() => r'28614c34b688cce8942882865079108397f3223d';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -157,7 +157,7 @@ class _ResultTitleProviderElement extends AutoDisposeProviderElement<String>
   Result get result => (origin as ResultTitleProvider).result;
 }
 
-String _$combinedListHash() => r'87d67a3edcd07bec30853304bf1c1a37ab3958bc';
+String _$combinedListHash() => r'323520d68c960fa86f6084f77de998fe25b91d47';
 
 /// See also [combinedList].
 @ProviderFor(combinedList)
@@ -304,7 +304,7 @@ class _CombinedListProviderElement
   Map<int, String> get letterMap => (origin as CombinedListProvider).letterMap;
 }
 
-String _$getCrossAxisCountHash() => r'bdc676944c053dcff9659a2abdca69c8caedb4ee';
+String _$getCrossAxisCountHash() => r'8a5889db46a691f4b7bee378be5e072396f101ec';
 
 /// See also [getCrossAxisCount].
 @ProviderFor(getCrossAxisCount)
@@ -434,7 +434,7 @@ class _GetCrossAxisCountProviderElement extends AutoDisposeProviderElement<int>
   int? get length => (origin as GetCrossAxisCountProvider).length;
 }
 
-String _$resultsListStreamHash() => r'0aebdf07444bedca73851f82e1386e03777f9148';
+String _$resultsListStreamHash() => r'5b5a1762a1225c46702e43fe99029383e8bd72ad';
 
 /// See also [resultsListStream].
 @ProviderFor(resultsListStream)
@@ -453,7 +453,7 @@ final resultsListStreamProvider =
 // ignore: unused_element
 typedef ResultsListStreamRef = AutoDisposeStreamProviderRef<List<Result>>;
 String _$yearResultsListStreamHash() =>
-    r'8781cac9b6664c541ad81e0c7e41385c955c5a49';
+    r'078352365aeee3effa2b31a0e120275bbffb7a57';
 
 /// See also [yearResultsListStream].
 @ProviderFor(yearResultsListStream)
@@ -471,7 +471,7 @@ final yearResultsListStreamProvider =
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef YearResultsListStreamRef = AutoDisposeStreamProviderRef<List<Result>>;
-String _$resultStreamHash() => r'c098d13013ef15064dda993c91b049e4bb6d6ec0';
+String _$resultStreamHash() => r'c27284c422b8e38b356b9258ae987cd04c12592b';
 
 /// See also [resultStream].
 @ProviderFor(resultStream)
@@ -601,7 +601,7 @@ class _ResultStreamProviderElement
   String get id => (origin as ResultStreamProvider).id;
 }
 
-String _$resultHash() => r'e7b240e2b37f9d5c1bdba1957f129513389c8e2f';
+String _$resultHash() => r'0e8757e0a2a275d1638b57bfcb547bbb8d32bc2e';
 
 /// See also [result].
 @ProviderFor(result)
@@ -730,7 +730,7 @@ class _ResultProviderElement extends AutoDisposeFutureProviderElement<Result?>
   String get id => (origin as ResultProvider).id;
 }
 
-String _$resultServiceHash() => r'625c599de1c6b22da30175422af180cad3baf134';
+String _$resultServiceHash() => r'7f091abd6f0958a699e0a050e1d0ef02e75ef61f';
 
 /// See also [resultService].
 @ProviderFor(resultService)
