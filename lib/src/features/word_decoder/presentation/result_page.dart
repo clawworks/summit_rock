@@ -49,6 +49,46 @@ class ResultPage extends ConsumerWidget {
           body: Center(
             child: ListView(
               children: [
+                InkWell(
+                  onTap: () {},
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              result.year.toString(),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headlineSmall
+                                  ?.copyWith(
+                                      // color: Theme.of(context).colorScheme.primary,
+                                      ),
+                            ),
+                            Text(
+                              result.rockNumber?.toString() ?? '',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleLarge
+                                  ?.copyWith(
+                                      // color: Theme.of(context).colorScheme.primary,
+                                      ),
+                            ),
+                          ],
+                        ),
+                        Text(
+                          result.clueNumber != null
+                              ? 'Clue #${result.clueNumber}'
+                              : '',
+                          style: Theme.of(context).textTheme.titleLarge,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
                 Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Column(
