@@ -26,7 +26,7 @@ List<int> specialIndexes(Ref ref, {required SummitRockYear year}) {
       return [];
     case SummitRockYear.twentyFive:
       // Special Indexes for N, E, S, W on the shirt
-      return [0, 25, 50, 75]; // TODO Check these!
+      return [0, 26, 52, 78]; // TODO Check these!
   }
 }
 

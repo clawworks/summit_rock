@@ -6,7 +6,7 @@ part of 'word_decoder_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$specialIndexesHash() => r'773ed11d801474b59507d09e27c63452dd638c26';
+String _$specialIndexesHash() => r'5e6f165194a089d1937fe38e826c0e08189c7013';
 
 /// Copied from Dart SDK
 class _SystemHash {

@@ -127,11 +127,9 @@ class WordItem extends ConsumerWidget {
                 '$word${last ? '' : ', '}',
                 // TODO style this, bold if favorite
                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                      color: isFavorite
+                      color: isFavorite || specialIndex
                           ? Theme.of(context).colorScheme.primary
-                          : specialIndex
-                              ? Theme.of(context).colorScheme.secondary
-                              : null,
+                          : null,
                       fontWeight: isFavorite ? FontWeight.bold : null,
                     ),
               ),
