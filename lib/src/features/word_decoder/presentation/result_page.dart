@@ -9,6 +9,7 @@ import 'package:summit_rock/src/features/word_decoder/presentation/copy_button.d
 import 'package:summit_rock/src/features/word_decoder/presentation/results_list.dart';
 import 'package:summit_rock/src/features/word_decoder/presentation/results_list_controller.dart';
 import 'package:summit_rock/src/routing/app_router.dart';
+import 'package:summit_rock/src/utilities/show_dynamic_height_modal.dart';
 
 class ResultPage extends ConsumerWidget {
   const ResultPage({required this.resultId, super.key});
@@ -50,7 +51,10 @@ class ResultPage extends ConsumerWidget {
             child: ListView(
               children: [
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    showDynamicHeightModal(context: context, children: [
+                    ]);
+                  },
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20.0),
                     child: Row(
