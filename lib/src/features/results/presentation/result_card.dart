@@ -73,7 +73,12 @@ class ResultCard extends ConsumerWidget {
                     spacing: 24.0,
                     children: [
                       Text(result.rockNumber?.toString() ?? ''),
-                      Text(result.clueNumber?.toString() ?? ''),
+                      Row(
+                        children: [
+                          Text('Clue #'),
+                          Text(result.clueNumber?.toString() ?? ''),
+                        ],
+                      ),
                     ],
                   ),
                 ],
