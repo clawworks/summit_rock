@@ -1,9 +1,20 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'rock_number.g.dart';
+
+@JsonEnum(alwaysCreate: true)
 enum RockNumber {
+  @JsonValue('miniOne')
   miniOne,
+  @JsonValue('miniTwo')
   miniTwo,
+  @JsonValue('miniThree')
   miniThree,
+  @JsonValue('bigOne')
   bigOne,
+  @JsonValue('bigTwo')
   bigTwo,
+  @JsonValue('bigThree')
   bigThree;
 
   @override
@@ -24,3 +35,8 @@ enum RockNumber {
     }
   }
 }
+
+// @riverpod
+// RockNumber rockNumber(RockNumberRef ref) {
+//   return RockNumber.miniOne;
+// }

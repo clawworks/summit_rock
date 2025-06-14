@@ -125,7 +125,6 @@ class WordItem extends ConsumerWidget {
             child: Center(
               child: Text(
                 '$word${last ? '' : ', '}',
-                // TODO style this, bold if favorite
                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                       color: isFavorite || specialIndex
                           ? Theme.of(context).colorScheme.primary

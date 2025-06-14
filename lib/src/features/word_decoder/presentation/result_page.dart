@@ -4,6 +4,9 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:summit_rock/src/common_widgets/oops_page.dart';
 import 'package:summit_rock/src/common_widgets/text_widgets.dart';
 import 'package:summit_rock/src/features/results/application/result_service.dart';
+import 'package:summit_rock/src/features/results/presentation/clue_number_incrementer.dart';
+import 'package:summit_rock/src/features/results/presentation/summit_rock_picker.dart';
+import 'package:summit_rock/src/features/results/presentation/summit_year_picker.dart';
 import 'package:summit_rock/src/features/word_decoder/domain/result.dart';
 import 'package:summit_rock/src/features/word_decoder/presentation/copy_button.dart';
 import 'package:summit_rock/src/features/word_decoder/presentation/results_list.dart';
@@ -52,8 +55,15 @@ class ResultPage extends ConsumerWidget {
               children: [
                 InkWell(
                   onTap: () {
-                    showDynamicHeightModal(context: context, children: [
-                    ]);
+                    showDynamicHeightModal(
+                      context: context,
+                      isDismissible: true,
+                      children: [
+                        SummitYearPicker(result: result),
+                        SummitRockPicker(result: result),
+                        ClueNumberIncrementer(result: result),
+                      ],
+                    );
                   },
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20.0),
