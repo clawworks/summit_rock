@@ -24,7 +24,10 @@ class ClueNumberIncrementer extends ConsumerWidget {
               OutlinedButton(
                 onPressed: (result.clueNumber ?? 0) > 0
                     ? () async {
-                        final clueNumber = (result.clueNumber ?? 0) - 1;
+                        int? clueNumber = (result.clueNumber ?? 0) - 1;
+                        if (clueNumber < 1) {
+                          clueNumber = null;
+                        }
                         Result copy = result.copyWith(clueNumber: clueNumber);
                         await ref.read(resultServiceProvider).setResult(copy);
                       }

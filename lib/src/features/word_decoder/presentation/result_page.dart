@@ -58,11 +58,7 @@ class ResultPage extends ConsumerWidget {
                     showDynamicHeightModal(
                       context: context,
                       isDismissible: true,
-                      children: [
-                        SummitYearPicker(result: result),
-                        SummitRockPicker(result: result),
-                        ClueNumberIncrementer(result: result),
-                      ],
+                      children: [ResultMetadataBody(resultId: result.id)],
                     );
                   },
                   child: Padding(
@@ -184,6 +180,34 @@ class ResultPage extends ConsumerWidget {
           ),
         );
       },
+    );
+  }
+}
+
+class ResultMetadataBody extends ConsumerWidget {
+  const ResultMetadataBody({required this.resultId, super.key});
+
+  final String resultId;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    AsyncValue<Result?> asyncValue = ref.watch(resultStreamProvider(resultId));
+    return asyncValue.when(
+      data: (result) {
+        if (result == null) return SizedBox.shrink();
+        return Column(
+          children: [
+            SummitYearPicker(result: result),
+            SummitRockPicker(result: result),
+            ClueNumberIncrementer(result: result),
+            const SizedBox(height: 40),
+          ],
+        );
+      },
+      error: (err, stack) => SizedBox.shrink(),
+      loading: () => Center(
+        child: CircularProgressIndicator.adaptive(),
+      ),
     );
   }
 }

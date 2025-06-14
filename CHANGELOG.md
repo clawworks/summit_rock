@@ -1,5 +1,12 @@
 ## Changes to Summit Rock app
 
+
+## 1.2.0 (10)
+**05/14/2025**\
+*Platforms: iOS*
+- Added color highlights for N, E, S, W starting points in the results
+- Added data for Rock and Clue number and Year to each result
+
 ## 1.2.0 (10)
 **05/14/2025**\
 *Platforms: iOS*
