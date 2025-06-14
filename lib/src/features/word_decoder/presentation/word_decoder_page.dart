@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:summit_rock/src/features/results/application/result_service.dart';
+import 'package:summit_rock/src/features/results/presentation/result_card.dart';
 import 'package:summit_rock/src/features/settings/domain/summit_rock_year.dart';
 import 'package:summit_rock/src/features/word_decoder/presentation/number_selector.dart';
 import 'package:summit_rock/src/features/word_decoder/presentation/word_decoder_controller.dart';
@@ -99,47 +100,6 @@ class ResultsList extends ConsumerWidget {
       loading: () {
         return const CircularProgressIndicator.adaptive();
       },
-    );
-  }
-}
-
-class ResultCard extends ConsumerWidget {
-  const ResultCard({required this.result, super.key});
-
-  final Result result;
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    return Card(
-      child: InkWell(
-        radius: 10.0,
-        onTap: () async {
-          context.goNamed(AppRoute.result,
-              pathParameters: {'resultId': result.id});
-        },
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                ref.watch(resultTitleProvider(result)),
-                style: Theme.of(context).textTheme.titleMedium,
-              ),
-              const SizedBox(width: 20.0),
-              Flexible(
-                child: Wrap(
-                  children: [
-                    for (String fav in result.favorites)
-                      Text('$fav${fav == result.favorites.last ? '' : ', '}'),
-                  ],
-                ),
-              ),
-              // Text('${result.favorites}'),
-            ],
-          ),
-        ),
-      ),
     );
   }
 }

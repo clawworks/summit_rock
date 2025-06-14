@@ -30,15 +30,16 @@ class SummitRockApp extends ConsumerWidget {
         //
         // This works for code too, not just values: Most code changes can be
         // tested with just a hot reload.
-        colorScheme: is2025
-            ? ColorScheme.fromSeed(
-                seedColor: Colors.blueAccent,
-                dynamicSchemeVariant: DynamicSchemeVariant.vibrant)
-            : ColorScheme.fromSeed(
-                seedColor: Colors.green,
-                dynamicSchemeVariant: DynamicSchemeVariant.vibrant,
-                surface: Colors.white,
-              ),
+        colorScheme: ref.watch(colorSchemeProvider),
+        // is2025
+        //     ? ColorScheme.fromSeed(
+        //         seedColor: Colors.blueAccent,
+        //         dynamicSchemeVariant: DynamicSchemeVariant.vibrant)
+        //     : ColorScheme.fromSeed(
+        //         seedColor: Colors.green,
+        //         dynamicSchemeVariant: DynamicSchemeVariant.vibrant,
+        //         surface: Colors.white,
+        //       ),
         useMaterial3: true,
       ),
     );
