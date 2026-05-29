@@ -122,6 +122,14 @@ class ResultService {
     return resultsRepository.watchResultsList(uid: user.uid, year: year);
   }
 
+  Future<void> deleteResult(ResultId resultId) async {
+    final user = authRepository.currentUser;
+    if (user == null) {
+      throw Exception('User cannot be null when deleting Results');
+    }
+    return resultsRepository.deleteResult(uid: user.uid, resultId: resultId);
+  }
+
   Future<void> deleteAllResults() async {
     final user = authRepository.currentUser;
     if (user == null) {

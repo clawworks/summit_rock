@@ -45,6 +45,7 @@ Map<String, dynamic> _$ResultToJson(_Result instance) => <String, dynamic>{
 const _$SummitRockYearEnumMap = {
   SummitRockYear.twentyFour: 'twentyFour',
   SummitRockYear.twentyFive: 'twentyFive',
+  SummitRockYear.twentySix: 'twentySix',
 };
 
 const _$EncodedListEnumMap = {
@@ -65,6 +66,12 @@ const _$EncodedListEnumMap = {
   EncodedList.ticks25: 'ticks25',
   EncodedList.outsideLettersReverse25: 'outsideLettersReverse25',
   EncodedList.ticksReverse25: 'ticksReverse25',
+  EncodedList.outsideLetters26: 'outsideLetters26',
+  EncodedList.middleLetters26: 'middleLetters26',
+  EncodedList.insideLetters26: 'insideLetters26',
+  EncodedList.outsideLettersReverse26: 'outsideLettersReverse26',
+  EncodedList.middleLettersReverse26: 'middleLettersReverse26',
+  EncodedList.insideLettersReverse26: 'insideLettersReverse26',
 };
 
 const _$RockNumberEnumMap = {

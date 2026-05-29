@@ -9,13 +9,14 @@ part of 'summit_rock_year.dart';
 const _$SummitRockYearEnumMap = {
   SummitRockYear.twentyFour: 'twentyFour',
   SummitRockYear.twentyFive: 'twentyFive',
+  SummitRockYear.twentySix: 'twentySix',
 };
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$colorSchemeHash() => r'c62c77ed7e784d014130915f7e5640d1637585d9';
+String _$colorSchemeHash() => r'f13658c6e35aff21ca553b8407e5cdc761d7ad83';
 
 /// See also [colorScheme].
 @ProviderFor(colorScheme)
@@ -31,7 +32,7 @@ final colorSchemeProvider = AutoDisposeProvider<ColorScheme>.internal(
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef ColorSchemeRef = AutoDisposeProviderRef<ColorScheme>;
-String _$yearSelectionHash() => r'82bc87da905de97d91c6183fa2df656782996728';
+String _$yearSelectionHash() => r'e2717abb3d0ac9ffee004278e5542eedda393d2d';
 
 /// See also [YearSelection].
 @ProviderFor(YearSelection)

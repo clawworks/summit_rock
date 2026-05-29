@@ -28,7 +28,13 @@ enum EncodedList {
   outsideLetters25(year: SummitRockYear.twentyFive),
   ticks25(year: SummitRockYear.twentyFive),
   outsideLettersReverse25(year: SummitRockYear.twentyFive),
-  ticksReverse25(year: SummitRockYear.twentyFive);
+  ticksReverse25(year: SummitRockYear.twentyFive),
+  outsideLetters26(year: SummitRockYear.twentySix),
+  middleLetters26(year: SummitRockYear.twentySix),
+  insideLetters26(year: SummitRockYear.twentySix),
+  outsideLettersReverse26(year: SummitRockYear.twentySix),
+  middleLettersReverse26(year: SummitRockYear.twentySix),
+  insideLettersReverse26(year: SummitRockYear.twentySix);
 
   const EncodedList({required this.year});
 
@@ -63,9 +69,19 @@ enum EncodedList {
       case EncodedList.dotsInsideReverse:
         return 'Dots Inside Reverse';
       case EncodedList.outsideLetters25:
+      case EncodedList.outsideLetters26:
         return 'Outside Letters';
       case EncodedList.outsideLettersReverse25:
+      case EncodedList.outsideLettersReverse26:
         return 'Outside Letters Reverse';
+      case EncodedList.middleLetters26:
+        return 'Middle Letters';
+      case EncodedList.middleLettersReverse26:
+        return 'Middle Letters Reverse';
+      case EncodedList.insideLetters26:
+        return 'Inside Letters';
+      case EncodedList.insideLettersReverse26:
+        return 'Inside Letters Reverse';
       case EncodedList.ticksReverse25:
       case EncodedList.ticksReverse:
         return 'Ticks Reverse';

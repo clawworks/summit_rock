@@ -10,7 +10,9 @@ enum SummitRockYear {
   @JsonValue('twentyFour')
   twentyFour,
   @JsonValue('twentyFive')
-  twentyFive;
+  twentyFive,
+  @JsonValue('twentySix')
+  twentySix;
 
   @override
   String toString() {
@@ -19,6 +21,8 @@ enum SummitRockYear {
         return '2024';
       case twentyFive:
         return '2025';
+      case twentySix:
+        return '2026';
     }
   }
 }
@@ -32,7 +36,7 @@ enum SummitRockYear {
 class YearSelection extends _$YearSelection {
   @override
   SummitRockYear build() {
-    return SummitRockYear.twentyFive;
+    return SummitRockYear.twentySix;
   }
 
   void set(SummitRockYear year) {
@@ -53,6 +57,10 @@ ColorScheme colorScheme(Ref ref) {
     case SummitRockYear.twentyFive:
       return ColorScheme.fromSeed(
           seedColor: Colors.blueAccent,
+          dynamicSchemeVariant: DynamicSchemeVariant.vibrant);
+    case SummitRockYear.twentySix:
+      return ColorScheme.fromSeed(
+          seedColor: Colors.red,
           dynamicSchemeVariant: DynamicSchemeVariant.vibrant);
   }
 }

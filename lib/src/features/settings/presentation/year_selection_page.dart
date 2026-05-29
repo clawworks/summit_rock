@@ -48,11 +48,21 @@ class _YearSelection extends ConsumerWidget {
           title: '2025',
           selected:
               ref.watch(yearSelectionProvider) == SummitRockYear.twentyFive,
-          bottomDivider: false,
           onTap: () {
             ref
                 .read(yearSelectionProvider.notifier)
                 .set(SummitRockYear.twentyFive);
+          },
+        ),
+        SettingTile(
+          title: '2026',
+          selected:
+              ref.watch(yearSelectionProvider) == SummitRockYear.twentySix,
+          bottomDivider: false,
+          onTap: () {
+            ref
+                .read(yearSelectionProvider.notifier)
+                .set(SummitRockYear.twentySix);
           },
         ),
       ],

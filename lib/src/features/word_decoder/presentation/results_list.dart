@@ -32,9 +32,8 @@ class _WordListState extends ConsumerState<WordList> {
 
   @override
   Widget build(BuildContext context) {
-    List<int> specialIndexes = ref.watch(specialIndexesProvider(
-        year:
-            SummitRockYear.twentyFive)); // TODO this should probably be watched
+    List<int> specialIndexes = ref.watch(
+        specialIndexesProvider(year: ref.watch(yearSelectionProvider)));
     if (widget.title == 'Favorites') {
       expanded = true;
     }

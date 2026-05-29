@@ -5,6 +5,7 @@ import 'package:summit_rock/src/common_widgets/oops_page.dart';
 import 'package:summit_rock/src/common_widgets/text_widgets.dart';
 import 'package:summit_rock/src/features/results/application/result_service.dart';
 import 'package:summit_rock/src/features/results/presentation/metadata_page.dart';
+import 'package:summit_rock/src/features/results/presentation/result_menu.dart';
 import 'package:summit_rock/src/features/word_decoder/domain/result.dart';
 import 'package:summit_rock/src/features/word_decoder/presentation/copy_button.dart';
 import 'package:summit_rock/src/features/word_decoder/presentation/results_list.dart';
@@ -46,6 +47,7 @@ class ResultPage extends ConsumerWidget {
                 },
                 icon: const Icon(Icons.search),
               ),
+              ResultMenu(result: result),
             ],
           ),
           body: Center(

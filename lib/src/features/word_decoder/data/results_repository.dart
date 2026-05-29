@@ -100,6 +100,12 @@ class ResultsRepository {
     await ref.set(result, SetOptions(merge: true));
   }
 
+  Future<void> deleteResult(
+      {required UserId uid, required ResultId resultId}) async {
+    final ref = _resultRef(uid, resultId);
+    await ref.delete();
+  }
+
   Future<void> deleteAllResults(UserId uid) async {
     await _firestore.collection(userResultsPath(uid)).get().then((snapshot) {
       for (DocumentSnapshot doc in snapshot.docs) {
